@@ -147,6 +147,37 @@ export default function DashboardClient() {
           <div className="hidden md:block text-8xl">🎯</div>
         </div>
       </div>
+
+      {/* Alphabet Section */}
+      <div className="bg-white border-3 border-persian-gold-500 rounded-2xl shadow-xl p-8">
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <h3 className="text-2xl font-bold mb-2 text-persian-red-500">
+              Persian Alphabet
+            </h3>
+            <p className="text-persian-red-700 mb-4 font-medium">
+              Learn all 32 letters of the Persian alphabet with interactive practice
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/dashboard/alphabet"
+                className="inline-flex items-center px-6 py-3 bg-persian-gold-500 text-white rounded-lg hover:bg-persian-gold-600 transition-colors font-bold shadow-lg hover:shadow-xl"
+              >
+                <span className="mr-2">🔤</span>
+                View All Letters
+              </Link>
+              <Link
+                href="/dashboard/alphabet/practice"
+                className="inline-flex items-center px-6 py-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold shadow-lg hover:shadow-xl"
+              >
+                <span className="mr-2">✍️</span>
+                Practice Alphabet
+              </Link>
+            </div>
+          </div>
+          <div className="hidden md:block text-8xl">🔤</div>
+        </div>
+      </div>
     </div>
   );
 }
