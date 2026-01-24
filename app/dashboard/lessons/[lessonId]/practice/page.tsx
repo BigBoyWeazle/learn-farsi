@@ -7,6 +7,7 @@ import type { Assessment } from "@/lib/spaced-repetition";
 import { calculateNextReview } from "@/lib/spaced-repetition";
 import { completeLessson, recordLessonAttempt } from "@/lib/lesson-progress";
 import PracticeCard from "@/app/dashboard/practice/practice-card";
+import { PageLoading } from "@/components/loading-spinner";
 
 interface SessionStats {
   total: number;
@@ -119,14 +120,7 @@ export default function LessonPracticePage() {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[600px]">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-persian-red-500 mx-auto mb-4"></div>
-          <p className="text-persian-red-700 font-medium">Loading practice session...</p>
-        </div>
-      </div>
-    );
+    return <PageLoading message="Loading practice session..." />;
   }
 
   if (words.length === 0) {

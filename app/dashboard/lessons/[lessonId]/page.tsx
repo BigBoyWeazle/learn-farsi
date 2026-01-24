@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import type { Vocabulary } from "@/db/schema";
 import { getLessonProgress } from "@/lib/lesson-progress";
+import { PageLoading } from "@/components/loading-spinner";
 
 interface Lesson {
   id: string;
@@ -51,14 +52,7 @@ export default function LessonIntroductionPage() {
   }, [lessonId]);
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[600px]">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading lesson...</p>
-        </div>
-      </div>
-    );
+    return <PageLoading message="Loading lesson..." />;
   }
 
   if (!lessonData) {
