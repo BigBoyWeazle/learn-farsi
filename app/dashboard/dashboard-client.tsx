@@ -163,12 +163,14 @@ export default function DashboardClient() {
                 href="/dashboard/alphabet"
                 className="inline-flex items-center px-6 py-3 bg-persian-gold-500 text-white rounded-lg hover:bg-persian-gold-600 transition-colors font-bold shadow-lg hover:shadow-xl"
               >
+                <span className="mr-2">📖</span>
                 View All Letters
               </Link>
               <Link
                 href="/dashboard/alphabet/practice"
                 className="inline-flex items-center px-6 py-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold shadow-lg hover:shadow-xl"
               >
+                <span className="mr-2">✏️</span>
                 Practice Alphabet
               </Link>
             </div>

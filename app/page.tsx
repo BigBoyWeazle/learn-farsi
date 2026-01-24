@@ -195,7 +195,7 @@ export default function LandingPage() {
             Our Story
           </h2>
 
-          <div className="bg-white dark:bg-persian-beige-800 rounded-3xl p-6 md:p-8 shadow-xl border-3 border-persian-red-200 dark:border-persian-red-700">
+          <div className="bg-white dark:bg-persian-beige-800 rounded-3xl p-6 md:p-8 shadow-xl border-3 border-persian-red-200 dark:border-persian-red-700 group">
             <div className="flex flex-col items-center gap-6">
               {/* Photo */}
               <div className="flex-shrink-0">
@@ -204,14 +204,14 @@ export default function LandingPage() {
                   alt="Thomas van Welsenes"
                   width={120}
                   height={120}
-                  className="rounded-full border-4 border-persian-red-500 shadow-lg object-cover w-[120px] h-[120px]"
+                  className="rounded-full border-4 border-persian-red-500 shadow-lg object-cover w-[120px] h-[120px] transition-transform duration-300 hover:scale-110"
                 />
               </div>
 
               {/* Story */}
               <div className="text-center">
                 <h3 className="text-xl font-bold text-persian-red-600 dark:text-persian-gold-400 mb-4">
-                  Hi, I&apos;m Thomas!
+                  Hi, I&apos;m Thomas<span className="inline-block group-hover:animate-wave">👋</span>!
                 </h3>
                 <div className="space-y-3 text-persian-red-800 dark:text-persian-beige-200 leading-relaxed text-sm">
                   <p>
@@ -247,7 +247,7 @@ export default function LandingPage() {
                     href="https://buymeacoffee.com/thomasvanwelsenes"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFDD00] hover:bg-[#FFCC00] text-gray-900 font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-persian-gold-500 hover:bg-persian-gold-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
                   >
                     <span className="text-xl">☕</span>
                     <span>Buy Me a Coffee</span>
