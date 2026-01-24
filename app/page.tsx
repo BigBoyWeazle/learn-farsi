@@ -20,7 +20,10 @@ export default function LandingPage() {
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="text-persian-red-500">Learn Farsi</span>
             <br />
-            <span className="text-persian-red-700 dark:text-persian-beige-100" style={{ direction: "rtl" }}>
+            <span
+              className="text-persian-red-700 dark:text-persian-beige-100"
+              style={{ direction: "rtl" }}
+            >
               فارسی بیاموزید
             </span>
           </h1>
@@ -187,46 +190,53 @@ export default function LandingPage() {
 
       {/* About / Story Section */}
       <section className="py-20 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-persian-red-500">
-            Meet the Creator
+            Our Story
           </h2>
 
-          <div className="bg-white dark:bg-persian-beige-800 rounded-3xl p-8 md:p-12 shadow-xl border-3 border-persian-red-200 dark:border-persian-red-700">
-            <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="bg-white dark:bg-persian-beige-800 rounded-3xl p-6 md:p-8 shadow-xl border-3 border-persian-red-200 dark:border-persian-red-700">
+            <div className="flex flex-col items-center gap-6">
               {/* Photo */}
               <div className="flex-shrink-0">
                 <Image
                   src="/ProfileFotoTVW.JPG"
                   alt="Thomas van Welsenes"
-                  width={180}
-                  height={180}
-                  className="rounded-2xl border-4 border-persian-red-500 shadow-lg object-cover"
+                  width={120}
+                  height={120}
+                  className="rounded-full border-4 border-persian-red-500 shadow-lg object-cover w-[120px] h-[120px]"
                 />
               </div>
 
               {/* Story */}
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl font-bold text-persian-red-600 dark:text-persian-gold-400 mb-4">
+              <div className="text-center">
+                <h3 className="text-xl font-bold text-persian-red-600 dark:text-persian-gold-400 mb-4">
                   Hi, I&apos;m Thomas!
                 </h3>
-                <div className="space-y-4 text-persian-red-800 dark:text-persian-beige-200 leading-relaxed">
+                <div className="space-y-3 text-persian-red-800 dark:text-persian-beige-200 leading-relaxed text-sm">
                   <p>
-                    Born in Scotland and raised in the Netherlands, I have always been drawn to
-                    different cultures, languages, and traditions. Persian culture was completely
-                    unfamiliar to me—until I met my Persian partner in Amsterdam.
+                    Born in Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿 and raised in the Netherlands 🇳🇱, I have
+                    always been drawn to different cultures, languages, and
+                    traditions. Persian culture was completely unfamiliar to me,
+                    until I met my Persian partner in Amsterdam.
                   </p>
                   <p>
-                    Through her, I discovered incredible dishes, unique customs like ta&apos;arof,
-                    and the warmth that defines Persian hospitality. That experience sparked a
-                    deeper curiosity and a desire to truly engage with the culture.
+                    Through her, I discovered incredible dishes, unique customs
+                    like ta&apos;arof, and the warmth that defines Persian
+                    hospitality. That experience sparked a deeper curiosity and
+                    a desire to truly engage with the culture.
                   </p>
                   <p>
-                    When I decided to learn Farsi, I quickly realized that popular platforms like
-                    Duolingo don&apos;t offer Farsi courses. That gap inspired me to create
-                    <span className="font-bold text-persian-red-500"> Learn Farsi</span>—a simple,
-                    accessible way for anyone to learn daily Farsi words and immerse themselves
-                    in the beauty of Persian language and culture.
+                    When I decided to learn Farsi, I quickly realized that
+                    popular platforms like Duolingo don&apos;t offer Farsi
+                    courses. That gap inspired me to create
+                    <span className="font-bold text-persian-red-500">
+                      {" "}
+                      🇮🇷 Learn Farsi
+                    </span>
+                    , a simple, accessible way for anyone to learn daily Farsi
+                    words and immerse themselves in the beauty of Persian
+                    language and culture.
                   </p>
                 </div>
 
@@ -255,7 +265,8 @@ export default function LandingPage() {
             Made with Actual Farsi Teachers
           </h2>
           <p className="text-center text-persian-red-700 dark:text-persian-beige-200 mb-12 text-lg font-medium">
-            Our curriculum is developed in collaboration with native Persian speakers and experienced teachers
+            Our curriculum is developed in collaboration with native Persian
+            speakers and experienced teachers
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -263,9 +274,9 @@ export default function LandingPage() {
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 shadow-xl border-2 border-persian-red-200 dark:border-persian-red-700 hover:shadow-2xl transition-shadow">
               <div className="text-4xl mb-4 text-persian-gold-500">&quot;</div>
               <p className="text-persian-red-800 dark:text-persian-beige-200 italic mb-6 leading-relaxed">
-                This app captures the authentic way we teach Farsi in Iran. The phonetic
-                transcriptions are accurate and the example sentences reflect how we actually
-                speak in everyday conversations.
+                This app captures the authentic way we teach Farsi in Iran. The
+                phonetic transcriptions are accurate and the example sentences
+                reflect how we actually speak in everyday conversations.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-persian-red-100 dark:bg-persian-red-800 flex items-center justify-center text-xl">
@@ -286,9 +297,9 @@ export default function LandingPage() {
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 shadow-xl border-2 border-persian-red-200 dark:border-persian-red-700 hover:shadow-2xl transition-shadow">
               <div className="text-4xl mb-4 text-persian-gold-500">&quot;</div>
               <p className="text-persian-red-800 dark:text-persian-beige-200 italic mb-6 leading-relaxed">
-                The spaced repetition system and focus on pronunciation are exactly what
-                language learners need. I recommend this app to all my students who want
-                to build a strong vocabulary foundation.
+                The spaced repetition system and focus on pronunciation are
+                exactly what language learners need. I recommend this app to all
+                my students who want to build a strong vocabulary foundation.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-persian-red-100 dark:bg-persian-red-800 flex items-center justify-center text-xl">
@@ -309,9 +320,10 @@ export default function LandingPage() {
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 shadow-xl border-2 border-persian-red-200 dark:border-persian-red-700 hover:shadow-2xl transition-shadow">
               <div className="text-4xl mb-4 text-persian-gold-500">&quot;</div>
               <p className="text-persian-red-800 dark:text-persian-beige-200 italic mb-6 leading-relaxed">
-                As someone who teaches Farsi to heritage speakers and complete beginners
-                alike, I appreciate how this app bridges the gap. The structured lessons
-                make it easy for anyone to start learning Persian.
+                As someone who teaches Farsi to heritage speakers and complete
+                beginners alike, I appreciate how this app bridges the gap. The
+                structured lessons make it easy for anyone to start learning
+                Persian.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-persian-red-100 dark:bg-persian-red-800 flex items-center justify-center text-xl">

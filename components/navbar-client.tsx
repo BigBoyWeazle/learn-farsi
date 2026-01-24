@@ -36,6 +36,12 @@ export function NavbarClient() {
               Word Library
             </Link>
             <Link
+              href="/dashboard/alphabet"
+              className="text-sm font-semibold text-persian-red-700 hover:text-persian-red-500 transition-colors"
+            >
+              Persian Alphabet
+            </Link>
+            <Link
               href="/dashboard"
               className="px-4 py-2 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors text-sm font-semibold shadow-md"
             >
