@@ -258,88 +258,29 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Teacher Testimonials Section */}
+      {/* Teacher Support Section */}
       <section className="py-20 bg-persian-beige-100 dark:bg-[#543210] transition-colors">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-4 text-persian-red-500">
-            Made with Actual Farsi Teachers
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="text-5xl mb-6">👩‍🏫</div>
+          <h2 className="text-4xl font-bold mb-4 text-persian-red-500">
+            Coming Soon: Native Teacher Support
           </h2>
-          <p className="text-center text-persian-red-700 dark:text-persian-beige-200 mb-12 text-lg font-medium">
-            Our curriculum is developed in collaboration with native Persian
-            speakers and experienced teachers
+          <p className="text-persian-red-700 dark:text-persian-beige-200 mb-6 text-lg font-medium max-w-2xl mx-auto">
+            We&apos;re working on partnering with native Persian speakers and
+            experienced Farsi teachers to bring you authentic pronunciation
+            guides, cultural insights, and verified content.
           </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Testimonial 1 */}
-            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 shadow-xl border-2 border-persian-red-200 dark:border-persian-red-700 hover:shadow-2xl transition-shadow">
-              <div className="text-4xl mb-4 text-persian-gold-500">&quot;</div>
-              <p className="text-persian-red-800 dark:text-persian-beige-200 italic mb-6 leading-relaxed">
-                This app captures the authentic way we teach Farsi in Iran. The
-                phonetic transcriptions are accurate and the example sentences
-                reflect how we actually speak in everyday conversations.
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-persian-red-100 dark:bg-persian-red-800 flex items-center justify-center text-xl">
-                  👩‍🏫
-                </div>
-                <div>
-                  <p className="font-bold text-persian-red-600 dark:text-persian-gold-400">
-                    Maryam Hosseini
-                  </p>
-                  <p className="text-sm text-persian-red-500 dark:text-persian-beige-300">
-                    🇮🇷 Tehran, Iran
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial 2 */}
-            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 shadow-xl border-2 border-persian-red-200 dark:border-persian-red-700 hover:shadow-2xl transition-shadow">
-              <div className="text-4xl mb-4 text-persian-gold-500">&quot;</div>
-              <p className="text-persian-red-800 dark:text-persian-beige-200 italic mb-6 leading-relaxed">
-                The spaced repetition system and focus on pronunciation are
-                exactly what language learners need. I recommend this app to all
-                my students who want to build a strong vocabulary foundation.
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-persian-red-100 dark:bg-persian-red-800 flex items-center justify-center text-xl">
-                  👨‍🏫
-                </div>
-                <div>
-                  <p className="font-bold text-persian-red-600 dark:text-persian-gold-400">
-                    Ali Rezaei
-                  </p>
-                  <p className="text-sm text-persian-red-500 dark:text-persian-beige-300">
-                    🇮🇷 Shiraz, Iran
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial 3 */}
-            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 shadow-xl border-2 border-persian-red-200 dark:border-persian-red-700 hover:shadow-2xl transition-shadow">
-              <div className="text-4xl mb-4 text-persian-gold-500">&quot;</div>
-              <p className="text-persian-red-800 dark:text-persian-beige-200 italic mb-6 leading-relaxed">
-                As someone who teaches Farsi to heritage speakers and complete
-                beginners alike, I appreciate how this app bridges the gap. The
-                structured lessons make it easy for anyone to start learning
-                Persian.
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-persian-red-100 dark:bg-persian-red-800 flex items-center justify-center text-xl">
-                  👩‍🏫
-                </div>
-                <div>
-                  <p className="font-bold text-persian-red-600 dark:text-persian-gold-400">
-                    Sara Ahmadi
-                  </p>
-                  <p className="text-sm text-persian-red-500 dark:text-persian-beige-300">
-                    🇺🇸 Los Angeles, USA
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p className="text-persian-red-600 dark:text-persian-beige-300 mb-8">
+            Are you a Farsi teacher or native speaker? We&apos;d love to
+            collaborate with you!
+          </p>
+          <a
+            href="mailto:thomas@thomasvanwelsenes.com?subject=Learn%20Farsi%20Teacher%20Contribution"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-persian-red-500 hover:bg-persian-red-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
+          >
+            <span className="text-xl">✉️</span>
+            <span>Want to Contribute? Get in Touch</span>
+          </a>
         </div>
       </section>
 
