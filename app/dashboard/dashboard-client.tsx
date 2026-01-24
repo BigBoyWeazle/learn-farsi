@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getNextLessonId, getCompletedLessonIds } from "@/lib/lesson-progress";
 import { getUserStats } from "@/lib/user-stats";
+import { PersianProverb } from "@/components/persian-proverb";
 
 interface Lesson {
   id: string;
@@ -175,6 +176,9 @@ export default function DashboardClient() {
           </div>
         </div>
       </div>
+
+      {/* Persian Proverb of the Day */}
+      <PersianProverb />
     </div>
   );
 }

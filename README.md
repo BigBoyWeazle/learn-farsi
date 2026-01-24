@@ -4,9 +4,10 @@ A modern web application for learning Farsi (Persian) vocabulary one word at a t
 
 # TO BUILD
 
-- Persian / Arabic alphabet overview, plus a quick lesson / daily practice for the alphabet
-- Also add My story + foto, brief explanation of why I started this app. + Buy me a Coffee button?
+- Add back authentication and share?
 - Also add a section with, Made with Actual Farsi teachers and their testimonials
+- PAID model for lessons? / Referral to teacher?
+- make cool main page thomasvanwelsenes (cool sky / cali / redwood / highland video / stock image?)
 
 ## Features
 

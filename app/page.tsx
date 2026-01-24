@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Footer } from "@/components/footer";
+import { PersianBorder } from "@/components/persian-border";
 
 export default function LandingPage() {
   return (
@@ -85,6 +86,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Decorative Divider */}
+      <PersianBorder color="gold" variant="geometric" className="bg-persian-beige-100 dark:bg-[#654321]" />
 
       {/* Features Section */}
       <section className="py-20 bg-persian-beige-100 dark:bg-[#654321] transition-colors">
@@ -188,6 +192,9 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Decorative Divider */}
+      <PersianBorder color="red" variant="simple" className="bg-persian-beige-200 dark:bg-[#654321]" />
+
       {/* About / Story Section */}
       <section className="py-20 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -223,13 +230,14 @@ export default function LandingPage() {
                   <p>
                     Through her, I discovered incredible dishes, unique customs
                     like ta&apos;arof, and the warmth that defines Persian
-                    hospitality. That experience sparked a deeper curiosity and
-                    a desire to truly engage with the culture.
+                    hospitality. That experience sparked a deeper curiosity to
+                    further engage with the culture.
                   </p>
                   <p>
-                    When I decided to learn Farsi, I quickly realized that
-                    popular platforms like Duolingo don&apos;t offer Farsi
-                    courses. That gap inspired me to create
+                    When I decided to learn Farsi, I quickly realized that it
+                    was hard to find free and accessible Farsi lesson, popular
+                    platforms like Duolingo don&apos;t even offer Farsi courses!
+                    That gap inspired me to create
                     <span className="font-bold text-persian-red-500">
                       {" "}
                       🇮🇷 Learn Farsi
@@ -257,6 +265,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Decorative Divider */}
+      <PersianBorder color="turquoise" variant="dots" className="bg-persian-beige-100 dark:bg-[#543210]" />
 
       {/* Teacher Support Section */}
       <section className="py-20 bg-persian-beige-100 dark:bg-[#543210] transition-colors">
