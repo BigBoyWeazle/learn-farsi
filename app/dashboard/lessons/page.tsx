@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getCompletedLessonIds, canAccessLesson } from "@/lib/lesson-progress";
 import { PageLoading } from "@/components/loading-spinner";
+import { CarpetProgress } from "@/components/carpet-progress";
 
 interface Category {
   id: string;
@@ -89,12 +90,10 @@ export default function LessonsPage() {
           </div>
           <div className="text-5xl">📚</div>
         </div>
-        <div className="mt-4 bg-white/30 rounded-full h-3 overflow-hidden">
-          <div
-            className="bg-white h-full transition-all duration-500"
-            style={{
-              width: `${(completedLessonIds.length / lessons.length) * 100}%`,
-            }}
+        <div className="mt-4">
+          <CarpetProgress
+            value={lessons.length > 0 ? (completedLessonIds.length / lessons.length) * 100 : 0}
+            size="md"
           />
         </div>
       </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { updateStreak, getStreakMessage } from "@/lib/streak-tracking";
+import { Nightingale } from "@/components/nightingale";
 
 interface SessionStats {
   total: number;
@@ -78,7 +79,9 @@ export default function SessionCompletePage() {
     <div className="max-w-2xl mx-auto py-12">
       <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-12 text-center">
         {/* Celebration Icon */}
-        <div className="text-8xl mb-6 animate-bounce">🎉</div>
+        <div className="flex justify-center mb-6">
+          <Nightingale show={true} size="lg" />
+        </div>
 
         {/* Title */}
         <h1 className="text-4xl font-bold text-persian-red-500 mb-2">Great Work!</h1>

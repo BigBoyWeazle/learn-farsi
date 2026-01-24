@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
+import { Nightingale } from "@/components/nightingale";
 
 interface SessionStats {
   total: number;
@@ -80,8 +81,12 @@ export default function LessonCompletePage() {
     <div className="max-w-2xl mx-auto py-12">
       <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-12 text-center">
         {/* Celebration/Try Again Icon */}
-        <div className={`text-8xl mb-6 ${isPassed ? 'animate-bounce' : ''}`}>
-          {isPassed ? '🎉' : '📖'}
+        <div className="flex justify-center mb-6">
+          {isPassed ? (
+            <Nightingale show={true} size="lg" />
+          ) : (
+            <div className="text-8xl">📖</div>
+          )}
         </div>
 
         {/* Title */}
