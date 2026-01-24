@@ -4,7 +4,6 @@ import type { Vocabulary } from "@/db/schema";
 import type { Assessment } from "@/lib/spaced-repetition";
 import { validateAnswer, type ValidationResult } from "@/lib/answer-validation";
 import { useState, useEffect } from "react";
-import { CarpetProgress } from "@/components/carpet-progress";
 
 interface PracticeCardProps {
   word: Vocabulary;
@@ -76,7 +75,12 @@ export default function PracticeCard({
           </span>
         </div>
         {/* Progress Bar */}
-        <CarpetProgress value={progressPercent} size="md" />
+        <div className="w-full bg-persian-beige-200 rounded-full h-3 border border-persian-red-300">
+          <div
+            className="bg-persian-red-500 h-full rounded-full transition-all duration-300"
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
       </div>
 
       {/* Card */}

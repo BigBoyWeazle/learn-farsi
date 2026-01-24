@@ -30,8 +30,8 @@ export default function LessonCompletePage() {
     const savedScore = localStorage.getItem("lessonScore");
     const savedLessonId = localStorage.getItem("lessonId");
 
-    // Verify this is the correct lesson
-    if (savedLessonId !== lessonId) {
+    // Verify this is the correct lesson (only redirect if there's a mismatch, not if data is missing)
+    if (savedLessonId && savedLessonId !== lessonId) {
       router.push(`/dashboard/lessons/${lessonId}`);
       return;
     }

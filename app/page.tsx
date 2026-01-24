@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Footer } from "@/components/footer";
-import { PersianBorder } from "@/components/persian-border";
 
 export default function LandingPage() {
   return (
@@ -86,9 +85,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Decorative Divider */}
-      <PersianBorder color="gold" variant="geometric" className="bg-persian-beige-100 dark:bg-[#654321]" />
 
       {/* Features Section */}
       <section className="py-20 bg-persian-beige-100 dark:bg-[#654321] transition-colors">
@@ -192,9 +188,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Decorative Divider */}
-      <PersianBorder color="red" variant="simple" className="bg-persian-beige-200 dark:bg-[#654321]" />
-
       {/* About / Story Section */}
       <section className="py-20 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -265,9 +258,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Decorative Divider */}
-      <PersianBorder color="turquoise" variant="dots" className="bg-persian-beige-100 dark:bg-[#543210]" />
 
       {/* Teacher Support Section */}
       <section className="py-20 bg-persian-beige-100 dark:bg-[#543210] transition-colors">
