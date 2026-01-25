@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { updateStreak, getStreakMessage } from "@/lib/streak-tracking";
 
 interface SessionStats {
   total: number;
@@ -15,10 +14,17 @@ interface SessionStats {
   incorrect: number;
 }
 
+interface StreakUpdate {
+  currentStreak: number;
+  longestStreak: number;
+  totalXP: number;
+  isNewStreak: boolean;
+}
+
 export default function SessionCompletePage() {
   const router = useRouter();
   const [stats, setStats] = useState<SessionStats | null>(null);
-  const [streakMessage, setStreakMessage] = useState<string>("");
+  const [streakUpdate, setStreakUpdate] = useState<StreakUpdate | null>(null);
 
   useEffect(() => {
     // Load stats from localStorage
@@ -36,9 +42,19 @@ export default function SessionCompletePage() {
         parsedStats.hard * 2 +
         parsedStats.again * 1;
 
-      // Update streak and get message
-      const streakUpdate = updateStreak(xpEarned);
-      setStreakMessage(getStreakMessage(streakUpdate));
+      // Update streak via API (stored per user in database)
+      fetch("/api/user/stats", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ xpEarned }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (!data.error) {
+            setStreakUpdate(data);
+          }
+        })
+        .catch((err) => console.error("Error updating stats:", err));
     }
     // Note: Don't auto-redirect if no stats - let user see the page
   }, []);
@@ -145,11 +161,30 @@ export default function SessionCompletePage() {
         </div>
 
         {/* Streak Display */}
-        {streakMessage && (
+        {streakUpdate && (
           <div className="mb-8 p-4 bg-amber-50 rounded-lg border-2 border-amber-400">
-            <p className="text-amber-700 font-bold text-center text-lg">
-              {streakMessage}
-            </p>
+            <div className="flex items-center justify-center gap-4">
+              <div className="text-center">
+                <div className="text-3xl">🔥</div>
+                <div className="text-2xl font-bold text-amber-700">{streakUpdate.currentStreak}</div>
+                <div className="text-sm text-amber-600 font-medium">Current Streak</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl">🏆</div>
+                <div className="text-2xl font-bold text-amber-700">{streakUpdate.longestStreak}</div>
+                <div className="text-sm text-amber-600 font-medium">Record Streak</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl">⭐</div>
+                <div className="text-2xl font-bold text-amber-700">{streakUpdate.totalXP}</div>
+                <div className="text-sm text-amber-600 font-medium">Total XP</div>
+              </div>
+            </div>
+            {streakUpdate.isNewStreak && (
+              <p className="text-amber-700 font-bold text-center mt-3">
+                New streak started! Keep it going! 💪
+              </p>
+            )}
           </div>
         )}
 
@@ -170,7 +205,7 @@ export default function SessionCompletePage() {
           </Link>
         </div>
 
-        {/* Streak Placeholder (for future implementation) */}
+        {/* Streak Reminder */}
         <div className="mt-8 pt-8 border-t border-persian-red-200">
           <div className="flex items-center justify-center gap-2 text-persian-red-700">
             <span className="text-2xl">🔥</span>

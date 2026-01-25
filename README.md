@@ -4,10 +4,12 @@ A modern web application for learning Farsi (Persian) vocabulary one word at a t
 
 # TO BUILD
 
-- Add back authentication and share?
-- Also add a section with, Made with Actual Farsi teachers and their testimonials
+- make word library design better (add words from farsi doc / lessons)
+- one extra design color?
+- Footer add links to all the pages on the website. We should possible also add some other classical website stuff here or Google SEO stuff, what you recommend?
 - PAID model for lessons? / Referral to teacher?
-- make cool main page thomasvanwelsenes (cool sky / cali / redwood / highland video / stock image?)
+- make cool main page thomasvanwelsenes (show CV, hobbies and entrepeneurship) (cool sky / cali / redwood / highland video / stock image?)
+- Make foto site where publish my travel foto's
 
 ## Features
 

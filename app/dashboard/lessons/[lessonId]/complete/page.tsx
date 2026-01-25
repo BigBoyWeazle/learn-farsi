@@ -14,6 +14,13 @@ interface SessionStats {
   incorrect: number;
 }
 
+interface StreakUpdate {
+  currentStreak: number;
+  longestStreak: number;
+  totalXP: number;
+  isNewStreak: boolean;
+}
+
 export default function LessonCompletePage() {
   const router = useRouter();
   const params = useParams();
@@ -22,6 +29,7 @@ export default function LessonCompletePage() {
   const [stats, setStats] = useState<SessionStats | null>(null);
   const [score, setScore] = useState<number>(0);
   const [isPassed, setIsPassed] = useState(false);
+  const [streakUpdate, setStreakUpdate] = useState<StreakUpdate | null>(null);
 
   useEffect(() => {
     // Load stats from localStorage
@@ -47,6 +55,27 @@ export default function LessonCompletePage() {
       localStorage.removeItem("sessionStats");
       localStorage.removeItem("lessonScore");
       localStorage.removeItem("lessonId");
+
+      // Calculate XP earned (same as practice)
+      const xpEarned =
+        parsedStats.easy * 5 +
+        parsedStats.good * 3 +
+        parsedStats.hard * 2 +
+        parsedStats.again * 1;
+
+      // Update XP and streak via API
+      fetch("/api/user/stats", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ xpEarned }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (!data.error) {
+            setStreakUpdate(data);
+          }
+        })
+        .catch((err) => console.error("Error updating stats:", err));
     }
   }, [lessonId, router]);
 
@@ -144,7 +173,42 @@ export default function LessonCompletePage() {
               </span>
             )}
           </div>
+
+          {/* XP Earned */}
+          <div className="pt-4 mt-4 border-t border-persian-red-200">
+            <div className="text-xl font-bold text-persian-red-500">
+              +{stats.easy * 5 + stats.good * 3 + stats.hard * 2 + stats.again * 1} XP earned
+            </div>
+          </div>
         </div>
+
+        {/* Streak Display */}
+        {streakUpdate && (
+          <div className="mb-8 p-4 bg-amber-50 rounded-lg border-2 border-amber-400">
+            <div className="flex items-center justify-center gap-4">
+              <div className="text-center">
+                <div className="text-3xl">🔥</div>
+                <div className="text-2xl font-bold text-amber-700">{streakUpdate.currentStreak}</div>
+                <div className="text-sm text-amber-600 font-medium">Current Streak</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl">🏆</div>
+                <div className="text-2xl font-bold text-amber-700">{streakUpdate.longestStreak}</div>
+                <div className="text-sm text-amber-600 font-medium">Record Streak</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl">⭐</div>
+                <div className="text-2xl font-bold text-amber-700">{streakUpdate.totalXP}</div>
+                <div className="text-sm text-amber-600 font-medium">Total XP</div>
+              </div>
+            </div>
+            {streakUpdate.isNewStreak && (
+              <p className="text-amber-700 font-bold text-center mt-3">
+                New streak started! Keep it going! 💪
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Encouragement Message */}
         <div className="mb-8">

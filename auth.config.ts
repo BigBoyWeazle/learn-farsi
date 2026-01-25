@@ -13,4 +13,13 @@ export const authConfig = {
     verifyRequest: "/login/verify",
     error: "/login/error",
   },
+  callbacks: {
+    session({ session, user }) {
+      // Add user ID to session so it's available in API routes
+      if (session.user && user) {
+        session.user.id = user.id;
+      }
+      return session;
+    },
+  },
 } satisfies NextAuthConfig;

@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 
-export function NavbarClient() {
+interface NavbarClientProps {
+  isLoggedIn?: boolean;
+}
+
+export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
   return (
     <nav className="bg-persian-beige-200/95 backdrop-blur-sm shadow-sm border-b-2 border-persian-red-500 transition-colors sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,28 +28,28 @@ export function NavbarClient() {
               Home
             </Link>
             <Link
-              href="/dashboard"
+              href={isLoggedIn ? "/dashboard" : "/login"}
               className="text-sm font-semibold text-persian-red-700 hover:text-persian-red-500 transition-colors"
             >
               Learn
             </Link>
             <Link
-              href="/dashboard/words"
+              href={isLoggedIn ? "/dashboard/words" : "/login"}
               className="text-sm font-semibold text-persian-red-700 hover:text-persian-red-500 transition-colors"
             >
               Word Library
             </Link>
             <Link
-              href="/dashboard/alphabet"
+              href={isLoggedIn ? "/dashboard/alphabet" : "/login"}
               className="text-sm font-semibold text-persian-red-700 hover:text-persian-red-500 transition-colors"
             >
               Persian Alphabet
             </Link>
             <Link
-              href="/dashboard"
+              href={isLoggedIn ? "/dashboard" : "/login"}
               className="px-4 py-2 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors text-sm font-semibold shadow-md"
             >
-              Get Started
+              {isLoggedIn ? "Continue Learning" : "Get Started"}
             </Link>
           </div>
         </div>

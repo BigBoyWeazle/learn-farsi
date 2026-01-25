@@ -1,34 +1,57 @@
+import Link from "next/link";
+import Image from "next/image";
+import { Footer } from "@/components/footer";
+
 export default function VerifyRequestPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gray-50">
-      <div className="max-w-md w-full text-center">
-        <div className="bg-white shadow rounded-lg p-8">
-          <div className="mb-4">
-            <svg
-              className="mx-auto h-12 w-12 text-blue-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+    <div className="min-h-screen flex flex-col bg-persian-beige-200">
+      <div className="flex-1 flex items-center justify-center px-4 py-12">
+        <div className="max-w-md w-full">
+          {/* Logo */}
+          <div className="text-center mb-8">
+            <Link href="/" className="inline-block">
+              <Image
+                src="/pomegranate.png"
+                alt="Learn Farsi"
+                width={80}
+                height={80}
+                className="mx-auto"
               />
-            </svg>
+            </Link>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Check your email
-          </h1>
-          <p className="text-gray-600 mb-4">
-            A sign in link has been sent to your email address.
-          </p>
-          <p className="text-sm text-gray-500">
-            Click the link in the email to complete sign in.
-          </p>
+
+          {/* Card */}
+          <div className="bg-white border-3 border-persian-red-500 rounded-2xl shadow-xl p-8 text-center">
+            <div className="text-6xl mb-6">📧</div>
+
+            <h1 className="text-3xl font-bold text-persian-red-500 mb-4">
+              Check Your Email!
+            </h1>
+
+            <p className="text-persian-red-700 font-medium mb-2">
+              A sign in link has been sent to your email address.
+            </p>
+
+            <p className="text-persian-red-600 mb-6">
+              Click the link in the email to complete sign in.
+            </p>
+
+            <div className="bg-persian-beige-100 rounded-lg p-4 mb-6">
+              <p className="text-sm text-persian-red-600">
+                💡 <strong>Tip:</strong> Check your spam folder if you don&apos;t see the email in your inbox.
+              </p>
+            </div>
+
+            <Link
+              href="/login"
+              className="text-persian-red-600 hover:text-persian-red-700 font-medium transition-colors"
+            >
+              ← Back to Sign In
+            </Link>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

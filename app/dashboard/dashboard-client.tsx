@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getNextLessonId, getCompletedLessonIds } from "@/lib/lesson-progress";
-import { getUserStats } from "@/lib/user-stats";
+import { getCurrentLevel, getNextLevel, getLevelProgress, getXPToNextLevel } from "@/lib/levels";
 
 interface Lesson {
   id: string;
@@ -11,28 +11,42 @@ interface Lesson {
   sortOrder: number;
 }
 
+interface UserStats {
+  currentLevel: number;
+  totalWordsLearned: number;
+  currentStreak: number;
+  longestStreak: number;
+  lastPracticeDate: string | null;
+  totalXP: number;
+}
+
 export default function DashboardClient() {
   const [nextLessonId, setNextLessonId] = useState<string | null>(null);
   const [lessonsCompleted, setLessonsCompleted] = useState(0);
-  const [userStats, setUserStats] = useState<any>(null);
+  const [userStats, setUserStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadDashboardData() {
       try {
         // Fetch all lessons
-        const response = await fetch("/api/lessons");
-        const data = await response.json();
-        const allLessons: Lesson[] = data.lessons || [];
+        const lessonsResponse = await fetch("/api/lessons");
+        const lessonsData = await lessonsResponse.json();
+        const allLessons: Lesson[] = lessonsData.lessons || [];
 
-        // Get progress from localStorage
+        // Get progress from localStorage (for now - can be migrated to DB later)
         const completedIds = getCompletedLessonIds();
         const nextId = getNextLessonId(allLessons);
-        const stats = getUserStats();
+
+        // Fetch user stats from API (stored in database per user)
+        const statsResponse = await fetch("/api/user/stats");
+        if (statsResponse.ok) {
+          const stats = await statsResponse.json();
+          setUserStats(stats);
+        }
 
         setNextLessonId(nextId);
         setLessonsCompleted(completedIds.length);
-        setUserStats(stats);
       } catch (error) {
         console.error("Error loading dashboard data:", error);
       } finally {
@@ -55,15 +69,80 @@ export default function DashboardClient() {
         </p>
       </div>
 
-      {/* Progress Stats */}
+      {/* Persian Title & Level Progress */}
+      {!loading && userStats && (() => {
+        const currentLevel = getCurrentLevel(userStats.totalXP);
+        const nextLevel = getNextLevel(userStats.totalXP);
+        const progress = getLevelProgress(userStats.totalXP);
+        const xpToNext = getXPToNextLevel(userStats.totalXP);
+
+        return (
+          <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-2xl shadow-xl p-6 text-white border-4 border-persian-red-700">
+            <div className="flex flex-col md:flex-row md:items-center gap-6">
+              {/* Current Title */}
+              <div className="flex-1">
+                <div className="text-sm font-medium text-persian-beige-200 mb-1">Your Title</div>
+                <div className="flex items-baseline gap-3 mb-1">
+                  <span className="text-3xl font-bold">{currentLevel.title}</span>
+                  <span className="text-xl text-persian-beige-200">Level {currentLevel.level}</span>
+                </div>
+                <div className="text-2xl font-bold text-persian-gold-300" dir="rtl">
+                  {currentLevel.titlePersian}
+                </div>
+                <div className="text-sm text-persian-beige-200 italic">
+                  {currentLevel.titlePhonetic}
+                </div>
+              </div>
+
+              {/* Progress to Next Level */}
+              {nextLevel && (
+                <div className="flex-1">
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="font-medium">Progress to {nextLevel.title}</span>
+                    <span className="font-bold">{xpToNext} XP to go</span>
+                  </div>
+                  <div className="h-4 bg-persian-red-700 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-persian-gold-400 to-persian-gold-500 rounded-full transition-all duration-500"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  <div className="flex justify-between text-xs mt-1 text-persian-beige-200">
+                    <span>{currentLevel.xpRequired} XP</span>
+                    <span>{nextLevel.xpRequired} XP</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Max Level Badge */}
+              {!nextLevel && (
+                <div className="flex-1 text-center">
+                  <div className="text-4xl mb-2">👑</div>
+                  <div className="text-lg font-bold text-persian-gold-300">Maximum Level Achieved!</div>
+                  <div className="text-sm text-persian-beige-200">You are a true master of Farsi</div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* Progress Stats - Now with 4 cards including Record Streak */}
       {!loading && userStats && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white border-3 border-persian-red-500 rounded-lg p-6 shadow-xl">
             <div className="text-3xl mb-2">🔥</div>
             <div className="text-2xl font-bold text-persian-red-500">
               {userStats.currentStreak}
             </div>
-            <div className="text-sm text-persian-red-700 font-semibold">Day Streak</div>
+            <div className="text-sm text-persian-red-700 font-semibold">Current Streak</div>
+          </div>
+          <div className="bg-white border-3 border-persian-gold-500 rounded-lg p-6 shadow-xl">
+            <div className="text-3xl mb-2">🏆</div>
+            <div className="text-2xl font-bold text-persian-gold-600">
+              {userStats.longestStreak}
+            </div>
+            <div className="text-sm text-persian-gold-700 font-semibold">Record Streak</div>
           </div>
           <div className="bg-white border-3 border-[#4aa6a6] rounded-lg p-6 shadow-xl">
             <div className="text-3xl mb-2">✅</div>

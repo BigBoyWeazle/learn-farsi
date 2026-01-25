@@ -1,8 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Footer } from "@/components/footer";
+import { auth } from "@/auth";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const session = await auth();
+  const isLoggedIn = !!session?.user;
+  const userName = session?.user?.name || session?.user?.email?.split("@")[0];
+
   return (
     <div className="min-h-screen bg-persian-beige-200 dark:bg-[#654321] transition-colors">
       {/* Hero Section */}
@@ -16,6 +21,15 @@ export default function LandingPage() {
               height={120}
             />
           </div>
+
+          {/* Personalized Greeting for Logged-in Users */}
+          {isLoggedIn && userName && (
+            <div className="mb-6">
+              <span className="inline-block px-6 py-2 bg-persian-gold-500 text-white rounded-full font-bold text-lg shadow-lg">
+                👋 Welcome back, {userName}!
+              </span>
+            </div>
+          )}
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="text-persian-red-500">Learn Farsi</span>
@@ -42,16 +56,16 @@ export default function LandingPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link
-              href="/dashboard/lessons"
+              href={isLoggedIn ? "/dashboard/lessons" : "/login"}
               className="px-8 py-4 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
             >
-              Start Learning <span className="btn-arrow">→</span>
+              {isLoggedIn ? "Continue Learning" : "Start Learning"} <span className="btn-arrow">→</span>
             </Link>
             <Link
-              href="/dashboard/practice"
+              href={isLoggedIn ? "/dashboard/practice" : "/login"}
               className="px-8 py-4 bg-white dark:bg-persian-beige-800 text-persian-red-500 dark:text-persian-red-400 border-3 border-persian-red-500 dark:border-persian-red-400 rounded-xl hover:bg-persian-beige-100 dark:hover:bg-persian-beige-700 transition-all shadow-lg text-lg font-bold"
             >
-              Try Practice Mode
+              {isLoggedIn ? "Practice Mode" : "Try Practice Mode"}
             </Link>
           </div>
 
@@ -125,7 +139,7 @@ export default function LandingPage() {
               </ul>
 
               <Link
-                href="/dashboard/lessons"
+                href={isLoggedIn ? "/dashboard/lessons" : "/login"}
                 className="block w-full py-3 bg-white text-persian-red-500 rounded-xl hover:bg-persian-beige-100 transition-colors text-center font-bold text-lg shadow-lg"
               >
                 Browse Lessons <span className="btn-arrow">→</span>
@@ -178,7 +192,7 @@ export default function LandingPage() {
               </ul>
 
               <Link
-                href="/dashboard/practice"
+                href={isLoggedIn ? "/dashboard/practice" : "/login"}
                 className="block w-full py-3 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-colors text-center font-bold text-lg shadow-lg"
               >
                 Start Practicing <span className="btn-arrow">→</span>
@@ -188,8 +202,36 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* About / Story Section */}
+      {/* Persian Alphabet Section */}
       <section className="py-20 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-4 text-persian-red-500">
+            Persian Alphabet
+          </h2>
+          <p className="text-persian-red-700 dark:text-persian-beige-200 mb-8 text-lg font-medium max-w-2xl mx-auto">
+            Master the 32 letters of the Persian alphabet with interactive lessons and practice exercises
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href={isLoggedIn ? "/dashboard/alphabet" : "/login"}
+              className="px-8 py-4 bg-persian-gold-500 text-white rounded-xl hover:bg-persian-gold-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
+            >
+              <span className="mr-2">📖</span>
+              View All Letters
+            </Link>
+            <Link
+              href={isLoggedIn ? "/dashboard/alphabet/practice" : "/login"}
+              className="px-8 py-4 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
+            >
+              <span className="mr-2">✏️</span>
+              Practice Alphabet
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* About / Story Section */}
+      <section className="py-20 bg-persian-beige-100 dark:bg-[#543210] transition-colors">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-persian-red-500">
             Our Story
@@ -260,9 +302,8 @@ export default function LandingPage() {
       </section>
 
       {/* Teacher Support Section */}
-      <section className="py-20 bg-persian-beige-100 dark:bg-[#543210] transition-colors">
+      <section className="py-20 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="text-5xl mb-6">👩‍🏫</div>
           <h2 className="text-4xl font-bold mb-4 text-persian-red-500">
             Coming Soon: Native Teacher Support
           </h2>
@@ -289,16 +330,18 @@ export default function LandingPage() {
       <section className="py-20 bg-persian-red-600">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Start Your Farsi Journey Today
+            {isLoggedIn ? "Continue Your Farsi Journey" : "Start Your Farsi Journey Today"}
           </h2>
           <p className="text-xl text-white mb-8 font-medium">
-            Join learners and master Persian easily through daily lessons
+            {isLoggedIn
+              ? "Pick up where you left off and keep improving!"
+              : "Join learners and master Persian easily through daily lessons"}
           </p>
           <Link
-            href="/dashboard"
+            href={isLoggedIn ? "/dashboard" : "/login"}
             className="inline-block px-12 py-4 bg-persian-beige-200 text-persian-red-500 rounded-xl hover:bg-white transition-all text-xl font-bold shadow-2xl hover:scale-105 transform border-3 border-white"
           >
-            Get Started Free <span className="btn-arrow">→</span>
+            {isLoggedIn ? "Back to Learning" : "Get Started Free"} <span className="btn-arrow">→</span>
           </Link>
         </div>
       </section>
