@@ -8,6 +8,7 @@ A modern web application for learning Farsi (Persian) vocabulary one word at a t
 - Finsih contact us page, privacy policy, Terms of Use (basic)
 - one extra design color?
 - PAID model for lessons? / Referral to teacher?
+- Make word liberary nicer
 - make cool main page thomasvanwelsenes (show CV, hobbies and entrepeneurship) (cool sky / cali / redwood / highland video / stock image?)
 - Make foto site where publish my travel foto's
 

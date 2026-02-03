@@ -66,9 +66,9 @@ export default function LessonsPage() {
   const levelNames: Record<number, string> = {
     1: "Beginner",
     2: "Elementary",
-    3: "Intermediate",
-    4: "Advanced",
-    5: "Expert",
+    3: "Pre-Intermediate",
+    4: "Intermediate",
+    5: "Advanced",
   };
 
   return (
