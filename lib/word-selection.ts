@@ -5,7 +5,7 @@
 
 import { db } from "@/db";
 import { vocabulary, wordCategories, vocabularyCategories } from "@/db/schema";
-import { eq, and, lte, notInArray, inArray } from "drizzle-orm";
+import { eq, and, lte, notInArray, inArray, sql } from "drizzle-orm";
 import type { Vocabulary } from "@/db/schema";
 
 export interface WordSelectionOptions {
@@ -82,7 +82,7 @@ export async function selectWordsForSession(
     selectedWords.push(...newWords);
   }
 
-  // 4. If still not enough words, just get random words from current level
+  // 4. If still not enough words, get truly random words from current level
   if (selectedWords.length < sessionSize) {
     const remainingSlots = sessionSize - selectedWords.length;
     const alreadySelected = selectedWords.map((w) => w.id);
@@ -99,9 +99,32 @@ export async function selectWordsForSession(
             : undefined
         )
       )
+      .orderBy(sql`RANDOM()`)
       .limit(remainingSlots);
 
     selectedWords.push(...randomWords);
+  }
+
+  // 5. If STILL not enough (level might have few words), get random from ANY level
+  if (selectedWords.length < sessionSize) {
+    const remainingSlots = sessionSize - selectedWords.length;
+    const alreadySelected = selectedWords.map((w) => w.id);
+
+    const anyWords = await db
+      .select()
+      .from(vocabulary)
+      .where(
+        and(
+          eq(vocabulary.isActive, true),
+          alreadySelected.length > 0
+            ? notInArray(vocabulary.id, alreadySelected)
+            : undefined
+        )
+      )
+      .orderBy(sql`RANDOM()`)
+      .limit(remainingSlots);
+
+    selectedWords.push(...anyWords);
   }
 
   // Shuffle the selected words to avoid predictable ordering
@@ -145,6 +168,7 @@ async function selectNewWordsWithCategoryRotation(
             : undefined
         )
       )
+      .orderBy(sql`RANDOM()`)
       .limit(count);
   }
 
@@ -180,6 +204,7 @@ async function selectNewWordsWithCategoryRotation(
             : undefined
         )
       )
+      .orderBy(sql`RANDOM()`)
       .limit(count);
   }
 
@@ -202,6 +227,7 @@ async function selectNewWordsWithCategoryRotation(
             : undefined
         )
       )
+      .orderBy(sql`RANDOM()`)
       .limit(count);
   }
 
@@ -214,6 +240,7 @@ async function selectNewWordsWithCategoryRotation(
         eq(vocabulary.isActive, true)
       )
     )
+    .orderBy(sql`RANDOM()`)
     .limit(count);
 }
 

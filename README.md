@@ -5,6 +5,7 @@ A modern web application for learning Farsi (Persian) vocabulary one word at a t
 # TO BUILD
 
 - make word library design better (add words from farsi doc / lessons)
+- Finsih contact us page, privacy policy, Terms of Use (basic)
 - one extra design color?
 - PAID model for lessons? / Referral to teacher?
 - make cool main page thomasvanwelsenes (show CV, hobbies and entrepeneurship) (cool sky / cali / redwood / highland video / stock image?)

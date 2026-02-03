@@ -1,11 +1,11 @@
 /**
- * Lesson progress tracking utilities
- * Manages user progress through lessons
+ * Grammar progress tracking utilities
+ * Manages user progress through grammar lessons
  * - Uses localStorage for quick access
  * - Syncs with database for authenticated users
  */
 
-export interface LessonProgressData {
+export interface GrammarProgressData {
   lessonId: string;
   isCompleted: boolean;
   completedAt: string | null;
@@ -13,9 +13,9 @@ export interface LessonProgressData {
   bestScore: number; // Percentage 0-100
 }
 
-export interface DatabaseLessonProgress {
+export interface DatabaseGrammarProgress {
   id: string;
-  lessonId: string;
+  grammarLessonId: string;
   userId: string;
   isCompleted: boolean;
   completedAt: string | null;
@@ -23,16 +23,16 @@ export interface DatabaseLessonProgress {
   bestScore: number;
 }
 
-const LESSON_PROGRESS_PREFIX = "lesson_progress_";
-const DB_PROGRESS_CACHE_KEY = "lesson_progress_from_db";
+const GRAMMAR_PROGRESS_PREFIX = "grammar_progress_";
+const DB_GRAMMAR_CACHE_KEY = "grammar_progress_from_db";
 
 /**
- * Get progress for a specific lesson
+ * Get progress for a specific grammar lesson
  */
-export function getLessonProgress(lessonId: string): LessonProgressData | null {
+export function getGrammarProgress(lessonId: string): GrammarProgressData | null {
   if (typeof window === "undefined") return null;
 
-  const key = `${LESSON_PROGRESS_PREFIX}${lessonId}`;
+  const key = `${GRAMMAR_PROGRESS_PREFIX}${lessonId}`;
   const saved = localStorage.getItem(key);
 
   if (!saved) return null;
@@ -40,29 +40,29 @@ export function getLessonProgress(lessonId: string): LessonProgressData | null {
   try {
     return JSON.parse(saved);
   } catch (error) {
-    console.error("Failed to parse lesson progress:", error);
+    console.error("Failed to parse grammar progress:", error);
     return null;
   }
 }
 
 /**
- * Save progress for a specific lesson
+ * Save progress for a specific grammar lesson
  */
-export function saveLessonProgress(progress: LessonProgressData): void {
+export function saveGrammarProgress(progress: GrammarProgressData): void {
   if (typeof window === "undefined") return;
 
-  const key = `${LESSON_PROGRESS_PREFIX}${progress.lessonId}`;
+  const key = `${GRAMMAR_PROGRESS_PREFIX}${progress.lessonId}`;
   localStorage.setItem(key, JSON.stringify(progress));
 }
 
 /**
- * Mark a lesson as completed
+ * Mark a grammar lesson as completed
  * Saves to both localStorage and database (for authenticated users)
  */
-export function completeLessson(lessonId: string, score: number): void {
-  const existing = getLessonProgress(lessonId);
+export function completeGrammarLesson(lessonId: string, score: number): void {
+  const existing = getGrammarProgress(lessonId);
 
-  const progress: LessonProgressData = {
+  const progress: GrammarProgressData = {
     lessonId,
     isCompleted: true,
     completedAt: new Date().toISOString(),
@@ -70,20 +70,20 @@ export function completeLessson(lessonId: string, score: number): void {
     bestScore: Math.max(existing?.bestScore || 0, score),
   };
 
-  saveLessonProgress(progress);
+  saveGrammarProgress(progress);
 
   // Also save to database for authenticated users
-  saveLessonProgressToDatabase(lessonId, score, true);
+  saveGrammarProgressToDatabase(lessonId, score, true);
 }
 
 /**
- * Update lesson attempt (not necessarily completed)
+ * Update grammar lesson attempt (not necessarily completed)
  * Saves to both localStorage and database (for authenticated users)
  */
-export function recordLessonAttempt(lessonId: string, score: number): void {
-  const existing = getLessonProgress(lessonId);
+export function recordGrammarAttempt(lessonId: string, score: number): void {
+  const existing = getGrammarProgress(lessonId);
 
-  const progress: LessonProgressData = {
+  const progress: GrammarProgressData = {
     lessonId,
     isCompleted: existing?.isCompleted || false,
     completedAt: existing?.completedAt || null,
@@ -91,90 +91,90 @@ export function recordLessonAttempt(lessonId: string, score: number): void {
     bestScore: Math.max(existing?.bestScore || 0, score),
   };
 
-  saveLessonProgress(progress);
+  saveGrammarProgress(progress);
 
   // Also save to database for authenticated users
-  saveLessonProgressToDatabase(lessonId, score, false);
+  saveGrammarProgressToDatabase(lessonId, score, false);
 }
 
 /**
- * Save lesson progress to database (async, fire-and-forget)
+ * Save grammar progress to database (async, fire-and-forget)
  */
-function saveLessonProgressToDatabase(
+function saveGrammarProgressToDatabase(
   lessonId: string,
   score: number,
   isCompleted: boolean
 ): void {
-  fetch("/api/lessons/progress", {
+  fetch("/api/grammar/progress", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ lessonId, score, isCompleted }),
   }).catch((err) => {
-    console.error("Failed to save lesson progress to database:", err);
+    console.error("Failed to save grammar progress to database:", err);
   });
 }
 
 /**
- * Fetch lesson progress from database and merge with localStorage
+ * Fetch grammar progress from database and merge with localStorage
  * Call this on page load for authenticated users
  */
-export async function syncLessonProgressFromDatabase(): Promise<string[]> {
+export async function syncGrammarProgressFromDatabase(): Promise<string[]> {
   try {
-    const response = await fetch("/api/lessons/progress");
-    if (!response.ok) return getCompletedLessonIds();
+    const response = await fetch("/api/grammar/progress");
+    if (!response.ok) return getCompletedGrammarLessonIds();
 
     const data = await response.json();
-    const dbProgress: DatabaseLessonProgress[] = data.progress || [];
+    const dbProgress: DatabaseGrammarProgress[] = data.progress || [];
 
     // Merge database progress with localStorage
     for (const progress of dbProgress) {
-      const localProgress = getLessonProgress(progress.lessonId);
+      const localProgress = getGrammarProgress(progress.grammarLessonId);
 
       // If database has completion but localStorage doesn't, sync it
       if (progress.isCompleted && (!localProgress || !localProgress.isCompleted)) {
-        const merged: LessonProgressData = {
-          lessonId: progress.lessonId,
+        const merged: GrammarProgressData = {
+          lessonId: progress.grammarLessonId,
           isCompleted: progress.isCompleted,
           completedAt: progress.completedAt,
           attempts: Math.max(progress.attempts, localProgress?.attempts || 0),
           bestScore: Math.max(progress.bestScore, localProgress?.bestScore || 0),
         };
-        saveLessonProgress(merged);
+        saveGrammarProgress(merged);
       }
     }
 
     // Cache that we've synced from database
     if (typeof window !== "undefined") {
-      localStorage.setItem(DB_PROGRESS_CACHE_KEY, Date.now().toString());
+      localStorage.setItem(DB_GRAMMAR_CACHE_KEY, Date.now().toString());
     }
 
-    return getCompletedLessonIds();
+    return getCompletedGrammarLessonIds();
   } catch (error) {
-    console.error("Failed to sync lesson progress from database:", error);
-    return getCompletedLessonIds();
+    console.error("Failed to sync grammar progress from database:", error);
+    return getCompletedGrammarLessonIds();
   }
 }
 
 /**
- * Get all completed lesson IDs
+ * Get all completed grammar lesson IDs
  */
-export function getCompletedLessonIds(): string[] {
+export function getCompletedGrammarLessonIds(): string[] {
   if (typeof window === "undefined") return [];
 
   const completedIds: string[] = [];
 
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key?.startsWith(LESSON_PROGRESS_PREFIX)) {
+    if (key?.startsWith(GRAMMAR_PROGRESS_PREFIX)) {
       const progress = localStorage.getItem(key);
       if (progress) {
         try {
-          const data: LessonProgressData = JSON.parse(progress);
+          const data: GrammarProgressData = JSON.parse(progress);
           if (data.isCompleted) {
             completedIds.push(data.lessonId);
           }
         } catch (error) {
-          console.error("Failed to parse lesson progress:", error);
+          console.error("Failed to parse grammar progress:", error);
         }
       }
     }
@@ -184,9 +184,9 @@ export function getCompletedLessonIds(): string[] {
 }
 
 /**
- * Check if user can access a lesson (based on previous lesson completion)
+ * Check if user can access a grammar lesson (based on previous lesson completion)
  */
-export function canAccessLesson(
+export function canAccessGrammarLesson(
   lessonSortOrder: number,
   completedLessonIds: string[],
   allLessons: Array<{ id: string; sortOrder: number }>
@@ -203,20 +203,4 @@ export function canAccessLesson(
 
   const previousLesson = sortedLessons[currentIndex - 1];
   return completedLessonIds.includes(previousLesson.id);
-}
-
-/**
- * Get the next incomplete lesson
- */
-export function getNextLessonId(
-  allLessons: Array<{ id: string; sortOrder: number }>
-): string | null {
-  const completedIds = getCompletedLessonIds();
-
-  // Find first lesson that's not completed
-  const nextLesson = allLessons.find(
-    (lesson) => !completedIds.includes(lesson.id)
-  );
-
-  return nextLesson?.id || null;
 }

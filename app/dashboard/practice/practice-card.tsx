@@ -33,6 +33,19 @@ export default function PracticeCard({
     setShowAnimation(false);
   }, [word.id]);
 
+  // Handle Enter key to continue when showing result
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter" && (cardState === "correct" || cardState === "incorrect")) {
+        e.preventDefault();
+        handleContinue();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [cardState, validationResult]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -244,7 +257,7 @@ export default function PracticeCard({
                     : "bg-persian-red-500 hover:bg-persian-red-600"
                 }`}
               >
-                {cardState === "correct" ? <>Continue <span className="btn-arrow">→</span></> : "Continue (Review Again)"}
+                {cardState === "correct" ? <>Continue <span className="btn-arrow">→</span></> : "Continue (Review Again)"} <span className="text-sm opacity-75">[Enter]</span>
               </button>
             </div>
           </div>

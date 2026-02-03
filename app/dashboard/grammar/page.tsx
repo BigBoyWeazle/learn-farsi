@@ -2,47 +2,39 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { canAccessLesson, syncLessonProgressFromDatabase } from "@/lib/lesson-progress";
+import { canAccessGrammarLesson, syncGrammarProgressFromDatabase } from "@/lib/grammar-progress";
 import { PageLoading } from "@/components/loading-spinner";
 
-interface Category {
+interface GrammarLesson {
   id: string;
-  name: string;
-  slug: string;
-  icon: string;
-  description: string | null;
-}
-
-interface Lesson {
-  id: string;
-  categoryId: string;
   title: string;
   description: string | null;
+  explanation: string;
   difficultyLevel: number;
   sortOrder: number;
+  icon: string;
   isActive: boolean;
   createdAt: string;
-  category: Category;
 }
 
-export default function LessonsPage() {
-  const [lessons, setLessons] = useState<Lesson[]>([]);
+export default function GrammarPage() {
+  const [lessons, setLessons] = useState<GrammarLesson[]>([]);
   const [completedLessonIds, setCompletedLessonIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchLessonsAndProgress() {
       try {
-        // Fetch lessons
-        const response = await fetch("/api/lessons");
+        // Fetch grammar lessons
+        const response = await fetch("/api/grammar");
         const data = await response.json();
         setLessons(data.lessons || []);
 
         // Sync progress from database (will also get localStorage progress)
-        const completedIds = await syncLessonProgressFromDatabase();
+        const completedIds = await syncGrammarProgressFromDatabase();
         setCompletedLessonIds(completedIds);
       } catch (error) {
-        console.error("Error fetching lessons:", error);
+        console.error("Error fetching grammar lessons:", error);
       } finally {
         setLoading(false);
       }
@@ -52,7 +44,7 @@ export default function LessonsPage() {
   }, []);
 
   if (loading) {
-    return <PageLoading message="Loading lessons..." />;
+    return <PageLoading message="Loading grammar lessons..." />;
   }
 
   // Group lessons by difficulty level
@@ -61,7 +53,7 @@ export default function LessonsPage() {
     if (!acc[level]) acc[level] = [];
     acc[level].push(lesson);
     return acc;
-  }, {} as Record<number, Lesson[]>);
+  }, {} as Record<number, GrammarLesson[]>);
 
   const levelNames: Record<number, string> = {
     1: "Beginner",
@@ -75,10 +67,10 @@ export default function LessonsPage() {
     <div className="max-w-4xl mx-auto py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-persian-red-500 mb-2">
-          Farsi Lessons
+          Farsi Grammar
         </h1>
         <p className="text-persian-red-700 font-medium">
-          Learn Farsi step-by-step with structured lessons
+          Master Farsi grammar with structured lessons and exercises
         </p>
       </div>
 
@@ -86,12 +78,12 @@ export default function LessonsPage() {
       <div className="bg-persian-red-500 rounded-xl shadow-xl p-6 mb-8 text-white border-4 border-persian-red-700">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-bold mb-1">Your Progress</h2>
+            <h2 className="text-xl font-bold mb-1">Your Grammar Progress</h2>
             <p className="text-white">
               {completedLessonIds.length} of {lessons.length} lessons completed
             </p>
           </div>
-          <div className="text-5xl">📚</div>
+          <div className="text-5xl">📖</div>
         </div>
         <div className="mt-4 bg-white/30 rounded-full h-3 overflow-hidden">
           <div
@@ -103,52 +95,64 @@ export default function LessonsPage() {
         </div>
       </div>
 
-      {/* Lessons by Level */}
-      {Object.entries(lessonsByLevel)
-        .sort(([a], [b]) => Number(a) - Number(b))
-        .map(([level, levelLessons]) => (
-          <div key={level} className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="bg-persian-red-500 text-white px-4 py-2 rounded-lg font-bold shadow-md border-2 border-persian-red-700">
-                Level {level}: {levelNames[Number(level)]}
+      {lessons.length === 0 ? (
+        <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-8 text-center">
+          <div className="text-6xl mb-4">📖</div>
+          <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
+            Coming Soon!
+          </h2>
+          <p className="text-persian-red-700 font-medium">
+            Grammar lessons are being prepared. Check back soon!
+          </p>
+        </div>
+      ) : (
+        /* Lessons by Level */
+        Object.entries(lessonsByLevel)
+          .sort(([a], [b]) => Number(a) - Number(b))
+          .map(([level, levelLessons]) => (
+            <div key={level} className="mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-persian-red-500 text-white px-4 py-2 rounded-lg font-bold shadow-md border-2 border-persian-red-700">
+                  Level {level}: {levelNames[Number(level)]}
+                </div>
+                <div className="text-sm text-persian-red-700 font-semibold">
+                  {levelLessons.filter((l) => completedLessonIds.includes(l.id)).length} / {levelLessons.length} completed
+                </div>
               </div>
-              <div className="text-sm text-persian-red-700 font-semibold">
-                {levelLessons.filter((l) => completedLessonIds.includes(l.id)).length} / {levelLessons.length} completed
+
+              <div className="grid gap-4 md:grid-cols-2">
+                {levelLessons.map((lesson) => {
+                  const isCompleted = completedLessonIds.includes(lesson.id);
+                  const isAccessible = canAccessGrammarLesson(
+                    lesson.sortOrder,
+                    completedLessonIds,
+                    lessons
+                  );
+
+                  return (
+                    <GrammarLessonCard
+                      key={lesson.id}
+                      lesson={lesson}
+                      isCompleted={isCompleted}
+                      isLocked={!isAccessible}
+                    />
+                  );
+                })}
               </div>
             </div>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              {levelLessons.map((lesson) => {
-                const isCompleted = completedLessonIds.includes(lesson.id);
-                const isAccessible = canAccessLesson(
-                  lesson.sortOrder,
-                  completedLessonIds,
-                  lessons
-                );
-
-                return (
-                  <LessonCard
-                    key={lesson.id}
-                    lesson={lesson}
-                    isCompleted={isCompleted}
-                    isLocked={!isAccessible}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        ))}
+          ))
+      )}
     </div>
   );
 }
 
-interface LessonCardProps {
-  lesson: Lesson;
+interface GrammarLessonCardProps {
+  lesson: GrammarLesson;
   isCompleted: boolean;
   isLocked: boolean;
 }
 
-function LessonCard({ lesson, isCompleted, isLocked }: LessonCardProps) {
+function GrammarLessonCard({ lesson, isCompleted, isLocked }: GrammarLessonCardProps) {
   return (
     <div
       className={`relative rounded-lg border-3 p-6 transition-all shadow-xl ${
@@ -171,8 +175,8 @@ function LessonCard({ lesson, isCompleted, isLocked }: LessonCardProps) {
         </div>
       )}
 
-      {/* Category Icon */}
-      <div className="text-5xl mb-3">{lesson.category.icon}</div>
+      {/* Lesson Icon */}
+      <div className="text-5xl mb-3">{lesson.icon || "📖"}</div>
 
       {/* Lesson Title */}
       <h3 className="text-xl font-bold text-persian-red-500 mb-2">
@@ -181,13 +185,13 @@ function LessonCard({ lesson, isCompleted, isLocked }: LessonCardProps) {
 
       {/* Lesson Description */}
       <p className="text-persian-red-700 text-sm mb-4 font-medium">
-        {lesson.description || lesson.category.description}
+        {lesson.description || "Learn essential grammar concepts"}
       </p>
 
       {/* Action Button */}
       {!isLocked && (
         <Link
-          href={`/dashboard/lessons/${lesson.id}`}
+          href={`/dashboard/grammar/${lesson.id}`}
           className="inline-block w-full text-center px-4 py-2 rounded-lg font-bold transition-colors shadow-md hover:shadow-lg bg-persian-red-500 text-white hover:bg-persian-red-600"
         >
           {isCompleted ? "Review Lesson" : "Start Lesson"} <span className="btn-arrow">→</span>

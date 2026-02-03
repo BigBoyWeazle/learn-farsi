@@ -66,6 +66,12 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
               Lessons
             </Link>
             <Link
+              href="/dashboard/grammar"
+              className="text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
+            >
+              Grammar
+            </Link>
+            <Link
               href="/dashboard/practice"
               className="text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
             >
@@ -159,6 +165,13 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
                     onClick={() => setShowMenu(false)}
                   >
                     Lessons
+                  </Link>
+                  <Link
+                    href="/dashboard/grammar"
+                    className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
+                    onClick={() => setShowMenu(false)}
+                  >
+                    Grammar
                   </Link>
                   <Link
                     href="/dashboard/practice"

@@ -291,3 +291,89 @@ export type NewLesson = typeof lessons.$inferInsert;
 
 export type UserLessonProgress = typeof userLessonProgress.$inferSelect;
 export type NewUserLessonProgress = typeof userLessonProgress.$inferInsert;
+
+/**
+ * Grammar lessons table - structured grammar learning
+ * Contains explanations and links to exercises
+ */
+export const grammarLessons = pgTable("grammar_lessons", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  // Lesson title (e.g., "Lesson G1: Personal Pronouns")
+  title: text("title").notNull(),
+  // Brief description of what's covered
+  description: text("description"),
+  // Full grammar explanation in markdown format
+  explanation: text("explanation").notNull(),
+  // Difficulty level (1-5)
+  difficultyLevel: integer("difficulty_level").notNull(),
+  // Display order (sequential across all levels)
+  sortOrder: integer("sort_order").notNull(),
+  // Emoji icon for visual display
+  icon: text("icon").default("📖"),
+  // Whether this lesson is published/active
+  isActive: boolean("is_active").default(true).notNull(),
+  // When this lesson was created
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+/**
+ * Grammar exercises table - practice questions for grammar lessons
+ * Supports multiple exercise types: fill_blank, multiple_choice, conjugation, translate
+ */
+export const grammarExercises = pgTable("grammar_exercises", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  // Reference to the grammar lesson
+  grammarLessonId: uuid("grammar_lesson_id")
+    .notNull()
+    .references(() => grammarLessons.id, { onDelete: "cascade" }),
+  // Type of exercise: "fill_blank" | "multiple_choice" | "conjugation" | "translate"
+  exerciseType: text("exercise_type").notNull(),
+  // The exercise prompt/question in English
+  question: text("question").notNull(),
+  // Optional Farsi version of the question
+  questionFarsi: text("question_farsi"),
+  // The correct answer
+  correctAnswer: text("correct_answer").notNull(),
+  // JSON array of alternative answers for multiple choice
+  alternatives: text("alternatives"),
+  // Optional hint to help the user
+  hint: text("hint"),
+  // Explanation of why this answer is correct
+  explanation: text("explanation"),
+  // Display order within the lesson
+  sortOrder: integer("sort_order").default(0).notNull(),
+});
+
+/**
+ * User grammar progress - tracks completion status for grammar lessons
+ */
+export const userGrammarProgress = pgTable("user_grammar_progress", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  // User ID
+  userId: text("user_id").notNull(),
+  // Reference to the grammar lesson
+  grammarLessonId: uuid("grammar_lesson_id")
+    .notNull()
+    .references(() => grammarLessons.id, { onDelete: "cascade" }),
+  // Whether user completed this lesson
+  isCompleted: boolean("is_completed").default(false).notNull(),
+  // When the lesson was completed
+  completedAt: timestamp("completed_at"),
+  // Number of times user attempted this lesson
+  attempts: integer("attempts").default(0).notNull(),
+  // Best score achieved (percentage 0-100)
+  bestScore: integer("best_score").default(0).notNull(),
+  // When this progress was created
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  // Last time this progress was updated
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type GrammarLesson = typeof grammarLessons.$inferSelect;
+export type NewGrammarLesson = typeof grammarLessons.$inferInsert;
+
+export type GrammarExercise = typeof grammarExercises.$inferSelect;
+export type NewGrammarExercise = typeof grammarExercises.$inferInsert;
+
+export type UserGrammarProgress = typeof userGrammarProgress.$inferSelect;
+export type NewUserGrammarProgress = typeof userGrammarProgress.$inferInsert;

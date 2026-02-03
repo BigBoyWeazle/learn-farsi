@@ -65,8 +65,36 @@ export default function DashboardClient() {
           Welcome to Learn Farsi!
         </h2>
         <p className="text-persian-red-700 font-medium">
-          Continue your Farsi learning journey
+          Learn Farsi step-by-step with structured lessons.
         </p>
+      </div>
+
+      {/* Lessons / Grammar Toggle */}
+      <div className="flex gap-4">
+        <Link
+          href="/dashboard/lessons"
+          className="flex-1 bg-persian-red-500 hover:bg-persian-red-600 text-white rounded-xl p-6 shadow-lg transition-all hover:shadow-xl border-3 border-persian-red-700"
+        >
+          <div className="flex items-center gap-4">
+            <span className="text-4xl">📚</span>
+            <div>
+              <h3 className="text-xl font-bold">Vocabulary Lessons</h3>
+              <p className="text-persian-beige-200 text-sm">Learn new words and phrases</p>
+            </div>
+          </div>
+        </Link>
+        <Link
+          href="/dashboard/grammar"
+          className="flex-1 bg-persian-gold-500 hover:bg-persian-gold-600 text-white rounded-xl p-6 shadow-lg transition-all hover:shadow-xl border-3 border-persian-gold-700"
+        >
+          <div className="flex items-center gap-4">
+            <span className="text-4xl">📖</span>
+            <div>
+              <h3 className="text-xl font-bold">Grammar Lessons</h3>
+              <p className="text-persian-gold-100 text-sm">Master Farsi grammar rules</p>
+            </div>
+          </div>
+        </Link>
       </div>
 
       {/* Persian Title & Level Progress */}
