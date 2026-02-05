@@ -17,6 +17,7 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
             <span className="text-xl font-bold text-persian-red-500">
               Learn Farsi
             </span>
+            <span className="bg-persian-gold-500 text-white text-xs font-bold px-1.5 py-0.5 rounded">BETA</span>
           </Link>
 
           {/* Navigation Links */}
