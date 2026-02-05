@@ -33,6 +33,7 @@ export default async function LandingPage() {
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="text-persian-red-500">Learn Farsi</span>
+            <span className="ml-3 inline-block align-top bg-persian-gold-500 text-white text-sm md:text-base font-bold px-3 py-1 rounded-lg shadow-lg">BETA</span>
             <br />
             <span
               className="text-persian-red-700 dark:text-persian-beige-100"
@@ -316,13 +317,13 @@ export default async function LandingPage() {
             Are you a Farsi teacher or native speaker? We&apos;d love to
             collaborate with you!
           </p>
-          <a
-            href="mailto:thomas@thomasvanwelsenes.com?subject=Learn%20Farsi%20Teacher%20Contribution"
+          <Link
+            href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-persian-red-500 hover:bg-persian-red-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
           >
             <span className="text-xl">✉️</span>
             <span>Want to Contribute? Get in Touch</span>
-          </a>
+          </Link>
         </div>
       </section>
 

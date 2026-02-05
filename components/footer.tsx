@@ -13,9 +13,10 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">🇮🇷</div>
               <h3 className="text-2xl font-bold">Learn Farsi</h3>
+              <span className="bg-persian-gold-500 text-white text-xs font-bold px-2 py-0.5 rounded">BETA</span>
             </div>
             <p className="text-persian-beige-200 text-sm">
-              Learn Persian vocabulary through structured lessons and daily practice — completely free!
+              Learn Persian vocabulary through structured lessons and daily practice — completely free! Currently in beta, with new content added regularly.
             </p>
           </div>
 

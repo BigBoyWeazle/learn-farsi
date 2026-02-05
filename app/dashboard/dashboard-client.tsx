@@ -61,6 +61,14 @@ export default function DashboardClient() {
 
   return (
     <div className="space-y-8">
+      {/* Beta Banner */}
+      <div className="bg-persian-gold-100 border-2 border-persian-gold-400 rounded-lg px-4 py-3 flex items-center gap-3">
+        <span className="bg-persian-gold-500 text-white text-xs font-bold px-2 py-1 rounded">BETA</span>
+        <p className="text-persian-gold-800 text-sm font-medium">
+          Learn Farsi is currently in beta. We&apos;re actively adding new content and features. <Link href="/contact" className="underline hover:text-persian-gold-900">Share your feedback!</Link>
+        </p>
+      </div>
+
       {/* Welcome Header */}
       <div>
         {session?.user?.name && (
