@@ -73,12 +73,14 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-4 text-persian-gold-400">Connect</h4>
             <ul className="space-y-2 text-persian-beige-200">
               <li>
-                <a
-                  href="mailto:thomas@thomasvanwelsenes.com"
-                  className="hover:text-white transition-colors"
-                >
+                <Link href="/contact" className="hover:text-white transition-colors">
                   Contact Us
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition-colors">
+                  Want to Contribute?
+                </Link>
               </li>
               <li>
                 <a
@@ -101,10 +103,10 @@ export function Footer() {
               © {currentYear} Learn Farsi. Built for language learners!
             </p>
             <div className="flex items-center gap-6 text-sm text-persian-beige-200">
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/privacy" className="hover:text-white transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/terms" className="hover:text-white transition-colors">
                 Terms of Use
               </Link>
             </div>
