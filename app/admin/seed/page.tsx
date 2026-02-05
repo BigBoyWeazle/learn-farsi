@@ -17,6 +17,13 @@ export default function AdminSeedPage() {
 
   const seedEndpoints = [
     {
+      key: "resetVocabulary",
+      name: "🔄 RESET ALL Vocabulary Data",
+      endpoint: "/api/admin/reset-vocabulary",
+      description: "Complete reset: Delete ALL words, lessons, and categories. Use this before re-seeding to start fresh!",
+      danger: true,
+    },
+    {
       key: "clearGrammar",
       name: "Clear Grammar Data",
       endpoint: "/api/admin/clear-grammar",
@@ -25,9 +32,9 @@ export default function AdminSeedPage() {
     },
     {
       key: "clearVocabulary",
-      name: "Clear Vocabulary Lessons",
+      name: "Clear Vocabulary Lessons Only",
       endpoint: "/api/admin/clear-vocabulary",
-      description: "Delete all existing vocabulary lessons (keeps categories and words)",
+      description: "Delete vocabulary lessons only (keeps words in database)",
       danger: true,
     },
     {
@@ -186,10 +193,10 @@ export default function AdminSeedPage() {
           <h3 className="font-bold text-yellow-800 mb-2">Instructions</h3>
           <ol className="list-decimal list-inside text-sm text-yellow-800 space-y-1">
             <li>
-              To add new content: Click "Run All Seeds" or run individual seeds
+              To add new content: Click &quot;Run All Seeds&quot; or run individual seeds
             </li>
             <li>
-              To replace grammar content: First click "Clear Grammar Data", then "Seed Grammar Lessons"
+              To replace grammar content: First click &quot;Clear Grammar Data&quot;, then &quot;Seed Grammar Lessons&quot;
             </li>
             <li>
               Vocabulary and verbs will skip existing words (no duplicates)

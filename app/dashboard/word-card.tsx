@@ -18,6 +18,11 @@ export default function WordCard({ word }: WordCardProps) {
           <div className="text-2xl font-bold text-persian-red-500 capitalize">
             {word.phonetic || word.farsiWord}
           </div>
+          {word.isFormal && (
+            <span className="inline-block mt-1 px-2 py-0.5 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full border border-purple-300">
+              Formal
+            </span>
+          )}
         </div>
 
         {/* Translation reveal button */}

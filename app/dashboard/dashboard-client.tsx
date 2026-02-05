@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { getNextLessonId, getCompletedLessonIds } from "@/lib/lesson-progress";
 import { getCurrentLevel, getNextLevel, getLevelProgress, getXPToNextLevel } from "@/lib/levels";
 
@@ -21,6 +22,7 @@ interface UserStats {
 }
 
 export default function DashboardClient() {
+  const { data: session } = useSession();
   const [nextLessonId, setNextLessonId] = useState<string | null>(null);
   const [lessonsCompleted, setLessonsCompleted] = useState(0);
   const [userStats, setUserStats] = useState<UserStats | null>(null);
@@ -61,6 +63,11 @@ export default function DashboardClient() {
     <div className="space-y-8">
       {/* Welcome Header */}
       <div>
+        {session?.user?.name && (
+          <p className="text-xl text-persian-red-700 font-semibold mb-1">
+            Hi {session.user.name.split(" ")[0]}! 👋
+          </p>
+        )}
         <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
           Welcome to Learn Farsi!
         </h2>
