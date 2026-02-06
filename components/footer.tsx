@@ -83,16 +83,6 @@ export function Footer() {
                   Want to Contribute?
                 </Link>
               </li>
-              <li>
-                <a
-                  href="https://buymeacoffee.com/thomasvanwelsenes"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  Support the Project
-                </a>
-              </li>
             </ul>
           </div>
         </div>

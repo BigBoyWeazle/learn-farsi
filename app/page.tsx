@@ -294,18 +294,6 @@ export default async function LandingPage() {
                   </p>
                 </div>
 
-                {/* Buy Me a Coffee Button */}
-                <div className="mt-6">
-                  <a
-                    href="https://buymeacoffee.com/thomasvanwelsenes"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-persian-gold-500 hover:bg-persian-gold-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
-                  >
-                    <span className="text-xl">☕</span>
-                    <span>Buy Me a Coffee</span>
-                  </a>
-                </div>
               </div>
             </div>
           </div>
