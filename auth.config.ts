@@ -4,7 +4,7 @@ import Resend from "next-auth/providers/resend";
 export const authConfig = {
   providers: [
     Resend({
-      apiKey: process.env.RESEND_API_KEY,
+      apiKey: process.env.RESEND_API_KEY!,
       from: process.env.EMAIL_FROM || "onboarding@resend.dev",
     }),
   ],

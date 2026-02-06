@@ -22,7 +22,14 @@ export default function LoginForm() {
       });
 
       if (result?.error) {
-        setError("Failed to send login link. Please try again.");
+        // Provide more specific error messages
+        if (result.error === "Configuration") {
+          setError("Email service configuration error. Please contact support.");
+        } else if (result.error === "AccessDenied") {
+          setError("Access denied. Please check your email address.");
+        } else {
+          setError("Failed to send login link. Please try again.");
+        }
         console.error("Sign in error:", result.error);
       } else {
         setIsSubmitted(true);
@@ -49,6 +56,12 @@ export default function LoginForm() {
         <p className="text-sm text-persian-red-600 mt-4">
           Click the link in the email to sign in.
         </p>
+        <button
+          onClick={() => setIsSubmitted(false)}
+          className="mt-4 text-sm text-persian-red-500 hover:text-persian-red-700 underline"
+        >
+          Use a different email
+        </button>
       </div>
     );
   }

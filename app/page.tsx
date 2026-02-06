@@ -2,11 +2,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { Footer } from "@/components/footer";
 import { auth } from "@/auth";
+import { db } from "@/db";
+import { lessons } from "@/db/schema";
+import { eq, count } from "drizzle-orm";
 
 export default async function LandingPage() {
   const session = await auth();
   const isLoggedIn = !!session?.user;
   const userName = session?.user?.name || session?.user?.email?.split("@")[0];
+
+  // Fetch the count of active lessons
+  const lessonCountResult = await db
+    .select({ count: count() })
+    .from(lessons)
+    .where(eq(lessons.isActive, true));
+  const lessonCount = lessonCountResult[0]?.count || 0;
 
   return (
     <div className="min-h-screen bg-persian-beige-200 dark:bg-[#654321] transition-colors">
@@ -74,7 +84,7 @@ export default async function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105">
               <div className="text-4xl mb-2">📚</div>
-              <div className="text-3xl font-bold text-persian-red-500">7</div>
+              <div className="text-3xl font-bold text-persian-red-500">{lessonCount}</div>
               <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold">
                 Structured Lessons
               </div>
