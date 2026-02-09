@@ -11,7 +11,7 @@ export default function VerifyRequestPage() {
           <div className="text-center mb-8">
             <Link href="/" className="inline-block">
               <Image
-                src="/pomegranate.png"
+                src="/pomegranatedrawn.png"
                 alt="Learn Farsi"
                 width={80}
                 height={80}

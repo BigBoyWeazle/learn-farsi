@@ -41,7 +41,7 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
           {/* Logo */}
           <Link href="/dashboard" className="flex items-center gap-3">
             <Image
-              src="/pomegranate.png"
+              src="/pomegranatedrawn.png"
               alt="Learn Farsi"
               width={40}
               height={40}

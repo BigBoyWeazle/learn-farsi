@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Footer } from "@/components/footer";
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { lessons } from "@/db/schema";
+import { lessons, users } from "@/db/schema";
 import { eq, count } from "drizzle-orm";
 
 export default async function LandingPage() {
@@ -18,6 +18,12 @@ export default async function LandingPage() {
     .where(eq(lessons.isActive, true));
   const lessonCount = lessonCountResult[0]?.count || 0;
 
+  // Fetch the count of registered users
+  const userCountResult = await db
+    .select({ count: count() })
+    .from(users);
+  const userCount = userCountResult[0]?.count || 0;
+
   return (
     <div className="min-h-screen bg-persian-beige-200 dark:bg-[#654321] transition-colors">
       {/* Hero Section */}
@@ -25,7 +31,7 @@ export default async function LandingPage() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-8 flex justify-center">
             <Image
-              src="/pomegranate.png"
+              src="/pomegranatedrawn.png"
               alt="Pomegranate"
               width={120}
               height={120}
@@ -79,6 +85,20 @@ export default async function LandingPage() {
               {isLoggedIn ? "Practice Mode" : "Try Practice Mode"}
             </Link>
           </div>
+
+          {/* Social Proof */}
+          {userCount > 0 && (
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 mb-12">
+              <div className="flex -space-x-2">
+                <div className="w-8 h-8 rounded-full bg-persian-red-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">F</div>
+                <div className="w-8 h-8 rounded-full bg-persian-gold-500 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
+                <div className="w-8 h-8 rounded-full bg-persian-red-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">R</div>
+              </div>
+              <span className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-lg">
+                Join <span className="text-persian-red-500 font-bold">{userCount}</span> {userCount === 1 ? "learner" : "learners"} already discovering Farsi
+              </span>
+            </div>
+          )}
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">

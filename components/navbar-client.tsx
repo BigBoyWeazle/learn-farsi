@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 interface NavbarClientProps {
   isLoggedIn?: boolean;
@@ -13,7 +14,15 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
         <div className="flex justify-between h-16 items-center">
           {/* Logo / Brand */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🇮🇷</span>
+            <div className="w-10 h-10 overflow-hidden flex-shrink-0">
+              <Image
+                src="/carpetlogo.png"
+                alt="Learn Farsi"
+                width={80}
+                height={80}
+                className="w-full h-full object-cover scale-150"
+              />
+            </div>
             <span className="text-xl font-bold text-persian-red-500">
               Learn Farsi
             </span>

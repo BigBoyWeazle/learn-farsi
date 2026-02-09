@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,7 +12,15 @@ export function Footer() {
           {/* Brand Section */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">🇮🇷</div>
+              <div className="w-10 h-10 overflow-hidden flex-shrink-0">
+                <Image
+                  src="/carpetlogo.png"
+                  alt="Learn Farsi"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover scale-150"
+                />
+              </div>
               <h3 className="text-2xl font-bold">Learn Farsi</h3>
               <span className="bg-persian-gold-500 text-white text-xs font-bold px-2 py-0.5 rounded">BETA</span>
             </div>

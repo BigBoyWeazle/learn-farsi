@@ -21,7 +21,7 @@ export default async function LoginPage() {
           <div className="text-center">
             <Link href="/" className="inline-block mb-6">
               <Image
-                src="/pomegranate.png"
+                src="/pomegranatedrawn.png"
                 alt="Learn Farsi"
                 width={80}
                 height={80}
