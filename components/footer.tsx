@@ -92,6 +92,11 @@ export function Footer() {
                   Want to Contribute?
                 </Link>
               </li>
+              <li>
+                <a href="https://thomasvanwelsenes.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  Work with Me
+                </a>
+              </li>
             </ul>
           </div>
         </div>

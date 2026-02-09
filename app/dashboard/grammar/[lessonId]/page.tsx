@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { PageLoading } from "@/components/loading-spinner";
 
 interface GrammarLesson {
@@ -117,7 +118,7 @@ export default function GrammarLessonPage() {
       {/* Grammar Explanation */}
       <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-8 mb-8">
         <h2 className="text-2xl font-bold text-persian-red-500 mb-6">
-          📚 Grammar Explanation
+          <span className="inline-block w-7 h-7 overflow-hidden align-middle"><Image src="/multiplebooks_icon.png" alt="Books" width={40} height={40} className="w-full h-full object-cover scale-125" /></span> Grammar Explanation
         </h2>
         <div
           className="prose prose-persian max-w-none text-persian-red-700"

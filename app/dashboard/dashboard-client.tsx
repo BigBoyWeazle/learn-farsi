@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { getNextLessonId, getCompletedLessonIds } from "@/lib/lesson-progress";
 import { getCurrentLevel, getNextLevel, getLevelProgress, getXPToNextLevel } from "@/lib/levels";
@@ -85,13 +86,13 @@ export default function DashboardClient() {
       </div>
 
       {/* Lessons / Grammar Toggle */}
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <Link
           href="/dashboard/lessons"
           className="flex-1 bg-persian-red-500 hover:bg-persian-red-600 text-white rounded-xl p-6 shadow-lg transition-all hover:shadow-xl border-3 border-persian-red-700"
         >
           <div className="flex items-center gap-4">
-            <span className="text-4xl">📚</span>
+            <div className="w-10 h-10 overflow-hidden flex-shrink-0"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
             <div>
               <h3 className="text-xl font-bold">Vocabulary Lessons</h3>
               <p className="text-persian-beige-200 text-sm">Learn new words and phrases</p>
@@ -103,7 +104,7 @@ export default function DashboardClient() {
           className="flex-1 bg-persian-gold-500 hover:bg-persian-gold-600 text-white rounded-xl p-6 shadow-lg transition-all hover:shadow-xl border-3 border-persian-gold-700"
         >
           <div className="flex items-center gap-4">
-            <span className="text-4xl">📖</span>
+            <div className="w-10 h-10 overflow-hidden flex-shrink-0"><Image src="/bookicon.png" alt="Book" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
             <div>
               <h3 className="text-xl font-bold">Grammar Lessons</h3>
               <p className="text-persian-gold-100 text-sm">Master Farsi grammar rules</p>
@@ -219,11 +220,11 @@ export default function DashboardClient() {
                 href={`/dashboard/lessons/${nextLessonId}`}
                 className="inline-flex items-center px-6 py-3 bg-persian-beige-200 text-persian-red-500 rounded-lg hover:bg-white transition-colors font-bold shadow-lg hover:shadow-xl"
               >
-                <span className="mr-2">📚</span>
+                <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/multiplebooks_icon.png" alt="Books" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
                 Continue Next Lesson
               </Link>
             </div>
-            <div className="hidden md:block text-8xl">📖</div>
+            <div className="hidden md:block w-24 h-24 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={160} height={160} className="w-full h-full object-cover scale-125" /></div>
           </div>
         </div>
       )}
@@ -262,11 +263,11 @@ export default function DashboardClient() {
               href="/dashboard/practice"
               className="inline-flex items-center px-6 py-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold shadow-lg hover:shadow-xl"
             >
-              <span className="mr-2">🎯</span>
+              <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/targeticon.png" alt="Target" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
               Start Daily Practice
             </Link>
           </div>
-          <div className="hidden md:block text-8xl">🎯</div>
+          <div className="hidden md:block w-24 h-24 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={160} height={160} className="w-full h-full object-cover scale-125" /></div>
         </div>
       </div>
 
@@ -285,14 +286,14 @@ export default function DashboardClient() {
                 href="/dashboard/alphabet"
                 className="inline-flex items-center px-6 py-3 bg-persian-gold-500 text-white rounded-lg hover:bg-persian-gold-600 transition-colors font-bold shadow-lg hover:shadow-xl"
               >
-                <span className="mr-2">📖</span>
+                <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/bookicon.png" alt="Book" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
                 View All Letters
               </Link>
               <Link
                 href="/dashboard/alphabet/practice"
                 className="inline-flex items-center px-6 py-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold shadow-lg hover:shadow-xl"
               >
-                <span className="mr-2">✏️</span>
+                <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/pencilicon.png" alt="Pencil" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
                 Practice Alphabet
               </Link>
             </div>

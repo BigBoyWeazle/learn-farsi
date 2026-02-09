@@ -88,13 +88,13 @@ export default async function LandingPage() {
 
           {/* Social Proof */}
           {userCount > 0 && (
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 mb-12">
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full bg-persian-red-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">F</div>
-                <div className="w-8 h-8 rounded-full bg-persian-gold-500 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
-                <div className="w-8 h-8 rounded-full bg-persian-red-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">R</div>
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 mb-12">
+              <div className="flex -space-x-2 flex-shrink-0">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-red-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">F</div>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-gold-500 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-red-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">R</div>
               </div>
-              <span className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-lg">
+              <span className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-lg">
                 Join <span className="text-persian-red-500 font-bold">{userCount}</span> {userCount === 1 ? "learner" : "learners"} already discovering Farsi
               </span>
             </div>
@@ -103,14 +103,14 @@ export default async function LandingPage() {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105">
-              <div className="text-4xl mb-2">📚</div>
+              <div className="w-12 h-12 mx-auto mb-2 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
               <div className="text-3xl font-bold text-persian-red-500">{lessonCount}</div>
               <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold">
                 Structured Lessons
               </div>
             </div>
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 border-3 border-persian-red-500 dark:border-persian-beige-600 shadow-xl transition-all hover:shadow-2xl hover:scale-105">
-              <div className="text-4xl mb-2">🎯</div>
+              <div className="w-12 h-12 mx-auto mb-2 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
               <div className="text-3xl font-bold text-persian-red-500">
                 Free
               </div>
@@ -119,7 +119,7 @@ export default async function LandingPage() {
               </div>
             </div>
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105">
-              <div className="text-4xl mb-2">🔥</div>
+              <div className="w-12 h-12 mx-auto mb-2 overflow-hidden"><Image src="/fireicon.png" alt="Fire" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
               <div className="text-3xl font-bold text-persian-red-500">
                 Daily
               </div>
@@ -144,7 +144,7 @@ export default async function LandingPage() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Structured Lessons */}
             <div className="bg-persian-red-500 rounded-3xl p-8 text-white shadow-2xl hover:scale-105 transition-transform border-4 border-persian-red-700">
-              <div className="text-5xl mb-4">📖</div>
+              <div className="w-16 h-16 mb-4 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
               <h3 className="text-3xl font-bold mb-4">Structured Lessons</h3>
               <p className="text-persian-red-100 mb-6 text-lg">
                 Follow a curated curriculum from beginner to advanced
@@ -179,7 +179,7 @@ export default async function LandingPage() {
 
             {/* Daily Practice */}
             <div className="bg-persian-beige-200 rounded-3xl p-8 shadow-2xl hover:scale-105 transition-transform border-4 border-persian-red-500">
-              <div className="text-5xl mb-4">🎯</div>
+              <div className="w-16 h-16 mb-4 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
               <h3 className="text-3xl font-bold mb-4 text-persian-red-500">
                 Daily Practice
               </h3>
@@ -247,14 +247,14 @@ export default async function LandingPage() {
               href={isLoggedIn ? "/dashboard/alphabet" : "/login"}
               className="px-8 py-4 bg-persian-gold-500 text-white rounded-xl hover:bg-persian-gold-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
             >
-              <span className="mr-2">📖</span>
+              <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/bookicon.png" alt="Book" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
               View All Letters
             </Link>
             <Link
               href={isLoggedIn ? "/dashboard/alphabet/practice" : "/login"}
               className="px-8 py-4 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
             >
-              <span className="mr-2">✏️</span>
+              <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/pencilicon.png" alt="Pencil" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
               Practice Alphabet
             </Link>
           </div>

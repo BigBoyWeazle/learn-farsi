@@ -7,6 +7,7 @@ import type { Assessment } from "@/lib/spaced-repetition";
 import { calculateNextReview } from "@/lib/spaced-repetition";
 import { getUserStats } from "@/lib/user-stats";
 import PracticeCard from "./practice-card";
+import Image from "next/image";
 import { PageLoading } from "@/components/loading-spinner";
 
 interface SessionStats {
@@ -111,7 +112,7 @@ export default function PracticePage() {
     return (
       <div className="max-w-2xl mx-auto mt-12">
         <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-8 text-center">
-          <div className="text-6xl mb-4">📚</div>
+          <div className="w-16 h-16 mx-auto mb-4 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
           <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
             No Words Available
           </h2>
@@ -135,7 +136,7 @@ export default function PracticePage() {
       <div className="max-w-2xl mx-auto mb-4">
         <div className="bg-persian-beige-200 border-2 border-persian-red-500 rounded-lg px-4 py-2 text-center">
           <p className="text-sm text-persian-red-700 font-semibold">
-            🎯 Daily Practice Session
+            Daily Practice Session
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 interface SessionStats {
   total: number;
@@ -63,7 +64,7 @@ export default function SessionCompletePage() {
     return (
       <div className="max-w-2xl mx-auto py-12">
         <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-12 text-center">
-          <div className="text-6xl mb-6">📚</div>
+          <div className="w-16 h-16 mx-auto mb-6 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
           <h2 className="text-2xl font-bold text-persian-red-500 mb-4">
             No Session Data
           </h2>
@@ -165,7 +166,7 @@ export default function SessionCompletePage() {
           <div className="mb-8 p-4 bg-amber-50 rounded-lg border-2 border-amber-400">
             <div className="flex items-center justify-center gap-4">
               <div className="text-center">
-                <div className="text-3xl">🔥</div>
+                <div className="w-10 h-10 mx-auto overflow-hidden"><Image src="/fireicon.png" alt="Fire" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
                 <div className="text-2xl font-bold text-amber-700">{streakUpdate.currentStreak}</div>
                 <div className="text-sm text-amber-600 font-medium">Current Streak</div>
               </div>
@@ -208,7 +209,7 @@ export default function SessionCompletePage() {
         {/* Streak Reminder */}
         <div className="mt-8 pt-8 border-t border-persian-red-200">
           <div className="flex items-center justify-center gap-2 text-persian-red-700">
-            <span className="text-2xl">🔥</span>
+            <span className="inline-block w-6 h-6 overflow-hidden align-middle"><Image src="/fireicon.png" alt="Fire" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
             <span className="text-sm font-medium">Daily practice builds your streak!</span>
           </div>
         </div>

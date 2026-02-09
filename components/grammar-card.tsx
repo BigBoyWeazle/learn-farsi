@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface GrammarExercise {
   id: string;
@@ -228,7 +229,7 @@ export default function GrammarCard({
             <div className="flex justify-center mb-6">
               <span className="px-4 py-2 bg-persian-beige-100 text-persian-red-700 rounded-full text-sm font-bold border-2 border-persian-red-200">
                 {exercise.exerciseType === "multiple_choice" && "🔘 Multiple Choice"}
-                {exercise.exerciseType === "fill_blank" && "✏️ Fill in the Blank"}
+                {exercise.exerciseType === "fill_blank" && <><span className="inline-block w-5 h-5 overflow-hidden align-middle"><Image src="/pencilicon.png" alt="Pencil" width={40} height={40} className="w-full h-full object-cover scale-125" /></span> Fill in the Blank</>}
                 {exercise.exerciseType === "conjugation" && "🔤 Conjugation"}
                 {exercise.exerciseType === "translate" && "🌐 Translation"}
               </span>
@@ -301,7 +302,7 @@ export default function GrammarCard({
               {exercise.explanation && (
                 <div className="bg-sky-50 border-2 border-sky-300 rounded-lg p-4">
                   <p className="text-sky-700 font-medium">
-                    📚 {exercise.explanation}
+                    <span className="inline-block w-5 h-5 overflow-hidden align-middle"><Image src="/multiplebooks_icon.png" alt="Books" width={40} height={40} className="w-full h-full object-cover scale-125" /></span> {exercise.explanation}
                   </p>
                 </div>
               )}

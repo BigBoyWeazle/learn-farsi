@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { canAccessGrammarLesson, syncGrammarProgressFromDatabase } from "@/lib/grammar-progress";
 import { PageLoading } from "@/components/loading-spinner";
 
@@ -83,7 +84,7 @@ export default function GrammarPage() {
               {completedLessonIds.length} of {lessons.length} lessons completed
             </p>
           </div>
-          <div className="text-5xl">📖</div>
+          <div className="w-14 h-14 overflow-hidden flex-shrink-0"><Image src="/bookicon.png" alt="Book" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
         </div>
         <div className="mt-4 bg-white/30 rounded-full h-3 overflow-hidden">
           <div
@@ -97,7 +98,7 @@ export default function GrammarPage() {
 
       {lessons.length === 0 ? (
         <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-8 text-center">
-          <div className="text-6xl mb-4">📖</div>
+          <div className="w-16 h-16 mx-auto mb-4 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
           <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
             Coming Soon!
           </h2>

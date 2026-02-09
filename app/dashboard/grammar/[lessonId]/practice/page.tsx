@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import { completeGrammarLesson, recordGrammarAttempt } from "@/lib/grammar-progress";
 import GrammarCard from "@/components/grammar-card";
 import { PageLoading } from "@/components/loading-spinner";
+import Image from "next/image";
 
 interface GrammarExercise {
   id: string;
@@ -100,7 +101,7 @@ export default function GrammarPracticePage() {
     return (
       <div className="max-w-2xl mx-auto mt-12">
         <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-8 text-center">
-          <div className="text-6xl mb-4">📖</div>
+          <div className="w-14 h-14 mx-auto mb-4 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
           <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
             No Exercises Available
           </h2>
@@ -124,7 +125,7 @@ export default function GrammarPracticePage() {
       <div className="max-w-2xl mx-auto mb-4">
         <div className="bg-persian-beige-200 border-2 border-persian-red-500 rounded-lg px-4 py-2 text-center">
           <p className="text-sm text-persian-red-700 font-semibold">
-            📖 Grammar Practice Session
+            Grammar Practice Session
           </p>
         </div>
       </div>

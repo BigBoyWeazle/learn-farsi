@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { canAccessLesson, syncLessonProgressFromDatabase } from "@/lib/lesson-progress";
 import { PageLoading } from "@/components/loading-spinner";
 
@@ -91,7 +92,7 @@ export default function LessonsPage() {
               {completedLessonIds.length} of {lessons.length} lessons completed
             </p>
           </div>
-          <div className="text-5xl">📚</div>
+          <div className="w-14 h-14 overflow-hidden flex-shrink-0"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
         </div>
         <div className="mt-4 bg-white/30 rounded-full h-3 overflow-hidden">
           <div

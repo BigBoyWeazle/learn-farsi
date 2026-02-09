@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import type { Vocabulary } from "@/db/schema";
 import { getLessonProgress } from "@/lib/lesson-progress";
 import { PageLoading } from "@/components/loading-spinner";
@@ -121,7 +122,7 @@ export default function LessonIntroductionPage() {
               You will learn {wordCount} new words in this lesson
             </p>
           </div>
-          <div className="text-6xl">📚</div>
+          <div className="w-16 h-16 overflow-hidden flex-shrink-0"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
         </div>
       </div>
 
