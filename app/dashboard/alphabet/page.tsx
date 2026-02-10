@@ -82,7 +82,7 @@ export default function AlphabetPage() {
               </span>
               {letterGroups.uniqueToPersian.includes(letter.letter) && (
                 <span className="absolute top-1 right-1">
-                  <img src="/PersianFlag2.webp" alt="Persian flag" width={16} height={9} className="inline-block rounded-sm" style={{ imageRendering: "-webkit-optimize-contrast" }} decoding="sync" />
+                  <img src="/persianflag2.webp" alt="Persian flag" width={16} height={9} className="inline-block rounded-sm" style={{ imageRendering: "-webkit-optimize-contrast" }} decoding="sync" />
                 </span>
               )}
             </button>

@@ -306,7 +306,7 @@ export default async function LandingPage() {
                     That gap inspired me to create
                     <span className="font-bold text-persian-red-500">
                       {" "}
-                      Learn Farsi <img src="/PersianFlag2.webp" alt="Persian Flag" width={16} height={9} className="inline-block align-middle ml-1 rounded-sm" style={{ imageRendering: "-webkit-optimize-contrast" }} decoding="sync" />
+                      Learn Farsi <img src="/persianflag2.webp" alt="Persian Flag" width={16} height={9} className="inline-block align-middle ml-1 rounded-sm" style={{ imageRendering: "-webkit-optimize-contrast" }} decoding="sync" />
                     </span>
                     , a simple, accessible way for anyone to learn daily Farsi
                     words and immerse themselves in the beauty of Persian
