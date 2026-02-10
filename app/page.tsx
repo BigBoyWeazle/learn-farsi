@@ -3,8 +3,9 @@ import Image from "next/image";
 import { Footer } from "@/components/footer";
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { lessons, users } from "@/db/schema";
-import { eq, count } from "drizzle-orm";
+import { lessons, users, userStats, userLessonProgress } from "@/db/schema";
+import { eq, count, sql } from "drizzle-orm";
+import { AnimatedCounter } from "@/components/animated-counter";
 
 export default async function LandingPage() {
   const session = await auth();
@@ -23,6 +24,19 @@ export default async function LandingPage() {
     .select({ count: count() })
     .from(users);
   const userCount = userCountResult[0]?.count || 0;
+
+  // Fetch total XP earned by all users
+  const totalXPResult = await db
+    .select({ total: sql<number>`COALESCE(SUM(${userStats.totalXP}), 0)` })
+    .from(userStats);
+  const totalXP = totalXPResult[0]?.total || 0;
+
+  // Fetch total lessons completed by all users
+  const totalLessonsCompletedResult = await db
+    .select({ count: count() })
+    .from(userLessonProgress)
+    .where(eq(userLessonProgress.isCompleted, true));
+  const totalLessonsCompleted = totalLessonsCompletedResult[0]?.count || 0;
 
   return (
     <div className="min-h-screen bg-persian-beige-200 dark:bg-[#654321] transition-colors">
@@ -86,19 +100,39 @@ export default async function LandingPage() {
             </Link>
           </div>
 
-          {/* Social Proof */}
-          {userCount > 0 && (
-            <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 mb-12">
-              <div className="flex -space-x-2 flex-shrink-0">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-red-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">F</div>
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-gold-500 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-red-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">R</div>
-              </div>
-              <span className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-lg">
-                Join <span className="text-persian-red-500 font-bold">{userCount}</span> {userCount === 1 ? "learner" : "learners"} already discovering Farsi
-              </span>
+          {/* Social Proof + Community Stats */}
+          <div className="flex flex-col items-center mb-12">
+            <div className="flex flex-wrap justify-center items-center gap-3">
+              {userCount > 0 && (
+                <Link href={isLoggedIn ? "/dashboard" : "/login"} className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 transition-all duration-200 hover:scale-105 hover:shadow-xl cursor-pointer">
+                  <div className="flex -space-x-2 flex-shrink-0">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-red-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">F</div>
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-gold-500 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-red-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">R</div>
+                  </div>
+                  <span className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-lg">
+                    Join <span className="text-persian-red-500 font-bold">{userCount}</span> {userCount === 1 ? "learner" : "learners"}
+                  </span>
+                </Link>
+              )}
+              {totalXP > 0 && (
+                <div className="inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 transition-all duration-200 hover:scale-105 hover:shadow-xl">
+                  <span className="text-xl">⚡</span>
+                  <span className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-base">
+                    <AnimatedCounter target={totalXP} className="text-persian-red-500 font-bold" /> Total XP Earned
+                  </span>
+                </div>
+              )}
+              {totalLessonsCompleted > 0 && (
+                <div className="inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 transition-all duration-200 hover:scale-105 hover:shadow-xl">
+                  <span className="text-xl">✅</span>
+                  <span className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-base">
+                    <AnimatedCounter target={totalLessonsCompleted} className="text-persian-red-500 font-bold" /> Total Lessons Completed
+                  </span>
+                </div>
+              )}
             </div>
-          )}
+          </div>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
