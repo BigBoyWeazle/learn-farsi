@@ -318,7 +318,7 @@ export async function POST() {
         words: [
           { phonetic: "takht", farsi: "تخت", english: "Bed", example: "takht-e do nafareh", exampleFarsi: "تخت دو نفره", exampleEnglish: "Double bed" },
           { phonetic: "farsh", farsi: "فرش", english: "Carpet/Rug", example: "farsh-e irani", exampleFarsi: "فرش ایرانی", exampleEnglish: "Persian carpet" },
-          { phonetic: "aaineh", farsi: "آینه", english: "Mirror", example: "aaineh-ye bozorg", exampleFarsi: "آینه‌ی بزرگ", exampleEnglish: "Large mirror" },
+          { phonetic: "āyeneh", farsi: "آینه", english: "Mirror", example: "āyeneh-ye bozorg", exampleFarsi: "آینه‌ی بزرگ", exampleEnglish: "Large mirror" },
           { phonetic: "cheraagh", farsi: "چراغ", english: "Light/Lamp", example: "cheraagh-o roshan kon", exampleFarsi: "چراغ رو روشن کن", exampleEnglish: "Turn on the light" },
           { phonetic: "yakhchaal", farsi: "یخچال", english: "Refrigerator", example: "too yakhchaal-e", exampleFarsi: "تو یخچاله", exampleEnglish: "It's in the fridge" },
           { phonetic: "gaaz", farsi: "گاز", english: "Stove/Gas", example: "gaaz-o roshan kon", exampleFarsi: "گاز رو روشن کن", exampleEnglish: "Turn on the stove" },

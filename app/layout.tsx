@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Providers } from "@/components/providers";
+import { FeedbackWidget } from "@/components/feedback-widget";
 
 export const metadata: Metadata = {
   title: "Learn Farsi - Learn Persian Daily",
@@ -21,6 +22,7 @@ export default function RootLayout({
           <div className="min-h-screen">
             {children}
           </div>
+          <FeedbackWidget />
         </Providers>
       </body>
     </html>

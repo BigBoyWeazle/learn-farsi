@@ -13,11 +13,16 @@ export default function WordCard({ word }: WordCardProps) {
   return (
     <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-4 hover:shadow-2xl hover:border-persian-red-600 transition-all">
       <div className="space-y-3">
-        {/* Phonetic Word - Always visible */}
+        {/* Phonetic Word + Farsi Script - Always visible */}
         <div className="text-center">
           <div className="text-2xl font-bold text-persian-red-500 capitalize">
             {word.phonetic || word.farsiWord}
           </div>
+          {word.farsiWord && word.phonetic && (
+            <div className="text-2xl text-persian-red-700 mt-1" style={{ direction: "rtl", fontFamily: "serif" }}>
+              {word.farsiWord}
+            </div>
+          )}
           {word.isFormal && (
             <span className="inline-block mt-1 px-2 py-0.5 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full border border-purple-300">
               Formal
@@ -36,14 +41,8 @@ export default function WordCard({ word }: WordCardProps) {
             </button>
           ) : (
             <div className="space-y-2">
-              {/* Farsi script and English translation */}
-              <div className="text-center space-y-1">
-                <div
-                  className="text-xl font-semibold text-persian-red-700"
-                  style={{ direction: "rtl", fontFamily: "serif" }}
-                >
-                  {word.farsiWord}
-                </div>
+              {/* English translation */}
+              <div className="text-center">
                 <div className="text-base font-semibold text-persian-red-500">
                   {word.englishTranslation}
                 </div>

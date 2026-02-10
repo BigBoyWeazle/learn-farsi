@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { ThemeToggle } from "./theme-toggle";
 import { ThemeProvider } from "./theme-provider";
 
@@ -12,17 +11,17 @@ function LandingContent() {
       <nav className="bg-persian-beige-50/90 dark:bg-persian-beige-900/90 backdrop-blur-sm border-b border-persian-red-200 dark:border-persian-red-700 sticky top-0 z-50 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-3">
               <div className="text-3xl">🇮🇷</div>
-              <h1 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-persian-red-600 to-persian-red-800 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-persian-red-600 to-persian-red-800 bg-clip-text text-transparent">
                 Farsi Vocabulary
               </h1>
             </div>
-            <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-4">
               <ThemeToggle />
               <Link
                 href="/dashboard"
-                className="px-4 sm:px-6 py-2 bg-persian-red-600 text-white rounded-lg hover:bg-persian-red-700 transition-all shadow-md hover:shadow-lg font-semibold text-sm sm:text-base"
+                className="px-6 py-2 bg-persian-red-600 text-white rounded-lg hover:bg-persian-red-700 transition-all shadow-md hover:shadow-lg font-semibold"
               >
                 Get Started
               </Link>
@@ -36,7 +35,7 @@ function LandingContent() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-8 flex justify-center gap-4 text-6xl">
             <span className="animate-bounce">🌟</span>
-            <span className="animate-bounce inline-block w-14 h-14 overflow-hidden" style={{animationDelay: '0.1s'}}><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></span>
+            <span className="animate-bounce" style={{animationDelay: '0.1s'}}>📚</span>
             <span className="animate-bounce" style={{animationDelay: '0.2s'}}>✨</span>
           </div>
 
@@ -70,17 +69,17 @@ function LandingContent() {
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="bg-white/90 dark:bg-persian-beige-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-persian-red-200 dark:border-persian-red-700 shadow-lg transition-colors">
-              <div className="w-12 h-12 mx-auto mb-2 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-4xl mb-2">📚</div>
               <div className="text-3xl font-bold text-persian-red-600 dark:text-persian-red-400">7</div>
               <div className="text-persian-beige-800 dark:text-persian-beige-200 font-medium">Structured Lessons</div>
             </div>
             <div className="bg-white/90 dark:bg-persian-beige-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-persian-beige-300 dark:border-persian-beige-600 shadow-lg transition-colors">
-              <div className="w-12 h-12 mx-auto mb-2 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-4xl mb-2">🎯</div>
               <div className="text-3xl font-bold text-persian-red-600 dark:text-persian-red-400">Free</div>
               <div className="text-persian-beige-800 dark:text-persian-beige-200 font-medium">Forever</div>
             </div>
             <div className="bg-white/90 dark:bg-persian-beige-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-persian-red-200 dark:border-persian-red-700 shadow-lg transition-colors">
-              <div className="w-12 h-12 mx-auto mb-2 overflow-hidden"><Image src="/fireicon.png" alt="Fire" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-4xl mb-2">🔥</div>
               <div className="text-3xl font-bold text-persian-red-600 dark:text-persian-red-400">Daily</div>
               <div className="text-persian-beige-800 dark:text-persian-beige-200 font-medium">Practice Streaks</div>
             </div>
@@ -101,7 +100,7 @@ function LandingContent() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Structured Lessons */}
             <div className="bg-gradient-to-br from-persian-red-500 to-persian-red-700 rounded-3xl p-8 text-white shadow-2xl hover:scale-105 transition-transform">
-              <div className="w-16 h-16 mb-4 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-5xl mb-4">📖</div>
               <h3 className="text-3xl font-bold mb-4">Structured Lessons</h3>
               <p className="text-persian-red-100 mb-6 text-lg">
                 Follow a curated curriculum from beginner to advanced
@@ -136,7 +135,7 @@ function LandingContent() {
 
             {/* Daily Practice */}
             <div className="bg-gradient-to-br from-persian-beige-400 to-persian-beige-600 rounded-3xl p-8 text-white shadow-2xl hover:scale-105 transition-transform">
-              <div className="w-16 h-16 mb-4 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-5xl mb-4">🎯</div>
               <h3 className="text-3xl font-bold mb-4">Daily Practice</h3>
               <p className="text-persian-beige-100 mb-6 text-lg">
                 Smart spaced repetition keeps vocabulary fresh in your memory
@@ -153,7 +152,7 @@ function LandingContent() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-persian-red-200 text-xl">✓</span>
-                  <span>Build daily practice streaks <span className="inline-block w-5 h-5 overflow-hidden align-middle"><Image src="/fireicon.png" alt="Fire" width={40} height={40} className="w-full h-full object-cover scale-125" /></span></span>
+                  <span>Build daily practice streaks 🔥</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-persian-red-200 text-xl">✓</span>
