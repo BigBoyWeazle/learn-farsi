@@ -320,17 +320,24 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* Teacher Support Section */}
+      {/* Connect With a Teacher Section */}
       <section className="py-20 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-4 text-persian-red-500">
-            Coming Soon: Native Teacher Support
+            Connect with a Teacher
           </h2>
-          <p className="text-persian-red-700 dark:text-persian-beige-200 mb-6 text-lg font-medium max-w-2xl mx-auto">
-            We&apos;re working on partnering with native Persian speakers and
-            experienced Farsi teachers to bring you authentic pronunciation
-            guides, cultural insights, and verified content.
+          <p className="text-persian-red-700 dark:text-persian-beige-200 text-xl font-semibold mb-4">
+            Take your Farsi to the next level.
           </p>
+          <p className="text-persian-red-700 dark:text-persian-beige-200 mb-8 text-lg font-medium max-w-2xl mx-auto">
+            Get personalized guidance from native Farsi speakers and experienced teachers. Whether you need help with pronunciation, grammar, or conversation practice, a dedicated teacher can accelerate your learning journey.
+          </p>
+          <button
+            disabled
+            className="px-8 py-4 bg-persian-red-300 text-white font-bold rounded-xl shadow-lg text-lg cursor-not-allowed opacity-75 mb-8"
+          >
+            In Progress
+          </button>
           <p className="text-persian-red-600 dark:text-persian-beige-300 mb-8">
             Are you a Farsi teacher or native speaker? We&apos;d love to
             collaborate with you!
