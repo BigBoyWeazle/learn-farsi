@@ -121,19 +121,19 @@ export default function DashboardClient() {
         const xpToNext = getXPToNextLevel(userStats.totalXP);
 
         return (
-          <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-2xl shadow-xl p-6 text-white border-4 border-persian-red-700">
-            <div className="flex flex-col md:flex-row md:items-center gap-6">
+          <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-2xl shadow-xl p-4 sm:p-6 text-white border-4 border-persian-red-700">
+            <div className="flex flex-col md:flex-row md:items-center gap-4 sm:gap-6">
               {/* Current Title */}
               <div className="flex-1">
-                <div className="text-sm font-medium text-persian-beige-200 mb-1">Your Title</div>
-                <div className="flex items-baseline gap-3 mb-1">
-                  <span className="text-3xl font-bold">{currentLevel.title}</span>
-                  <span className="text-xl text-persian-beige-200">Level {currentLevel.level}</span>
+                <div className="text-xs sm:text-sm font-medium text-persian-beige-200 mb-0.5 sm:mb-1">Your Title</div>
+                <div className="flex items-baseline gap-2 sm:gap-3 mb-0.5 sm:mb-1">
+                  <span className="text-2xl sm:text-3xl font-bold">{currentLevel.title}</span>
+                  <span className="text-base sm:text-xl text-persian-beige-200">Level {currentLevel.level}</span>
                 </div>
-                <div className="text-2xl font-bold text-persian-gold-300" dir="rtl">
+                <div className="text-xl sm:text-2xl font-bold text-persian-gold-300" dir="rtl">
                   {currentLevel.titlePersian}
                 </div>
-                <div className="text-sm text-persian-beige-200 italic">
+                <div className="text-xs sm:text-sm text-persian-beige-200 italic">
                   {currentLevel.titlePhonetic}
                 </div>
               </div>
@@ -141,11 +141,11 @@ export default function DashboardClient() {
               {/* Progress to Next Level */}
               {nextLevel && (
                 <div className="flex-1">
-                  <div className="flex justify-between text-sm mb-2">
+                  <div className="flex justify-between text-xs sm:text-sm mb-1.5 sm:mb-2">
                     <span className="font-medium">Progress to {nextLevel.title}</span>
                     <span className="font-bold">{xpToNext} XP to go</span>
                   </div>
-                  <div className="h-4 bg-persian-red-700 rounded-full overflow-hidden">
+                  <div className="h-3 sm:h-4 bg-persian-red-700 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-persian-gold-400 to-persian-gold-500 rounded-full transition-all duration-500"
                       style={{ width: `${progress}%` }}
@@ -161,9 +161,9 @@ export default function DashboardClient() {
               {/* Max Level Badge */}
               {!nextLevel && (
                 <div className="flex-1 text-center">
-                  <div className="text-4xl mb-2">👑</div>
-                  <div className="text-lg font-bold text-persian-gold-300">Maximum Level Achieved!</div>
-                  <div className="text-sm text-persian-beige-200">You are a true master of Farsi</div>
+                  <div className="text-3xl sm:text-4xl mb-1 sm:mb-2">👑</div>
+                  <div className="text-base sm:text-lg font-bold text-persian-gold-300">Maximum Level Achieved!</div>
+                  <div className="text-xs sm:text-sm text-persian-beige-200">You are a true master of Farsi</div>
                 </div>
               )}
             </div>
@@ -173,34 +173,34 @@ export default function DashboardClient() {
 
       {/* Progress Stats - Now with 4 cards including Record Streak */}
       {!loading && userStats && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white border-3 border-persian-red-500 rounded-lg p-6 shadow-xl">
-            <div className="text-3xl mb-2">🔥</div>
-            <div className="text-2xl font-bold text-persian-red-500">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-white border-3 border-persian-red-500 rounded-lg p-4 sm:p-6 shadow-xl">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">🔥</div>
+            <div className="text-xl sm:text-2xl font-bold text-persian-red-500">
               {userStats.currentStreak}
             </div>
-            <div className="text-sm text-persian-red-700 font-semibold">Current Streak</div>
+            <div className="text-xs sm:text-sm text-persian-red-700 font-semibold">Current Streak</div>
           </div>
-          <div className="bg-white border-3 border-persian-gold-500 rounded-lg p-6 shadow-xl">
-            <div className="text-3xl mb-2">🏆</div>
-            <div className="text-2xl font-bold text-persian-gold-600">
+          <div className="bg-white border-3 border-persian-gold-500 rounded-lg p-4 sm:p-6 shadow-xl">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">🏆</div>
+            <div className="text-xl sm:text-2xl font-bold text-persian-gold-600">
               {userStats.longestStreak}
             </div>
-            <div className="text-sm text-persian-gold-700 font-semibold">Record Streak</div>
+            <div className="text-xs sm:text-sm text-persian-gold-700 font-semibold">Record Streak</div>
           </div>
-          <div className="bg-white border-3 border-[#4aa6a6] rounded-lg p-6 shadow-xl">
-            <div className="text-3xl mb-2">✅</div>
-            <div className="text-2xl font-bold text-[#4aa6a6]">
+          <div className="bg-white border-3 border-[#4aa6a6] rounded-lg p-4 sm:p-6 shadow-xl">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">✅</div>
+            <div className="text-xl sm:text-2xl font-bold text-[#4aa6a6]">
               {lessonsCompleted}
             </div>
-            <div className="text-sm text-[#3d8a8a] font-semibold">Lessons Completed</div>
+            <div className="text-xs sm:text-sm text-[#3d8a8a] font-semibold">Lessons Completed</div>
           </div>
-          <div className="bg-white border-3 border-persian-red-500 rounded-lg p-6 shadow-xl">
-            <div className="text-3xl mb-2">⭐</div>
-            <div className="text-2xl font-bold text-persian-red-500">
+          <div className="bg-white border-3 border-persian-red-500 rounded-lg p-4 sm:p-6 shadow-xl">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">⭐</div>
+            <div className="text-xl sm:text-2xl font-bold text-persian-red-500">
               {userStats.totalXP}
             </div>
-            <div className="text-sm text-persian-red-700 font-semibold">Total XP</div>
+            <div className="text-xs sm:text-sm text-persian-red-700 font-semibold">Total XP</div>
           </div>
         </div>
       )}

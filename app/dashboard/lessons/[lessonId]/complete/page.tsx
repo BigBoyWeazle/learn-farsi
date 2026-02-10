@@ -82,13 +82,13 @@ export default function LessonCompletePage() {
 
   if (!stats) {
     return (
-      <div className="max-w-2xl mx-auto py-12">
-        <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-12 text-center">
-          <div className="w-16 h-16 mx-auto mb-6 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
-          <h2 className="text-2xl font-bold text-persian-red-500 mb-4">
+      <div className="max-w-2xl mx-auto py-6 sm:py-12 px-2 sm:px-0">
+        <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-5 sm:p-12 text-center">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
+          <h2 className="text-xl sm:text-2xl font-bold text-persian-red-500 mb-3 sm:mb-4">
             No Session Data
           </h2>
-          <p className="text-persian-red-700 font-medium mb-6">
+          <p className="text-persian-red-700 font-medium mb-4 sm:mb-6 text-sm sm:text-base">
             Complete a lesson practice to see your results here.
           </p>
           <Link
@@ -107,52 +107,52 @@ export default function LessonCompletePage() {
     : 0;
 
   return (
-    <div className="max-w-2xl mx-auto py-12">
-      <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-12 text-center">
+    <div className="max-w-2xl mx-auto py-6 sm:py-12 px-2 sm:px-0">
+      <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-5 sm:p-12 text-center">
         {/* Celebration/Try Again Icon */}
-        <div className={`text-8xl mb-6 ${isPassed ? 'animate-bounce' : ''}`}>
-          {isPassed ? '🎉' : <div className="w-20 h-20 mx-auto overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>}
+        <div className={`text-5xl sm:text-8xl mb-3 sm:mb-6 ${isPassed ? 'animate-bounce' : ''}`}>
+          {isPassed ? '🎉' : <div className="w-14 h-14 sm:w-20 sm:h-20 mx-auto overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>}
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl font-bold text-persian-red-500 mb-2">
+        <h1 className="text-2xl sm:text-4xl font-bold text-persian-red-500 mb-1 sm:mb-2">
           {isPassed ? 'Lesson Completed!' : 'Keep Practicing!'}
         </h1>
-        <p className="text-xl text-persian-red-700 font-medium mb-8">
+        <p className="text-base sm:text-xl text-persian-red-700 font-medium mb-4 sm:mb-8">
           {isPassed
             ? "Great job! You've mastered this lesson!"
             : 'You need 80% or higher to complete this lesson'}
         </p>
 
         {/* Score Display */}
-        <div className={`rounded-xl p-8 mb-8 ${
+        <div className={`rounded-xl p-4 sm:p-8 mb-4 sm:mb-8 ${
           isPassed
             ? 'bg-emerald-50 border-2 border-emerald-500'
             : 'bg-amber-50 border-2 border-amber-500'
         }`}>
-          <div className="mb-6">
-            <div className={`text-6xl font-bold mb-2 ${
+          <div className="mb-3 sm:mb-6">
+            <div className={`text-4xl sm:text-6xl font-bold mb-1 sm:mb-2 ${
               isPassed ? 'text-emerald-600' : 'text-amber-600'
             }`}>
               {score}%
             </div>
-            <div className="text-lg font-semibold text-persian-red-700">
+            <div className="text-sm sm:text-lg font-semibold text-persian-red-700">
               Your Score
             </div>
           </div>
 
           {/* Stats */}
-          <div className="mb-4">
-            <div className="text-2xl font-bold text-persian-red-700 mb-2">
+          <div className="mb-3 sm:mb-4">
+            <div className="text-lg sm:text-2xl font-bold text-persian-red-700 mb-1 sm:mb-2">
               {stats.total} words practiced
             </div>
-            <div className="text-lg font-semibold text-persian-red-600">
+            <div className="text-base sm:text-lg font-semibold text-persian-red-600">
               {stats.correct} / {stats.total} correct
             </div>
           </div>
 
           {/* Assessment Breakdown */}
-          <div className="flex justify-center gap-6 text-sm">
+          <div className="flex justify-center gap-3 sm:gap-6 text-xs sm:text-sm">
             {stats.easy > 0 && (
               <span className="text-sky-600 font-bold">
                 {stats.easy} Easy
@@ -176,8 +176,8 @@ export default function LessonCompletePage() {
           </div>
 
           {/* XP Earned */}
-          <div className="pt-4 mt-4 border-t border-persian-red-200">
-            <div className="text-xl font-bold text-persian-red-500">
+          <div className="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-persian-red-200">
+            <div className="text-base sm:text-xl font-bold text-persian-red-500">
               +{stats.easy * 5 + stats.good * 3 + stats.hard * 2 + stats.again * 1} XP earned
             </div>
           </div>
@@ -185,26 +185,26 @@ export default function LessonCompletePage() {
 
         {/* Streak Display */}
         {streakUpdate && (
-          <div className="mb-8 p-4 bg-amber-50 rounded-lg border-2 border-amber-400">
-            <div className="flex items-center justify-center gap-4">
+          <div className="mb-4 sm:mb-8 p-3 sm:p-4 bg-amber-50 rounded-lg border-2 border-amber-400">
+            <div className="flex items-center justify-center gap-3 sm:gap-4">
               <div className="text-center">
-                <div className="text-3xl">🔥</div>
-                <div className="text-2xl font-bold text-amber-700">{streakUpdate.currentStreak}</div>
-                <div className="text-sm text-amber-600 font-medium">Current Streak</div>
+                <div className="text-2xl sm:text-3xl">🔥</div>
+                <div className="text-lg sm:text-2xl font-bold text-amber-700">{streakUpdate.currentStreak}</div>
+                <div className="text-xs sm:text-sm text-amber-600 font-medium">Streak</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl">🏆</div>
-                <div className="text-2xl font-bold text-amber-700">{streakUpdate.longestStreak}</div>
-                <div className="text-sm text-amber-600 font-medium">Record Streak</div>
+                <div className="text-2xl sm:text-3xl">🏆</div>
+                <div className="text-lg sm:text-2xl font-bold text-amber-700">{streakUpdate.longestStreak}</div>
+                <div className="text-xs sm:text-sm text-amber-600 font-medium">Record</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl">⭐</div>
-                <div className="text-2xl font-bold text-amber-700">{streakUpdate.totalXP}</div>
-                <div className="text-sm text-amber-600 font-medium">Total XP</div>
+                <div className="text-2xl sm:text-3xl">⭐</div>
+                <div className="text-lg sm:text-2xl font-bold text-amber-700">{streakUpdate.totalXP}</div>
+                <div className="text-xs sm:text-sm text-amber-600 font-medium">Total XP</div>
               </div>
             </div>
             {streakUpdate.isNewStreak && (
-              <p className="text-amber-700 font-bold text-center mt-3">
+              <p className="text-amber-700 font-bold text-center mt-2 sm:mt-3 text-sm sm:text-base">
                 New streak started! Keep it going! 💪
               </p>
             )}
@@ -212,22 +212,22 @@ export default function LessonCompletePage() {
         )}
 
         {/* Encouragement Message */}
-        <div className="mb-8">
+        <div className="mb-4 sm:mb-8">
           {isPassed ? (
             <div>
-              <p className="text-persian-red-700 text-lg font-medium mb-2">
+              <p className="text-persian-red-700 text-base sm:text-lg font-medium mb-1 sm:mb-2">
                 Excellent work! You have completed this lesson.
               </p>
-              <p className="text-sm text-persian-red-600">
+              <p className="text-xs sm:text-sm text-persian-red-600">
                 You can now move on to the next lesson or review this one anytime.
               </p>
             </div>
           ) : (
             <div>
-              <p className="text-persian-red-700 text-lg font-medium mb-2">
+              <p className="text-persian-red-700 text-base sm:text-lg font-medium mb-1 sm:mb-2">
                 You scored {score}%. Try again to reach 80%!
               </p>
-              <p className="text-sm text-persian-red-600">
+              <p className="text-xs sm:text-sm text-persian-red-600">
                 Review the words and practice again. You can do it!
               </p>
             </div>
@@ -235,18 +235,18 @@ export default function LessonCompletePage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {isPassed ? (
             <>
               <Link
                 href="/dashboard/lessons"
-                className="block w-full py-4 px-6 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-all text-lg font-semibold shadow-lg hover:shadow-xl"
+                className="block w-full py-3 sm:py-4 px-4 sm:px-6 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-all text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl"
               >
                 Continue to Next Lesson <span className="btn-arrow">→</span>
               </Link>
               <Link
                 href={`/dashboard/lessons/${lessonId}`}
-                className="block w-full py-3 px-6 text-persian-red-600 hover:text-persian-red-700 transition-colors text-base font-medium"
+                className="block w-full py-2.5 sm:py-3 px-4 sm:px-6 text-persian-red-600 hover:text-persian-red-700 transition-colors text-sm sm:text-base font-medium"
               >
                 Review This Lesson
               </Link>
@@ -255,13 +255,13 @@ export default function LessonCompletePage() {
             <>
               <Link
                 href={`/dashboard/lessons/${lessonId}`}
-                className="block w-full py-4 px-6 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-all text-lg font-semibold shadow-lg hover:shadow-xl"
+                className="block w-full py-3 sm:py-4 px-4 sm:px-6 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-all text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl"
               >
                 Review & Try Again <span className="btn-arrow">→</span>
               </Link>
               <Link
                 href="/dashboard/lessons"
-                className="block w-full py-3 px-6 text-persian-red-600 hover:text-persian-red-700 transition-colors text-base font-medium"
+                className="block w-full py-2.5 sm:py-3 px-4 sm:px-6 text-persian-red-600 hover:text-persian-red-700 transition-colors text-sm sm:text-base font-medium"
               >
                 Back to Lessons
               </Link>
