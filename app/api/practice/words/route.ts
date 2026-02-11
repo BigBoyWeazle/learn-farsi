@@ -1,16 +1,34 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
+import { db } from "@/db";
+import { userStats } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { selectWordsForSession } from "@/lib/word-selection";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    // Get current level from query params (sent from client with localStorage data)
-    const { searchParams } = new URL(request.url);
-    const currentLevel = parseInt(searchParams.get("level") || "1", 10);
+    const session = await auth();
 
-    // Use smart word selection algorithm
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const userId = session.user.id;
+
+    // Get user's current level from database
+    const stats = await db
+      .select()
+      .from(userStats)
+      .where(eq(userStats.userId, userId))
+      .limit(1);
+
+    const currentLevel = stats[0]?.currentLevel ?? 1;
+
+    // Use smart word selection with DB-backed progress
     const words = await selectWordsForSession({
       sessionSize: 5,
       currentLevel,
+      userId,
     });
 
     return NextResponse.json({ words });

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { getNextLessonId, getCompletedLessonIds } from "@/lib/lesson-progress";
+import { getNextLessonId } from "@/lib/lesson-progress";
 import { getCurrentLevel, getNextLevel, getLevelProgress, getXPToNextLevel } from "@/lib/levels";
 
 interface Lesson {
@@ -22,34 +22,44 @@ interface UserStats {
   totalXP: number;
 }
 
+interface ActivityCounts {
+  vocabCompleted: number;
+  grammarCompleted: number;
+  practiceSessionsCompleted: number;
+  totalActivities: number;
+}
+
 export default function DashboardClient() {
   const { data: session } = useSession();
   const [nextLessonId, setNextLessonId] = useState<string | null>(null);
-  const [lessonsCompleted, setLessonsCompleted] = useState(0);
+  const [activity, setActivity] = useState<ActivityCounts | null>(null);
   const [userStats, setUserStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadDashboardData() {
       try {
-        // Fetch all lessons
-        const lessonsResponse = await fetch("/api/lessons");
-        const lessonsData = await lessonsResponse.json();
+        // Fetch all data in parallel
+        const [lessonsRes, statsRes, activityRes] = await Promise.all([
+          fetch("/api/lessons"),
+          fetch("/api/user/stats"),
+          fetch("/api/user/activity"),
+        ]);
+
+        const lessonsData = await lessonsRes.json();
         const allLessons: Lesson[] = lessonsData.lessons || [];
-
-        // Get progress from localStorage (for now - can be migrated to DB later)
-        const completedIds = getCompletedLessonIds();
         const nextId = getNextLessonId(allLessons);
+        setNextLessonId(nextId);
 
-        // Fetch user stats from API (stored in database per user)
-        const statsResponse = await fetch("/api/user/stats");
-        if (statsResponse.ok) {
-          const stats = await statsResponse.json();
+        if (statsRes.ok) {
+          const stats = await statsRes.json();
           setUserStats(stats);
         }
 
-        setNextLessonId(nextId);
-        setLessonsCompleted(completedIds.length);
+        if (activityRes.ok) {
+          const activityData = await activityRes.json();
+          setActivity(activityData);
+        }
       } catch (error) {
         console.error("Error loading dashboard data:", error);
       } finally {
@@ -191,9 +201,9 @@ export default function DashboardClient() {
           <div className="bg-white border-3 border-[#4aa6a6] rounded-lg p-4 sm:p-6 shadow-xl">
             <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">✅</div>
             <div className="text-xl sm:text-2xl font-bold text-[#4aa6a6]">
-              {lessonsCompleted}
+              {activity?.totalActivities ?? 0}
             </div>
-            <div className="text-xs sm:text-sm text-[#3d8a8a] font-semibold">Lessons Completed</div>
+            <div className="text-xs sm:text-sm text-[#3d8a8a] font-semibold">Total Completed</div>
           </div>
           <div className="bg-white border-3 border-persian-red-500 rounded-lg p-4 sm:p-6 shadow-xl">
             <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">⭐</div>

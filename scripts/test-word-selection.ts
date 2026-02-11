@@ -9,6 +9,7 @@ async function testWordSelection() {
   const level1Words = await selectWordsForSession({
     sessionSize: 5,
     currentLevel: 1,
+    userId: "test-user",
   });
   console.log(`  ✓ Selected ${level1Words.length} words`);
   level1Words.forEach((word, index) => {
@@ -20,6 +21,7 @@ async function testWordSelection() {
   const level2Words = await selectWordsForSession({
     sessionSize: 5,
     currentLevel: 2,
+    userId: "test-user",
   });
   console.log(`  ✓ Selected ${level2Words.length} words`);
   level2Words.forEach((word, index) => {
@@ -31,6 +33,7 @@ async function testWordSelection() {
   const level3Words = await selectWordsForSession({
     sessionSize: 5,
     currentLevel: 3,
+    userId: "test-user",
   });
   console.log(`  ✓ Selected ${level3Words.length} words`);
   level3Words.forEach((word, index) => {

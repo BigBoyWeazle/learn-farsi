@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import type { Vocabulary } from "@/db/schema";
 import type { Assessment } from "@/lib/spaced-repetition";
-import { calculateNextReview } from "@/lib/spaced-repetition";
 import { completeLessson, recordLessonAttempt } from "@/lib/lesson-progress";
 import PracticeCard from "@/app/dashboard/practice/practice-card";
 import Image from "next/image";
@@ -76,25 +75,20 @@ export default function LessonPracticePage() {
     };
     setSessionStats(updatedStats);
 
-    // Get current progress from localStorage
-    const storageKey = `progress_${currentWord.id}`;
-    const currentProgressJson = localStorage.getItem(storageKey);
-    const currentProgress = currentProgressJson
-      ? JSON.parse(currentProgressJson)
-      : null;
-
-    // Calculate next review with correctness
-    const reviewUpdate = calculateNextReview(assessment, isCorrect, currentProgress);
-
-    // Save to localStorage
-    const updatedProgress = {
-      vocabularyId: currentWord.id,
-      ...reviewUpdate,
-      nextReviewDate: reviewUpdate.nextReviewDate.toISOString(),
-      lastReviewedAt: reviewUpdate.lastReviewedAt.toISOString(),
-      updatedAt: reviewUpdate.updatedAt.toISOString(),
-    };
-    localStorage.setItem(storageKey, JSON.stringify(updatedProgress));
+    // Save review to database via API
+    try {
+      await fetch("/api/practice/review", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          vocabularyId: currentWord.id,
+          assessment,
+          isCorrect,
+        }),
+      });
+    } catch (error) {
+      console.error("Error saving review:", error);
+    }
 
     // Move to next word or complete session
     if (currentIndex < words.length - 1) {

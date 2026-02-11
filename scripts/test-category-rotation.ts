@@ -27,6 +27,7 @@ async function testCategoryRotation() {
     const words = await selectWordsForSession({
       sessionSize: 3, // Smaller session size to see rotation better
       currentLevel: 1,
+      userId: "test-user",
     });
 
     // Get categories for these words

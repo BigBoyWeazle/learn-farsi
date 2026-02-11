@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Footer } from "@/components/footer";
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { lessons, users, userStats, userLessonProgress } from "@/db/schema";
+import { lessons, users, userStats, userLessonProgress, userGrammarProgress } from "@/db/schema";
 import { eq, count, sql } from "drizzle-orm";
 import { AnimatedCounter } from "@/components/animated-counter";
 
@@ -31,12 +31,19 @@ export default async function LandingPage() {
     .from(userStats);
   const totalXP = totalXPResult[0]?.total || 0;
 
-  // Fetch total lessons completed by all users
-  const totalLessonsCompletedResult = await db
-    .select({ count: count() })
-    .from(userLessonProgress)
-    .where(eq(userLessonProgress.isCompleted, true));
-  const totalLessonsCompleted = totalLessonsCompletedResult[0]?.count || 0;
+  // Fetch total lessons completed by all users (vocab + grammar)
+  const [vocabCompletedResult, grammarCompletedResult] = await Promise.all([
+    db
+      .select({ count: count() })
+      .from(userLessonProgress)
+      .where(eq(userLessonProgress.isCompleted, true)),
+    db
+      .select({ count: count() })
+      .from(userGrammarProgress)
+      .where(eq(userGrammarProgress.isCompleted, true)),
+  ]);
+  const totalLessonsCompleted =
+    (vocabCompletedResult[0]?.count || 0) + (grammarCompletedResult[0]?.count || 0);
 
   return (
     <div className="min-h-screen bg-persian-beige-200 dark:bg-[#654321] transition-colors">
@@ -134,32 +141,46 @@ export default async function LandingPage() {
             </div>
           </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105">
-              <div className="w-12 h-12 mx-auto mb-2 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
-              <div className="text-3xl font-bold text-persian-red-500">{lessonCount}</div>
-              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold">
+        </div>
+      </section>
+
+      {/* Why Learn Farsi Section */}
+      <section className="py-16 bg-persian-beige-100 dark:bg-[#543210] transition-colors">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-8 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
+              <div className="w-14 h-14 mx-auto mb-3 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-4xl font-bold text-persian-red-500 mb-1">{lessonCount}</div>
+              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-lg">
                 Structured Lessons
               </div>
+              <p className="text-persian-red-600 dark:text-persian-beige-300 text-sm mt-2">
+                Vocabulary, grammar & alphabet
+              </p>
             </div>
-            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 border-3 border-persian-red-500 dark:border-persian-beige-600 shadow-xl transition-all hover:shadow-2xl hover:scale-105">
-              <div className="w-12 h-12 mx-auto mb-2 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
-              <div className="text-3xl font-bold text-persian-red-500">
+            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-8 border-3 border-persian-gold-500 dark:border-persian-gold-600 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
+              <div className="w-14 h-14 mx-auto mb-3 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-4xl font-bold text-persian-red-500 mb-1">
                 Free
               </div>
-              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold">
+              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-lg">
                 Forever
               </div>
+              <p className="text-persian-red-600 dark:text-persian-beige-300 text-sm mt-2">
+                No subscriptions, no paywalls
+              </p>
             </div>
-            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105">
-              <div className="w-12 h-12 mx-auto mb-2 overflow-hidden"><Image src="/fireicon.png" alt="Fire" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
-              <div className="text-3xl font-bold text-persian-red-500">
+            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-8 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
+              <div className="w-14 h-14 mx-auto mb-3 overflow-hidden"><Image src="/fireicon.png" alt="Fire" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-4xl font-bold text-persian-red-500 mb-1">
                 Daily
               </div>
-              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold">
+              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-lg">
                 Practice Streaks
               </div>
+              <p className="text-persian-red-600 dark:text-persian-beige-300 text-sm mt-2">
+                Spaced repetition that adapts to you
+              </p>
             </div>
           </div>
         </div>

@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Vocabulary } from "@/db/schema";
 import type { Assessment } from "@/lib/spaced-repetition";
-import { calculateNextReview } from "@/lib/spaced-repetition";
-import { getUserStats } from "@/lib/user-stats";
 import PracticeCard from "./practice-card";
 import Image from "next/image";
 import { PageLoading } from "@/components/loading-spinner";
@@ -35,16 +33,11 @@ export default function PracticePage() {
     incorrect: 0,
   });
 
-  // Fetch words for practice session
+  // Fetch words for practice session (API handles user auth + level + smart selection)
   useEffect(() => {
     async function fetchWords() {
       try {
-        // Get current user level from localStorage
-        const userStats = getUserStats();
-        const currentLevel = userStats.currentLevel;
-
-        // Fetch words with smart selection based on level
-        const response = await fetch(`/api/practice/words?level=${currentLevel}`);
+        const response = await fetch("/api/practice/words");
         const data = await response.json();
         setWords(data.words || []);
       } catch (error) {
@@ -63,7 +56,6 @@ export default function PracticePage() {
     // Update session stats
     const updatedStats = {
       total: sessionStats.total + 1,
-      [assessment]: sessionStats[assessment] + 1,
       easy: assessment === "easy" ? sessionStats.easy + 1 : sessionStats.easy,
       good: assessment === "good" ? sessionStats.good + 1 : sessionStats.good,
       hard: assessment === "hard" ? sessionStats.hard + 1 : sessionStats.hard,
@@ -73,32 +65,26 @@ export default function PracticePage() {
     };
     setSessionStats(updatedStats);
 
-    // Get current progress from localStorage
-    const storageKey = `progress_${currentWord.id}`;
-    const currentProgressJson = localStorage.getItem(storageKey);
-    const currentProgress = currentProgressJson
-      ? JSON.parse(currentProgressJson)
-      : null;
-
-    // Calculate next review with correctness
-    const reviewUpdate = calculateNextReview(assessment, isCorrect, currentProgress);
-
-    // Save to localStorage (temporary until auth is enabled)
-    const updatedProgress = {
-      vocabularyId: currentWord.id,
-      ...reviewUpdate,
-      // Convert dates to ISO strings for localStorage
-      nextReviewDate: reviewUpdate.nextReviewDate.toISOString(),
-      lastReviewedAt: reviewUpdate.lastReviewedAt.toISOString(),
-      updatedAt: reviewUpdate.updatedAt.toISOString(),
-    };
-    localStorage.setItem(storageKey, JSON.stringify(updatedProgress));
+    // Save review to database via API
+    try {
+      await fetch("/api/practice/review", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          vocabularyId: currentWord.id,
+          assessment,
+          isCorrect,
+        }),
+      });
+    } catch (error) {
+      console.error("Error saving review:", error);
+    }
 
     // Move to next word or complete session
     if (currentIndex < words.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      // Session complete - save updated stats and navigate to completion screen
+      // Session complete - save stats for completion screen and navigate
       localStorage.setItem("sessionStats", JSON.stringify(updatedStats));
       router.push("/dashboard/practice/complete");
     }
