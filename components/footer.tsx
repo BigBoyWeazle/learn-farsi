@@ -25,7 +25,7 @@ export function Footer() {
               <span className="bg-persian-gold-500 text-white text-xs font-bold px-2 py-0.5 rounded">BETA</span>
             </div>
             <p className="text-persian-beige-200 text-sm">
-              Learn Persian vocabulary through structured lessons and daily practice — completely free! Currently in beta, with new content added regularly.
+              Learn new Farsi words every day and actually remember them, with structured lessons and smart daily practice. Free forever!
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export function Footer() {
         <div className="border-t border-persian-red-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-persian-beige-200 text-sm">
-              © {currentYear} Learn Farsi. Built for language learners!
+              © {currentYear} Learn Farsi. Built to help you learn and remember Farsi words!
             </p>
             <div className="flex items-center gap-6 text-sm text-persian-beige-200">
               <Link href="/privacy" className="hover:text-white transition-colors">

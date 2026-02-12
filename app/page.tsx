@@ -81,15 +81,15 @@ export default async function LandingPage() {
           </h1>
 
           <p className="text-xl md:text-2xl text-persian-red-800 dark:text-persian-beige-200 mb-12 max-w-3xl mx-auto font-medium">
-            Master Persian vocabulary through{" "}
+            Learn new Farsi words every day and{" "}
             <span className="text-persian-red-500 font-bold">
-              structured lessons
+              actually remember them
             </span>{" "}
-            and{" "}
+            with smart{" "}
             <span className="text-persian-red-500 font-bold">
-              daily practice
+              spaced repetition
             </span>{" "}
-            — completely free!
+            , completely free!
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -151,7 +151,7 @@ export default async function LandingPage() {
             Why Learn Farsi?
           </h2>
           <p className="text-center text-persian-red-700 dark:text-persian-beige-200 mb-12 text-lg font-medium">
-            Everything you need to master Persian, all in one place
+            Everything you need to learn and remember Farsi words fast and easy!
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-8 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
@@ -196,10 +196,10 @@ export default async function LandingPage() {
       <section className="py-20 bg-persian-beige-100 dark:bg-[#654321] transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-4 text-persian-red-500">
-            Two Ways to Learn
+            Learn & Remember
           </h2>
           <p className="text-center text-persian-red-700 dark:text-persian-beige-200 mb-16 text-lg font-medium">
-            Choose the learning style that works best for you
+            Two proven ways to build your Farsi vocabulary and make it stick
           </p>
 
           <div className="grid md:grid-cols-2 gap-12">
@@ -208,17 +208,17 @@ export default async function LandingPage() {
               <div className="w-16 h-16 mb-4 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
               <h3 className="text-3xl font-bold mb-4">Structured Lessons</h3>
               <p className="text-persian-red-100 mb-6 text-lg">
-                Follow a curated curriculum from beginner to advanced
+                Learn new Farsi words through themed lessons, from beginner to advanced
               </p>
 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
                   <span className="text-persian-gold-300 text-xl">✓</span>
-                  <span>Progressive difficulty levels</span>
+                  <span>Learn words at your own pace</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-persian-gold-300 text-xl">✓</span>
-                  <span>Organized by themes (greetings, food, family)</span>
+                  <span>Words organized by themes (greetings, food, family)</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-persian-gold-300 text-xl">✓</span>
@@ -245,7 +245,7 @@ export default async function LandingPage() {
                 Daily Practice
               </h3>
               <p className="text-persian-red-700 mb-6 text-lg font-medium">
-                Smart spaced repetition keeps vocabulary fresh in your memory
+                Never forget the words you learn, smart repetition helps you remember them for good
               </p>
 
               <ul className="space-y-3 mb-8 text-persian-red-800">
@@ -254,7 +254,7 @@ export default async function LandingPage() {
                     ✓
                   </span>
                   <span className="font-medium">
-                    Spaced repetition algorithm
+                    Words repeat at the perfect time to stick
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -262,7 +262,7 @@ export default async function LandingPage() {
                     ✓
                   </span>
                   <span className="font-medium">
-                    Focus on words you struggle with
+                    Extra focus on words you find tricky
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -301,7 +301,7 @@ export default async function LandingPage() {
             Persian Alphabet
           </h2>
           <p className="text-persian-red-700 dark:text-persian-beige-200 mb-8 text-lg font-medium max-w-2xl mx-auto">
-            Master the 32 letters of the Persian alphabet with interactive lessons and practice exercises
+            Learn all 32 Persian letters so you can read and recognize Farsi words on your own
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -417,12 +417,12 @@ export default async function LandingPage() {
       <section className="py-20 bg-persian-red-600">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            {isLoggedIn ? "Continue Your Farsi Journey" : "Start Your Farsi Journey Today"}
+            {isLoggedIn ? "Keep Learning New Words" : "Start Learning Farsi Words Today"}
           </h2>
           <p className="text-xl text-white mb-8 font-medium">
             {isLoggedIn
-              ? "Pick up where you left off and keep improving!"
-              : "Join learners and master Persian easily through daily lessons"}
+              ? "Pick up where you left off, every word counts!"
+              : "Learn new Farsi words every day and remember them with smart practice"}
           </p>
           <Link
             href={isLoggedIn ? "/dashboard" : "/login"}
