@@ -147,6 +147,12 @@ export default async function LandingPage() {
       {/* Why Learn Farsi Section */}
       <section className="py-16 bg-persian-beige-100 dark:bg-[#543210] transition-colors">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-center mb-4 text-persian-red-500">
+            Why Learn Farsi?
+          </h2>
+          <p className="text-center text-persian-red-700 dark:text-persian-beige-200 mb-12 text-lg font-medium">
+            Everything you need to master Persian, all in one place
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-8 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
               <div className="w-14 h-14 mx-auto mb-3 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
