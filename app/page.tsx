@@ -2,6 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Footer } from "@/components/footer";
 import { auth } from "@/auth";
+import { Caveat } from "next/font/google";
+
+const caveat = Caveat({ subsets: ["latin"] });
 import { db } from "@/db";
 import { lessons, users, userStats, userLessonProgress, userGrammarProgress } from "@/db/schema";
 import { eq, count, sql } from "drizzle-orm";
@@ -80,7 +83,7 @@ export default async function LandingPage() {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-persian-red-800 dark:text-persian-beige-200 mb-12 max-w-3xl mx-auto font-medium">
+          <p className="text-xl md:text-2xl text-persian-red-800 dark:text-persian-beige-200 mb-16 max-w-3xl mx-auto font-medium">
             Learn new Farsi words every day and{" "}
             <span className="text-persian-red-500 font-bold">
               actually remember them
@@ -88,8 +91,23 @@ export default async function LandingPage() {
             with smart{" "}
             <span className="text-persian-red-500 font-bold">
               spaced repetition
-            </span>{" "}
-            , completely free!
+            </span>, completely{" "}
+            <span className="relative inline-block">
+              <span className="text-persian-red-500 font-bold">free!</span>
+              {/* Hand-drawn underline */}
+              <svg className="absolute -bottom-1 left-0 w-full text-persian-gold-500 pointer-events-none" height="6" viewBox="0 0 60 6" fill="none" preserveAspectRatio="none">
+                <path d="M0 3C10 0.5 15 5.5 25 3C35 0.5 40 5.5 50 3C55 1 58 4.5 60 3" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              </svg>
+              <span className="absolute top-[100%] left-[calc(110%-10px)] flex flex-col items-start pointer-events-none">
+                <svg width="32" height="28" viewBox="0 0 32 28" fill="none" className="text-persian-gold-500 mt-[10px]">
+                  <path d="M28 24C22 18 14 10 6 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                  <path d="M3 8L5 2L10 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className={`${caveat.className} text-persian-gold-500 font-bold text-2xl whitespace-nowrap -mt-[10px]`} style={{ transform: "rotate(-3deg)" }}>
+                  Forever
+                </span>
+              </span>
+            </span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -331,15 +349,27 @@ export default async function LandingPage() {
 
           <div className="bg-white dark:bg-persian-beige-800 rounded-3xl p-6 md:p-8 shadow-xl border-3 border-persian-red-200 dark:border-persian-red-700 group">
             <div className="flex flex-col items-center gap-6">
-              {/* Photo */}
-              <div className="flex-shrink-0">
-                <Image
-                  src="/ProfileFotoTVW.JPG"
-                  alt="Thomas van Welsenes"
-                  width={120}
-                  height={120}
-                  className="rounded-full border-4 border-persian-red-500 shadow-lg object-cover w-[120px] h-[120px] transition-transform duration-300 hover:scale-110"
-                />
+              {/* Photo + Contact annotation */}
+              <div className="relative inline-block">
+                <Link href="/contact" className="block">
+                  <Image
+                    src="/ProfileFotoTVW.JPG"
+                    alt="Thomas van Welsenes"
+                    width={120}
+                    height={120}
+                    className="rounded-full border-4 border-persian-red-500 shadow-lg object-cover w-[120px] h-[120px] transition-transform duration-300 hover:scale-110"
+                  />
+                </Link>
+                {/* Hand-drawn arrow pointing left toward photo */}
+                <div className="absolute top-1/2 left-full -translate-y-1/2 ml-3 flex items-center gap-1 pointer-events-none">
+                  <svg width="28" height="24" viewBox="0 0 28 24" fill="none" className="text-persian-gold-500 flex-shrink-0">
+                    <path d="M26 16C20 12 14 8 4 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                    <path d="M8 6L3 10L8 14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className={`${caveat.className} text-persian-gold-500 font-bold text-xl whitespace-nowrap`} style={{ transform: "rotate(-3deg)" }}>
+                    Contact me!
+                  </span>
+                </div>
               </div>
 
               {/* Story */}

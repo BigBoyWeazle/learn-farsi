@@ -6,6 +6,9 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { getNextLessonId } from "@/lib/lesson-progress";
 import { getCurrentLevel, getNextLevel, getLevelProgress, getXPToNextLevel } from "@/lib/levels";
+import { Caveat } from "next/font/google";
+
+const caveat = Caveat({ subsets: ["latin"] });
 
 interface Lesson {
   id: string;
@@ -95,12 +98,24 @@ export default function DashboardClient() {
                 Sign in to track your streaks, earn XP, level up, and keep your progress across devices.
               </p>
             </div>
-            <Link
-              href="/login"
-              className="flex-shrink-0 px-6 py-2.5 bg-white text-persian-red-500 rounded-lg font-bold text-sm hover:bg-persian-beige-100 transition-colors shadow-lg hover:shadow-xl hover:scale-105 transform"
-            >
-              Sign In Free
-            </Link>
+            <div className="flex-shrink-0 flex flex-col items-center sm:items-end gap-2">
+              <Link
+                href="/login"
+                className="px-6 py-2.5 bg-white text-persian-red-500 rounded-lg font-bold text-sm hover:bg-persian-beige-100 transition-colors shadow-lg hover:shadow-xl hover:scale-105 transform"
+              >
+                Sign In Free
+              </Link>
+              {/* Hand-drawn arrow annotation */}
+              <div className="flex items-center gap-1">
+                <svg width="28" height="24" viewBox="0 0 28 24" fill="none" className="text-persian-gold-300 flex-shrink-0">
+                  <path d="M4 20C6 14 12 8 20 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M16 2L21 3L18 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className={`${caveat.className} text-persian-gold-300 text-lg whitespace-nowrap`} style={{ transform: "rotate(-2deg)" }}>
+                  Sign up & help us grow!
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       )}
