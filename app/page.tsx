@@ -181,6 +181,16 @@ export default async function LandingPage() {
               <p className="text-persian-red-600 dark:text-persian-beige-300 text-sm mt-2">
                 Vocabulary, grammar & alphabet
               </p>
+              {/* Hand-drawn arrow annotation */}
+              <div className="flex items-center justify-center gap-1 mt-3 pointer-events-none">
+                <svg width="28" height="24" viewBox="0 0 28 24" fill="none" className="text-persian-gold-500 flex-shrink-0">
+                  <path d="M4 4C8 10 14 16 22 20" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                  <path d="M18 22L23 21L20 16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className={`${caveat.className} text-persian-gold-500 font-bold text-lg whitespace-nowrap`} style={{ transform: "rotate(-2deg)" }}>
+                  And actively adding more!
+                </span>
+              </div>
             </div>
             <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-8 border-3 border-persian-gold-500 dark:border-persian-gold-600 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
               <div className="w-14 h-14 mx-auto mb-3 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
