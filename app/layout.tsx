@@ -6,7 +6,23 @@ import { FeedbackWidget } from "@/components/feedback-widget";
 
 export const metadata: Metadata = {
   title: "Learn Farsi - Learn Persian Daily",
-  description: "Learn Farsi (Persian) vocabulary one word at a time",
+  description:
+    "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever.",
+  metadataBase: new URL("https://learnfarsi.app"),
+  openGraph: {
+    title: "Learn Farsi - Learn Persian Daily",
+    description:
+      "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever.",
+    siteName: "Learn Farsi",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Learn Farsi - Learn Persian Daily",
+    description:
+      "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever.",
+  },
 };
 
 export default function RootLayout({
