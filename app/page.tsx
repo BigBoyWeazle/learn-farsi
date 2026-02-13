@@ -94,13 +94,13 @@ export default async function LandingPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link
-              href={isLoggedIn ? "/dashboard/lessons" : "/login"}
+              href="/dashboard/lessons"
               className="px-8 py-4 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
             >
               {isLoggedIn ? "Continue Learning" : "Start Learning"} <span className="btn-arrow">→</span>
             </Link>
             <Link
-              href={isLoggedIn ? "/dashboard/practice" : "/login"}
+              href="/dashboard/practice"
               className="px-8 py-4 bg-white dark:bg-persian-beige-800 text-persian-red-500 dark:text-persian-red-400 border-3 border-persian-red-500 dark:border-persian-red-400 rounded-xl hover:bg-persian-beige-100 dark:hover:bg-persian-beige-700 transition-all shadow-lg text-lg font-bold"
             >
               {isLoggedIn ? "Practice Mode" : "Try Practice Mode"}
@@ -111,7 +111,7 @@ export default async function LandingPage() {
           <div className="flex flex-col items-center mb-12">
             <div className="flex flex-wrap justify-center items-center gap-3">
               {userCount > 0 && (
-                <Link href={isLoggedIn ? "/dashboard" : "/login"} className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 transition-all duration-200 hover:scale-105 hover:shadow-xl cursor-pointer">
+                <Link href="/dashboard" className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 transition-all duration-200 hover:scale-105 hover:shadow-xl cursor-pointer">
                   <div className="flex -space-x-2 flex-shrink-0">
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-red-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">F</div>
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-gold-500 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
@@ -231,7 +231,7 @@ export default async function LandingPage() {
               </ul>
 
               <Link
-                href={isLoggedIn ? "/dashboard/lessons" : "/login"}
+                href="/dashboard/lessons"
                 className="block w-full py-3 bg-white text-persian-red-500 rounded-xl hover:bg-persian-beige-100 transition-colors text-center font-bold text-lg shadow-lg"
               >
                 Browse Lessons <span className="btn-arrow">→</span>
@@ -284,7 +284,7 @@ export default async function LandingPage() {
               </ul>
 
               <Link
-                href={isLoggedIn ? "/dashboard/practice" : "/login"}
+                href="/dashboard/practice"
                 className="block w-full py-3 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-colors text-center font-bold text-lg shadow-lg"
               >
                 Start Practicing <span className="btn-arrow">→</span>
@@ -305,14 +305,14 @@ export default async function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href={isLoggedIn ? "/dashboard/alphabet" : "/login"}
+              href="/dashboard/alphabet"
               className="px-8 py-4 bg-persian-gold-500 text-white rounded-xl hover:bg-persian-gold-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
             >
               <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/bookicon.png" alt="Book" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
               View All Letters
             </Link>
             <Link
-              href={isLoggedIn ? "/dashboard/alphabet/practice" : "/login"}
+              href="/dashboard/alphabet/practice"
               className="px-8 py-4 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
             >
               <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/pencilicon.png" alt="Pencil" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
@@ -425,7 +425,7 @@ export default async function LandingPage() {
               : "Learn new Farsi words every day and remember them with smart practice"}
           </p>
           <Link
-            href={isLoggedIn ? "/dashboard" : "/login"}
+            href="/dashboard"
             className="inline-block px-12 py-4 bg-persian-beige-200 text-persian-red-500 rounded-xl hover:bg-white transition-all text-xl font-bold shadow-2xl hover:scale-105 transform border-3 border-white"
           >
             {isLoggedIn ? "Back to Learning" : "Get Started Free"} <span className="btn-arrow">→</span>

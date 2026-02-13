@@ -10,8 +10,9 @@ export async function POST(request: Request) {
   try {
     const session = await auth();
 
+    // Guest users: accept the request but don't persist to DB
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ ok: true, guest: true });
     }
 
     const userId = session.user.id;

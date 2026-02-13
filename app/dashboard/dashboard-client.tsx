@@ -36,29 +36,34 @@ export default function DashboardClient() {
   const [userStats, setUserStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const isGuest = !session?.user;
+
   useEffect(() => {
     async function loadDashboardData() {
       try {
-        // Fetch all data in parallel
-        const [lessonsRes, statsRes, activityRes] = await Promise.all([
-          fetch("/api/lessons"),
-          fetch("/api/user/stats"),
-          fetch("/api/user/activity"),
-        ]);
-
+        // Always fetch lessons (public API)
+        const lessonsRes = await fetch("/api/lessons");
         const lessonsData = await lessonsRes.json();
         const allLessons: Lesson[] = lessonsData.lessons || [];
         const nextId = getNextLessonId(allLessons);
         setNextLessonId(nextId);
 
-        if (statsRes.ok) {
-          const stats = await statsRes.json();
-          setUserStats(stats);
-        }
+        // Only fetch user-specific data if logged in
+        if (!isGuest) {
+          const [statsRes, activityRes] = await Promise.all([
+            fetch("/api/user/stats"),
+            fetch("/api/user/activity"),
+          ]);
 
-        if (activityRes.ok) {
-          const activityData = await activityRes.json();
-          setActivity(activityData);
+          if (statsRes.ok) {
+            const stats = await statsRes.json();
+            setUserStats(stats);
+          }
+
+          if (activityRes.ok) {
+            const activityData = await activityRes.json();
+            setActivity(activityData);
+          }
         }
       } catch (error) {
         console.error("Error loading dashboard data:", error);
@@ -68,7 +73,7 @@ export default function DashboardClient() {
     }
 
     loadDashboardData();
-  }, []);
+  }, [isGuest]);
 
   return (
     <div className="space-y-8">
@@ -79,6 +84,26 @@ export default function DashboardClient() {
           Learn Farsi is currently in beta. We&apos;re actively adding new content and features. <Link href="/contact" className="underline hover:text-persian-gold-900">Share your feedback!</Link>
         </p>
       </div>
+
+      {/* Guest Sign-In Banner */}
+      {isGuest && (
+        <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 text-white rounded-2xl px-6 py-5 shadow-xl border-3 border-persian-red-700">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-bold mb-1">Save your progress!</h3>
+              <p className="text-persian-beige-200 text-sm">
+                Sign in to track your streaks, earn XP, level up, and keep your progress across devices.
+              </p>
+            </div>
+            <Link
+              href="/login"
+              className="flex-shrink-0 px-6 py-2.5 bg-white text-persian-red-500 rounded-lg font-bold text-sm hover:bg-persian-beige-100 transition-colors shadow-lg hover:shadow-xl hover:scale-105 transform"
+            >
+              Sign In Free
+            </Link>
+          </div>
+        </div>
+      )}
 
       {/* Welcome Header */}
       <div>
@@ -95,29 +120,41 @@ export default function DashboardClient() {
         </p>
       </div>
 
-      {/* Lessons / Grammar Toggle */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      {/* Lessons / Grammar / Alphabet */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Link
           href="/dashboard/lessons"
-          className="flex-1 bg-persian-red-500 hover:bg-persian-red-600 text-white rounded-xl p-6 shadow-lg transition-all hover:shadow-xl border-3 border-persian-red-700"
+          className="bg-persian-red-500 hover:bg-persian-red-600 text-white rounded-xl p-6 shadow-lg transition-all hover:shadow-xl border-3 border-persian-red-700"
         >
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 overflow-hidden flex-shrink-0"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
             <div>
-              <h3 className="text-xl font-bold">Vocabulary Lessons</h3>
+              <h3 className="text-xl font-bold">Vocabulary</h3>
               <p className="text-persian-beige-200 text-sm">Learn new words and phrases</p>
             </div>
           </div>
         </Link>
         <Link
           href="/dashboard/grammar"
-          className="flex-1 bg-persian-gold-500 hover:bg-persian-gold-600 text-white rounded-xl p-6 shadow-lg transition-all hover:shadow-xl border-3 border-persian-gold-700"
+          className="bg-persian-gold-500 hover:bg-persian-gold-600 text-white rounded-xl p-6 shadow-lg transition-all hover:shadow-xl border-3 border-persian-gold-700"
         >
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 overflow-hidden flex-shrink-0"><Image src="/bookicon.png" alt="Book" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
             <div>
-              <h3 className="text-xl font-bold">Grammar Lessons</h3>
+              <h3 className="text-xl font-bold">Grammar</h3>
               <p className="text-persian-gold-100 text-sm">Master Farsi grammar rules</p>
+            </div>
+          </div>
+        </Link>
+        <Link
+          href="/dashboard/alphabet"
+          className="bg-[#4aa6a6] hover:bg-[#3d8a8a] text-white rounded-xl p-6 shadow-lg transition-all hover:shadow-xl border-3 border-[#3d8a8a]"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 overflow-hidden flex-shrink-0"><Image src="/pencilicon.png" alt="Alphabet" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+            <div>
+              <h3 className="text-xl font-bold">Alphabet</h3>
+              <p className="text-teal-100 text-sm">Learn all 32 Persian letters</p>
             </div>
           </div>
         </Link>
@@ -239,26 +276,6 @@ export default function DashboardClient() {
         </div>
       )}
 
-      {/* All Lessons Link */}
-      <div className="bg-white border-3 border-persian-red-500 rounded-lg p-6 shadow-xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-bold text-persian-red-500 mb-1">
-              Browse All Lessons
-            </h3>
-            <p className="text-sm text-persian-red-700 font-medium">
-              View your progress and access all available lessons
-            </p>
-          </div>
-          <Link
-            href="/dashboard/lessons"
-            className="px-6 py-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold shadow-md"
-          >
-            View Lessons <span className="btn-arrow">→</span>
-          </Link>
-        </div>
-      </div>
-
       {/* Practice CTA */}
       <div className="bg-persian-beige-200 rounded-2xl shadow-xl p-8 border-4 border-persian-red-500">
         <div className="flex items-center justify-between">
@@ -281,35 +298,6 @@ export default function DashboardClient() {
         </div>
       </div>
 
-      {/* Alphabet Section */}
-      <div className="bg-white border-3 border-persian-gold-500 rounded-2xl shadow-xl p-8">
-        <div className="flex items-center justify-between">
-          <div className="flex-1">
-            <h3 className="text-2xl font-bold mb-2 text-persian-red-500">
-              Persian Alphabet
-            </h3>
-            <p className="text-persian-red-700 mb-4 font-medium">
-              Learn all 32 letters of the Persian alphabet with interactive practice
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/dashboard/alphabet"
-                className="inline-flex items-center px-6 py-3 bg-persian-gold-500 text-white rounded-lg hover:bg-persian-gold-600 transition-colors font-bold shadow-lg hover:shadow-xl"
-              >
-                <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/bookicon.png" alt="Book" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
-                View All Letters
-              </Link>
-              <Link
-                href="/dashboard/alphabet/practice"
-                className="inline-flex items-center px-6 py-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold shadow-lg hover:shadow-xl"
-              >
-                <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/pencilicon.png" alt="Pencil" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
-                Practice Alphabet
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

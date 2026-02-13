@@ -41,25 +41,25 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
               Home
             </Link>
             <Link
-              href={isLoggedIn ? "/dashboard" : "/login"}
+              href="/dashboard"
               className="text-sm font-semibold text-persian-red-700 hover:text-persian-red-500 transition-colors"
             >
               Learn
             </Link>
             <Link
-              href={isLoggedIn ? "/dashboard/words" : "/login"}
+              href="/dashboard/words"
               className="text-sm font-semibold text-persian-red-700 hover:text-persian-red-500 transition-colors"
             >
               Word Library
             </Link>
             <Link
-              href={isLoggedIn ? "/dashboard/alphabet" : "/login"}
+              href="/dashboard/alphabet"
               className="text-sm font-semibold text-persian-red-700 hover:text-persian-red-500 transition-colors"
             >
               Persian Alphabet
             </Link>
             <Link
-              href={isLoggedIn ? "/dashboard" : "/login"}
+              href="/dashboard"
               className="px-4 py-2 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors text-sm font-semibold shadow-md"
             >
               {isLoggedIn ? "Continue Learning" : "Get Started"}
@@ -69,7 +69,7 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
           {/* Mobile: CTA + Hamburger */}
           <div className="flex items-center gap-3 md:hidden">
             <Link
-              href={isLoggedIn ? "/dashboard" : "/login"}
+              href="/dashboard"
               className="px-3 py-1.5 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors text-sm font-semibold shadow-md"
             >
               {isLoggedIn ? "Continue" : "Get Started"}
@@ -105,21 +105,21 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
               Home
             </Link>
             <Link
-              href={isLoggedIn ? "/dashboard" : "/login"}
+              href="/dashboard"
               className="block px-3 py-2 rounded-lg text-sm font-semibold text-persian-red-700 hover:bg-persian-beige-300 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Learn
             </Link>
             <Link
-              href={isLoggedIn ? "/dashboard/words" : "/login"}
+              href="/dashboard/words"
               className="block px-3 py-2 rounded-lg text-sm font-semibold text-persian-red-700 hover:bg-persian-beige-300 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Word Library
             </Link>
             <Link
-              href={isLoggedIn ? "/dashboard/alphabet" : "/login"}
+              href="/dashboard/alphabet"
               className="block px-3 py-2 rounded-lg text-sm font-semibold text-persian-red-700 hover:bg-persian-beige-300 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
