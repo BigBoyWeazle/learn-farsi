@@ -422,51 +422,48 @@ export default async function LandingPage() {
       </section>
 
       {/* Connect With a Teacher Section */}
-      <section className="py-20 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
+      <section className="py-10 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-4 text-persian-red-500">
-            Connect with a Teacher
-          </h2>
-          <p className="text-persian-red-700 dark:text-persian-beige-200 text-xl font-semibold mb-4">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <h2 className="text-2xl md:text-3xl font-bold text-persian-red-500">
+              Connect with a Teacher
+            </h2>
+            <span className="bg-persian-gold-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Coming Soon</span>
+          </div>
+          <p className="text-persian-red-700 dark:text-persian-beige-200 text-base font-semibold mb-2">
             Take your Farsi to the next level.
           </p>
-          <p className="text-persian-red-700 dark:text-persian-beige-200 mb-8 text-lg font-medium max-w-2xl mx-auto">
+          <p className="text-persian-red-700 dark:text-persian-beige-200 mb-5 text-sm font-medium max-w-2xl mx-auto">
             Get personalized guidance from native Farsi speakers and experienced teachers. Whether you need help with pronunciation, grammar, or conversation practice, a dedicated teacher can accelerate your learning journey.
           </p>
-          <button
-            disabled
-            className="px-8 py-4 bg-persian-red-300 text-white font-bold rounded-xl shadow-lg text-lg cursor-not-allowed opacity-75 mb-8"
-          >
-            In Progress
-          </button>
-          <p className="text-persian-red-600 dark:text-persian-beige-300 mb-8">
+          <p className="text-persian-red-600 dark:text-persian-beige-300 text-sm mb-5">
             Are you a Farsi teacher or native speaker? We&apos;d love to
             collaborate with you!
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-persian-red-500 hover:bg-persian-red-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-persian-red-500 hover:bg-persian-red-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
           >
-            <span className="text-xl">✉️</span>
+            <span className="text-base">✉️</span>
             <span>Want to Contribute? Get in Touch</span>
           </Link>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-persian-red-600">
+      <section className="py-10 bg-persian-red-600">
         <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             {isLoggedIn ? "Keep Learning New Words" : "Start Learning Farsi Words Today"}
           </h2>
-          <p className="text-xl text-white mb-8 font-medium">
+          <p className="text-base text-white mb-5 font-medium">
             {isLoggedIn
               ? "Pick up where you left off, every word counts!"
               : "Learn new Farsi words every day and remember them with smart practice"}
           </p>
           <Link
             href="/dashboard"
-            className="inline-block px-12 py-4 bg-persian-beige-200 text-persian-red-500 rounded-xl hover:bg-white transition-all text-xl font-bold shadow-2xl hover:scale-105 transform border-3 border-white"
+            className="inline-block px-8 py-3 bg-persian-beige-200 text-persian-red-500 rounded-xl hover:bg-white transition-all text-base font-bold shadow-2xl hover:scale-105 transform border-2 border-white"
           >
             {isLoggedIn ? "Back to Learning" : "Get Started Free"} <span className="btn-arrow">→</span>
           </Link>
