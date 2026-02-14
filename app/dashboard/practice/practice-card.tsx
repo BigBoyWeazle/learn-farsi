@@ -243,7 +243,7 @@ export default function PracticeCard({
                   <div className="text-left">
                     <span className="text-persian-red-600 font-medium">Correct answer:</span>
                     <div className="font-semibold text-persian-red-700">
-                      {word.englishTranslation}
+                      {word.englishTranslation.replace(/\s*\([^)]*\)/g, "").trim()}
                     </div>
                   </div>
                 </div>

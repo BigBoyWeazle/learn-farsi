@@ -5,14 +5,14 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-persian-red-900 text-white py-12">
+    <footer className="bg-persian-red-900 text-white py-6 sm:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Brand Section */}
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 overflow-hidden flex-shrink-0">
+        <div className="mb-5 sm:mb-6">
+          {/* Brand — above links on mobile, left of links on desktop */}
+          <div className="mb-4 md:hidden">
+            <div className="flex items-center gap-2.5 mb-2">
+              <div className="w-8 h-8 overflow-hidden flex-shrink-0">
                 <Image
                   src="/carpetlogo.png"
                   alt="Learn Farsi"
@@ -21,18 +21,38 @@ export function Footer() {
                   className="w-full h-full object-cover scale-150"
                 />
               </div>
-              <h3 className="text-2xl font-bold">Learn Farsi</h3>
-              <span className="bg-persian-gold-500 text-white text-xs font-bold px-2 py-0.5 rounded">BETA</span>
+              <h3 className="text-lg font-bold">Learn Farsi</h3>
+              <span className="bg-persian-gold-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">BETA</span>
             </div>
-            <p className="text-persian-beige-200 text-sm">
+            <p className="text-persian-beige-200 text-xs leading-relaxed">
               Learn new Farsi words every day and actually remember them, with structured lessons and smart daily practice. Free forever!
             </p>
           </div>
 
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+            {/* Brand — hidden on mobile, shown on desktop as first column */}
+            <div className="hidden md:block">
+              <div className="flex items-center gap-2.5 mb-2">
+                <div className="w-8 h-8 overflow-hidden flex-shrink-0">
+                  <Image
+                    src="/carpetlogo.png"
+                    alt="Learn Farsi"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover scale-150"
+                  />
+                </div>
+                <h3 className="text-lg font-bold">Learn Farsi</h3>
+                <span className="bg-persian-gold-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">BETA</span>
+              </div>
+              <p className="text-persian-beige-200 text-xs leading-relaxed">
+                Learn new Farsi words every day and actually remember them, with structured lessons and smart daily practice. Free forever!
+              </p>
+            </div>
           {/* Learn Section */}
           <div>
-            <h4 className="font-bold text-lg mb-4 text-persian-gold-400">Learn</h4>
-            <ul className="space-y-2 text-persian-beige-200">
+            <h4 className="font-bold text-sm mb-2 text-persian-gold-400">Learn</h4>
+            <ul className="space-y-1 text-persian-beige-200 text-xs">
               <li>
                 <Link href="/dashboard/lessons" className="hover:text-white transition-colors">
                   Structured Lessons
@@ -58,8 +78,8 @@ export function Footer() {
 
           {/* Resources Section */}
           <div>
-            <h4 className="font-bold text-lg mb-4 text-persian-gold-400">Resources</h4>
-            <ul className="space-y-2 text-persian-beige-200">
+            <h4 className="font-bold text-sm mb-2 text-persian-gold-400">Resources</h4>
+            <ul className="space-y-1 text-persian-beige-200 text-xs">
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
                   Home
@@ -80,8 +100,8 @@ export function Footer() {
 
           {/* Connect Section */}
           <div>
-            <h4 className="font-bold text-lg mb-4 text-persian-gold-400">Connect</h4>
-            <ul className="space-y-2 text-persian-beige-200">
+            <h4 className="font-bold text-sm mb-2 text-persian-gold-400">Connect</h4>
+            <ul className="space-y-1 text-persian-beige-200 text-xs">
               <li>
                 <Link href="/contact" className="hover:text-white transition-colors">
                   Contact Us
@@ -99,15 +119,16 @@ export function Footer() {
               </li>
             </ul>
           </div>
+          </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-persian-red-700 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-persian-beige-200 text-sm">
+        <div className="border-t border-persian-red-700 pt-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-2">
+            <p className="text-persian-beige-200 text-xs">
               © {currentYear} Learn Farsi. Built to help you learn and remember Farsi words!
             </p>
-            <div className="flex items-center gap-6 text-sm text-persian-beige-200">
+            <div className="flex items-center gap-4 text-xs text-persian-beige-200">
               <Link href="/privacy" className="hover:text-white transition-colors">
                 Privacy Policy
               </Link>

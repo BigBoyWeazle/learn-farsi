@@ -4,10 +4,8 @@ A modern web application for learning Farsi (Persian) vocabulary one word at a t
 
 # TO BUILD
 
-- one extra design color?
-- PAID model for lessons? / Referral to teacher?
-- make cool main page thomasvanwelsenes (show CV, hobbies and entrepeneurship) (cool sky / cali / redwood / highland video / stock image?)
-- Make foto site where publish my travel foto's
+- Also when on the lesson overview. Make alle the cards use less height so it is easier to see the words on desktop and mobile version.
+- Add foto site where publish my travel foto's to personal page
 
 ## Features
 

@@ -30,6 +30,7 @@ export default function LessonIntroductionPage() {
   const [lessonData, setLessonData] = useState<LessonData | null>(null);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState<any>(null);
+  const [showTips, setShowTips] = useState(false);
   const { isPhoneticFirst } = useDisplayPreference();
 
   useEffect(() => {
@@ -61,17 +62,17 @@ export default function LessonIntroductionPage() {
   if (!lessonData) {
     return (
       <div className="max-w-2xl mx-auto mt-12">
-        <div className="bg-white shadow-lg rounded-lg p-8 text-center">
+        <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-2xl p-8 text-center">
           <div className="text-6xl mb-4">❌</div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
             Lesson Not Found
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-persian-red-700 mb-6">
             This lesson does not exist or has been removed.
           </p>
           <Link
             href="/dashboard/lessons"
-            className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-block px-6 py-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-semibold"
           >
             Back to Lessons
           </Link>
@@ -88,26 +89,26 @@ export default function LessonIntroductionPage() {
       <div className="mb-4 sm:mb-6">
         <Link
           href="/dashboard/lessons"
-          className="text-blue-600 hover:text-blue-700 font-medium mb-3 inline-block text-sm sm:text-base"
+          className="text-persian-red-500 hover:text-persian-red-600 font-medium mb-3 inline-block text-sm sm:text-base"
         >
           ← Back to Lessons
         </Link>
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-persian-red-500 mb-1 sm:mb-2">
           {lesson.title}
         </h1>
         {lesson.description && (
-          <p className="text-gray-600 text-sm sm:text-base">{lesson.description}</p>
+          <p className="text-persian-red-700 text-sm sm:text-base">{lesson.description}</p>
         )}
       </div>
 
       {/* Progress Badge */}
       {progress?.isCompleted && (
-        <div className="mb-4 sm:mb-6 bg-green-50 border-2 border-green-500 rounded-lg p-3 sm:p-4">
+        <div className="mb-4 sm:mb-6 bg-emerald-50 border-2 border-emerald-500 rounded-lg p-3 sm:p-4">
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="text-2xl sm:text-3xl">✓</div>
             <div>
-              <h3 className="font-bold text-green-900 text-sm sm:text-base">Lesson Completed!</h3>
-              <p className="text-xs sm:text-sm text-green-700">
+              <h3 className="font-bold text-emerald-900 text-sm sm:text-base">Lesson Completed!</h3>
+              <p className="text-xs sm:text-sm text-emerald-700">
                 Best score: {progress.bestScore}% | Attempts: {progress.attempts}
               </p>
             </div>
@@ -116,71 +117,63 @@ export default function LessonIntroductionPage() {
       )}
 
       {/* Lesson Overview */}
-      <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl shadow-lg p-4 sm:p-8 mb-6 sm:mb-8 text-white">
+      <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-xl shadow-lg px-4 py-3 sm:px-6 sm:py-4 mb-4 sm:mb-6 text-white border-3 border-persian-red-700">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg sm:text-2xl font-bold mb-1">Lesson Overview</h2>
-            <p className="text-blue-100 text-sm sm:text-base">
+            <h2 className="text-base sm:text-lg font-bold">Lesson Overview</h2>
+            <p className="text-persian-beige-200 text-xs sm:text-sm">
               You will learn {wordCount} new words
             </p>
           </div>
-          <div className="w-10 h-10 sm:w-16 sm:h-16 overflow-hidden flex-shrink-0"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
+          <div className="w-8 h-8 sm:w-10 sm:h-10 overflow-hidden flex-shrink-0"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
         </div>
       </div>
 
       {/* Words Introduction */}
       <div className="mb-6 sm:mb-8">
         <div className="flex items-center justify-between mb-3 sm:mb-4">
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+          <h2 className="text-xl sm:text-2xl font-bold text-persian-red-500">
             Words in This Lesson
           </h2>
           <DisplayToggle />
         </div>
-        <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2">
+        <div className="grid gap-2 sm:gap-3 grid-cols-1 md:grid-cols-2">
           {words.map((word) => (
             <div
               key={word.id}
-              className="bg-white border-2 border-gray-200 rounded-lg p-3 sm:p-6 hover:border-blue-300 transition-colors"
+              className="bg-white border-2 border-persian-red-200 rounded-lg px-3 py-2 sm:px-4 sm:py-3 hover:border-persian-red-400 transition-colors"
             >
-              {isPhoneticFirst ? (
-                <>
-                  {/* Phonetic first */}
-                  <div className="text-xl sm:text-2xl font-bold text-persian-red-500 capitalize mb-0.5 sm:mb-1">
-                    {word.phonetic}
-                  </div>
-                  {/* Farsi script secondary */}
-                  <div className="text-lg sm:text-xl text-gray-500 mb-1 sm:mb-2" style={{ direction: "rtl", fontFamily: "serif" }}>
-                    {word.farsiWord}
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* Farsi script first */}
-                  <div className="text-2xl sm:text-3xl font-bold text-persian-red-500 mb-0.5 sm:mb-1 text-right" style={{ fontFamily: "serif" }}>
-                    {word.farsiWord}
-                  </div>
-                  {/* Phonetic secondary */}
-                  <div className="text-base sm:text-lg text-gray-500 capitalize mb-1 sm:mb-2">
-                    {word.phonetic}
-                  </div>
-                </>
-              )}
+              <div className="flex items-baseline justify-between gap-2 mb-0.5">
+                {isPhoneticFirst ? (
+                  <>
+                    <span className="text-base sm:text-lg font-bold text-persian-red-500 capitalize">
+                      {word.phonetic}
+                    </span>
+                    <span className="text-sm sm:text-base text-persian-red-400" style={{ direction: "rtl", fontFamily: "serif" }}>
+                      {word.farsiWord}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-lg sm:text-xl font-bold text-persian-red-500" style={{ fontFamily: "serif", direction: "rtl" }}>
+                      {word.farsiWord}
+                    </span>
+                    <span className="text-sm sm:text-base text-persian-red-400 capitalize">
+                      {word.phonetic}
+                    </span>
+                  </>
+                )}
+              </div>
 
               {/* English Translation */}
-              <div className="text-lg sm:text-xl text-gray-700 font-medium mb-2 sm:mb-3">
+              <div className="text-sm sm:text-base text-persian-red-700 font-medium">
                 {word.englishTranslation}
               </div>
 
-              {/* Example */}
+              {/* Example - collapsed to single line */}
               {word.exampleFarsi && word.exampleEnglish && (
-                <div className="pt-2 sm:pt-3 border-t border-gray-200">
-                  <p className="text-xs sm:text-sm text-gray-500 mb-1">Example:</p>
-                  <p className="text-xs sm:text-sm text-gray-700 italic mb-1">
-                    {word.exampleEnglish}
-                  </p>
-                  <p className="text-xs sm:text-sm text-gray-500">
-                    ({word.examplePhonetic})
-                  </p>
+                <div className="mt-1 pt-1 border-t border-persian-red-100 text-xs text-persian-red-400 italic truncate">
+                  {word.exampleEnglish}
                 </div>
               )}
             </div>
@@ -188,28 +181,36 @@ export default function LessonIntroductionPage() {
         </div>
       </div>
 
-      {/* Study Tips */}
-      <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4 sm:p-6 mb-6 sm:mb-8">
-        <h3 className="font-bold text-yellow-900 mb-2 text-sm sm:text-base">📝 Study Tips</h3>
-        <ul className="text-xs sm:text-sm text-yellow-800 space-y-1">
-          <li>• Review each word&apos;s pronunciation and meaning</li>
-          <li>• Try to create your own sentences using these words</li>
-          <li>• Pay attention to the examples - they show real usage</li>
-          <li>• You will need 80% or higher to complete this lesson</li>
-        </ul>
+      {/* Study Tips — collapsible */}
+      <div className="bg-persian-beige-100 border-2 border-persian-gold-400 rounded-lg mb-4 sm:mb-6">
+        <button
+          onClick={() => setShowTips(!showTips)}
+          className="w-full flex items-center justify-between px-3 py-2 sm:px-4 sm:py-2.5 text-left"
+        >
+          <h3 className="font-bold text-persian-gold-700 text-sm sm:text-base">📝 Study Tips</h3>
+          <span className={`text-persian-gold-600 text-xs font-medium transition-transform ${showTips ? "rotate-180" : ""}`}>▼</span>
+        </button>
+        {showTips && (
+          <ul className="text-xs sm:text-sm text-persian-gold-800 space-y-1 px-3 pb-2.5 sm:px-4 sm:pb-3">
+            <li>• Review each word&apos;s pronunciation and meaning</li>
+            <li>• Try to create your own sentences using these words</li>
+            <li>• Pay attention to the examples - they show real usage</li>
+            <li>• You will need 80% or higher to complete this lesson</li>
+          </ul>
+        )}
       </div>
 
       {/* Action Buttons */}
       <div className="flex gap-3 sm:gap-4">
         <button
           onClick={() => router.push(`/dashboard/lessons/${lessonId}/practice`)}
-          className="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl"
+          className="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-all text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl"
         >
           Start Practicing <span className="btn-arrow">→</span>
         </button>
         <Link
           href="/dashboard/lessons"
-          className="px-4 sm:px-6 py-3 sm:py-4 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 transition-colors font-semibold text-sm sm:text-base"
+          className="px-4 sm:px-6 py-3 sm:py-4 border-2 border-persian-red-300 text-persian-red-600 rounded-lg hover:border-persian-red-400 transition-colors font-semibold text-sm sm:text-base"
         >
           Back
         </Link>
