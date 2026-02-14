@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { lessons, vocabulary, vocabularyCategories } from "@/db/schema";
+import { lessons, vocabulary, lessonVocabulary } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 /**
@@ -25,21 +25,20 @@ export async function GET(
       return NextResponse.json({ error: "Lesson not found" }, { status: 404 });
     }
 
-    const categoryId = lesson[0].categoryId;
-
-    // Get all words in this lesson's category
-    const wordsInCategory = await db
+    // Get words directly assigned to this lesson
+    const lessonWords = await db
       .select({
         word: vocabulary,
       })
-      .from(vocabularyCategories)
+      .from(lessonVocabulary)
       .innerJoin(
         vocabulary,
-        eq(vocabularyCategories.vocabularyId, vocabulary.id)
+        eq(lessonVocabulary.vocabularyId, vocabulary.id)
       )
-      .where(eq(vocabularyCategories.categoryId, categoryId));
+      .where(eq(lessonVocabulary.lessonId, lessonId))
+      .orderBy(lessonVocabulary.sortOrder);
 
-    const words = wordsInCategory.map((w) => w.word);
+    const words = lessonWords.map((w) => w.word);
 
     return NextResponse.json({
       lesson: lesson[0],

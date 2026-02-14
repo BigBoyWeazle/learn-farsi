@@ -2,6 +2,7 @@
 
 import type { Vocabulary } from "@/db/schema";
 import { useState } from "react";
+import { useDisplayPreference } from "@/components/display-preference";
 
 interface WordCardProps {
   word: Vocabulary;
@@ -9,19 +10,35 @@ interface WordCardProps {
 
 export default function WordCard({ word }: WordCardProps) {
   const [showTranslation, setShowTranslation] = useState(false);
+  const { isPhoneticFirst } = useDisplayPreference();
 
   return (
     <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-4 hover:shadow-2xl hover:border-persian-red-600 transition-all">
       <div className="space-y-3">
-        {/* Phonetic Word + Farsi Script - Always visible */}
+        {/* Word display - respects display preference */}
         <div className="text-center">
-          <div className="text-2xl font-bold text-persian-red-500 capitalize">
-            {word.phonetic || word.farsiWord}
-          </div>
-          {word.farsiWord && word.phonetic && (
-            <div className="text-2xl text-persian-red-700 mt-1" style={{ direction: "rtl", fontFamily: "serif" }}>
-              {word.farsiWord}
-            </div>
+          {isPhoneticFirst ? (
+            <>
+              <div className="text-2xl font-bold text-persian-red-500 capitalize">
+                {word.phonetic || word.farsiWord}
+              </div>
+              {word.farsiWord && word.phonetic && (
+                <div className="text-2xl text-persian-red-700 mt-1" style={{ direction: "rtl", fontFamily: "serif" }}>
+                  {word.farsiWord}
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="text-2xl font-bold text-persian-red-500 mt-1" style={{ direction: "rtl", fontFamily: "serif" }}>
+                {word.farsiWord}
+              </div>
+              {word.phonetic && (
+                <div className="text-xl text-persian-red-700 capitalize mt-1">
+                  {word.phonetic}
+                </div>
+              )}
+            </>
           )}
           {word.isFormal && (
             <span className="inline-block mt-1 px-2 py-0.5 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full border border-purple-300">

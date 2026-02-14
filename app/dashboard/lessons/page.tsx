@@ -152,7 +152,7 @@ interface LessonCardProps {
 function LessonCard({ lesson, isCompleted, isLocked }: LessonCardProps) {
   return (
     <div
-      className={`relative rounded-lg border-3 p-4 sm:p-6 transition-all shadow-xl ${
+      className={`relative rounded-lg border-3 p-3 sm:p-4 transition-all shadow-xl ${
         isLocked
           ? "border-persian-beige-400 bg-persian-beige-100 opacity-60"
           : isCompleted
@@ -162,26 +162,26 @@ function LessonCard({ lesson, isCompleted, isLocked }: LessonCardProps) {
     >
       {/* Lock/Completed Badge */}
       {isLocked && (
-        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-persian-beige-600 text-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
+        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-persian-beige-600 text-white px-2 py-0.5 rounded-full text-xs font-bold">
           🔒 Locked
         </div>
       )}
       {isCompleted && !isLocked && (
-        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-[#4aa6a6] text-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
-          ✓ Completed
+        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-[#4aa6a6] text-white px-2 py-0.5 rounded-full text-xs font-bold">
+          ✓ Done
         </div>
       )}
 
-      {/* Category Icon */}
-      <div className="text-3xl sm:text-5xl mb-2 sm:mb-3">{lesson.category.icon}</div>
-
-      {/* Lesson Title */}
-      <h3 className="text-base sm:text-xl font-bold text-persian-red-500 mb-1 sm:mb-2">
-        {lesson.title}
-      </h3>
+      {/* Icon + Title row */}
+      <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+        <span className="text-lg sm:text-xl flex-shrink-0">{lesson.category.icon}</span>
+        <h3 className="text-sm sm:text-base font-bold text-persian-red-500 leading-tight">
+          {lesson.title}
+        </h3>
+      </div>
 
       {/* Lesson Description */}
-      <p className="text-persian-red-700 text-xs sm:text-sm mb-3 sm:mb-4 font-medium line-clamp-2">
+      <p className="text-persian-red-700 text-xs mb-2.5 sm:mb-3 font-medium line-clamp-2 pl-9 sm:pl-11">
         {lesson.description || lesson.category.description}
       </p>
 
@@ -189,9 +189,9 @@ function LessonCard({ lesson, isCompleted, isLocked }: LessonCardProps) {
       {!isLocked && (
         <Link
           href={`/dashboard/lessons/${lesson.id}`}
-          className="inline-block w-full text-center px-4 py-2 rounded-lg font-bold transition-colors shadow-md hover:shadow-lg bg-persian-red-500 text-white hover:bg-persian-red-600 text-sm sm:text-base"
+          className="inline-block w-full text-center px-3 py-1.5 sm:py-2 rounded-lg font-bold transition-colors shadow-md hover:shadow-lg bg-persian-red-500 text-white hover:bg-persian-red-600 text-xs sm:text-sm"
         >
-          {isCompleted ? "Review Lesson" : "Start Lesson"} <span className="btn-arrow">→</span>
+          {isCompleted ? "Review" : "Start Lesson"} <span className="btn-arrow">→</span>
         </Link>
       )}
     </div>

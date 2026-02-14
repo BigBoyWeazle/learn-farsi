@@ -183,19 +183,16 @@ export default function DashboardClient() {
         const xpToNext = getXPToNextLevel(userStats.totalXP);
 
         return (
-          <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-2xl shadow-xl p-4 sm:p-6 text-white border-4 border-persian-red-700">
-            <div className="flex flex-col md:flex-row md:items-center gap-4 sm:gap-6">
+          <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-xl shadow-xl p-3 sm:p-4 text-white border-3 border-persian-red-700">
+            <div className="flex flex-col md:flex-row md:items-center gap-3 sm:gap-4">
               {/* Current Title */}
               <div className="flex-1">
-                <div className="text-xs sm:text-sm font-medium text-persian-beige-200 mb-0.5 sm:mb-1">Your Title</div>
-                <div className="flex items-baseline gap-2 sm:gap-3 mb-0.5 sm:mb-1">
-                  <span className="text-2xl sm:text-3xl font-bold">{currentLevel.title}</span>
-                  <span className="text-base sm:text-xl text-persian-beige-200">Level {currentLevel.level}</span>
+                <div className="flex items-baseline gap-2 sm:gap-3">
+                  <span className="text-lg sm:text-2xl font-bold">{currentLevel.title}</span>
+                  <span className="text-sm sm:text-base text-persian-beige-200">Lv. {currentLevel.level}</span>
+                  <span className="text-base sm:text-lg font-bold text-persian-gold-300" dir="rtl">{currentLevel.titlePersian}</span>
                 </div>
-                <div className="text-xl sm:text-2xl font-bold text-persian-gold-300" dir="rtl">
-                  {currentLevel.titlePersian}
-                </div>
-                <div className="text-xs sm:text-sm text-persian-beige-200 italic">
+                <div className="text-xs text-persian-beige-200 italic">
                   {currentLevel.titlePhonetic}
                 </div>
               </div>
@@ -203,17 +200,17 @@ export default function DashboardClient() {
               {/* Progress to Next Level */}
               {nextLevel && (
                 <div className="flex-1">
-                  <div className="flex justify-between text-xs sm:text-sm mb-1.5 sm:mb-2">
-                    <span className="font-medium">Progress to {nextLevel.title}</span>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="font-medium">Next: {nextLevel.title}</span>
                     <span className="font-bold">{xpToNext} XP to go</span>
                   </div>
-                  <div className="h-3 sm:h-4 bg-persian-red-700 rounded-full overflow-hidden">
+                  <div className="h-2.5 sm:h-3 bg-persian-red-700 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-persian-gold-400 to-persian-gold-500 rounded-full transition-all duration-500"
                       style={{ width: `${progress}%` }}
                     />
                   </div>
-                  <div className="flex justify-between text-xs mt-1 text-persian-beige-200">
+                  <div className="flex justify-between text-xs mt-0.5 text-persian-beige-200">
                     <span>{currentLevel.xpRequired} XP</span>
                     <span>{nextLevel.xpRequired} XP</span>
                   </div>
@@ -222,10 +219,12 @@ export default function DashboardClient() {
 
               {/* Max Level Badge */}
               {!nextLevel && (
-                <div className="flex-1 text-center">
-                  <div className="text-3xl sm:text-4xl mb-1 sm:mb-2">👑</div>
-                  <div className="text-base sm:text-lg font-bold text-persian-gold-300">Maximum Level Achieved!</div>
-                  <div className="text-xs sm:text-sm text-persian-beige-200">You are a true master of Farsi</div>
+                <div className="flex-1 flex items-center justify-center gap-2">
+                  <span className="text-2xl">👑</span>
+                  <div>
+                    <div className="text-sm font-bold text-persian-gold-300">Maximum Level!</div>
+                    <div className="text-xs text-persian-beige-200">True master of Farsi</div>
+                  </div>
                 </div>
               )}
             </div>
@@ -233,36 +232,52 @@ export default function DashboardClient() {
         );
       })()}
 
-      {/* Progress Stats - Now with 4 cards including Record Streak */}
+      {/* Progress Stats - 4 compact cards */}
       {!loading && userStats && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-          <div className="bg-white border-3 border-persian-red-500 rounded-lg p-4 sm:p-6 shadow-xl">
-            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">🔥</div>
-            <div className="text-xl sm:text-2xl font-bold text-persian-red-500">
-              {userStats.currentStreak}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
+          <div className="bg-white border-2 border-persian-red-500 rounded-lg p-2.5 sm:p-3 shadow-lg">
+            <div className="flex items-center gap-2">
+              <span className="text-lg sm:text-xl">🔥</span>
+              <div>
+                <div className="text-lg sm:text-xl font-bold text-persian-red-500 leading-tight">
+                  {userStats.currentStreak}
+                </div>
+                <div className="text-xs text-persian-red-700 font-semibold">Streak</div>
+              </div>
             </div>
-            <div className="text-xs sm:text-sm text-persian-red-700 font-semibold">Current Streak</div>
           </div>
-          <div className="bg-white border-3 border-persian-gold-500 rounded-lg p-4 sm:p-6 shadow-xl">
-            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">🏆</div>
-            <div className="text-xl sm:text-2xl font-bold text-persian-gold-600">
-              {userStats.longestStreak}
+          <div className="bg-white border-2 border-persian-gold-500 rounded-lg p-2.5 sm:p-3 shadow-lg">
+            <div className="flex items-center gap-2">
+              <span className="text-lg sm:text-xl">🏆</span>
+              <div>
+                <div className="text-lg sm:text-xl font-bold text-persian-gold-600 leading-tight">
+                  {userStats.longestStreak}
+                </div>
+                <div className="text-xs text-persian-gold-700 font-semibold">Record Streak</div>
+              </div>
             </div>
-            <div className="text-xs sm:text-sm text-persian-gold-700 font-semibold">Record Streak</div>
           </div>
-          <div className="bg-white border-3 border-[#4aa6a6] rounded-lg p-4 sm:p-6 shadow-xl">
-            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">✅</div>
-            <div className="text-xl sm:text-2xl font-bold text-[#4aa6a6]">
-              {activity?.totalActivities ?? 0}
+          <div className="bg-white border-2 border-[#4aa6a6] rounded-lg p-2.5 sm:p-3 shadow-lg">
+            <div className="flex items-center gap-2">
+              <span className="text-lg sm:text-xl">✅</span>
+              <div>
+                <div className="text-lg sm:text-xl font-bold text-[#4aa6a6] leading-tight">
+                  {activity?.totalActivities ?? 0}
+                </div>
+                <div className="text-xs text-[#3d8a8a] font-semibold">Completed</div>
+              </div>
             </div>
-            <div className="text-xs sm:text-sm text-[#3d8a8a] font-semibold">Total Completed</div>
           </div>
-          <div className="bg-white border-3 border-persian-red-500 rounded-lg p-4 sm:p-6 shadow-xl">
-            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">⭐</div>
-            <div className="text-xl sm:text-2xl font-bold text-persian-red-500">
-              {userStats.totalXP}
+          <div className="bg-white border-2 border-persian-red-500 rounded-lg p-2.5 sm:p-3 shadow-lg">
+            <div className="flex items-center gap-2">
+              <span className="text-lg sm:text-xl">⭐</span>
+              <div>
+                <div className="text-lg sm:text-xl font-bold text-persian-red-500 leading-tight">
+                  {userStats.totalXP}
+                </div>
+                <div className="text-xs text-persian-red-700 font-semibold">Total XP</div>
+              </div>
             </div>
-            <div className="text-xs sm:text-sm text-persian-red-700 font-semibold">Total XP</div>
           </div>
         </div>
       )}

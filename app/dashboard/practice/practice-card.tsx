@@ -4,6 +4,7 @@ import type { Vocabulary } from "@/db/schema";
 import type { Assessment } from "@/lib/spaced-repetition";
 import { validateAnswer, type ValidationResult } from "@/lib/answer-validation";
 import { useState, useEffect } from "react";
+import { useDisplayPreference, DisplayToggle } from "@/components/display-preference";
 
 interface PracticeCardProps {
   word: Vocabulary;
@@ -72,6 +73,8 @@ export default function PracticeCard({
     onAssessment(assessment, validationResult?.isCorrect ?? false);
   };
 
+  const { isPhoneticFirst } = useDisplayPreference();
+
   // Calculate progress percentage
   const progressPercent = ((currentIndex + 1) / totalWords) * 100;
 
@@ -83,9 +86,12 @@ export default function PracticeCard({
           <h2 className="text-base sm:text-lg font-semibold text-persian-red-700">
             Practice Session
           </h2>
-          <span className="text-xs sm:text-sm text-persian-red-600 font-medium">
-            {currentIndex + 1} of {totalWords}
-          </span>
+          <div className="flex items-center gap-3">
+            <DisplayToggle />
+            <span className="text-xs sm:text-sm text-persian-red-600 font-medium">
+              {currentIndex + 1} of {totalWords}
+            </span>
+          </div>
         </div>
         {/* Progress Bar */}
         <div className="w-full bg-persian-beige-200 rounded-full h-2.5 sm:h-3 border border-persian-red-300">
@@ -105,11 +111,27 @@ export default function PracticeCard({
         {cardState === "question" ? (
           /* Question State - Input Form */
           <div className="flex-1 flex flex-col items-center justify-center space-y-5 sm:space-y-8">
-            {/* Phonetic Word - Large Display */}
+            {/* Word Display - respects display preference */}
             <div className="text-center">
-              <div className="text-4xl sm:text-6xl font-bold text-persian-red-500 capitalize mb-2 sm:mb-4">
-                {word.phonetic || word.farsiWord}
-              </div>
+              {isPhoneticFirst ? (
+                <>
+                  <div className="text-4xl sm:text-6xl font-bold text-persian-red-500 capitalize mb-1 sm:mb-2">
+                    {word.phonetic || word.farsiWord}
+                  </div>
+                  <div className="text-xl sm:text-2xl text-persian-red-400 mb-2 sm:mb-4" style={{ direction: "rtl", fontFamily: "serif" }}>
+                    {word.farsiWord}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="text-4xl sm:text-6xl font-bold text-persian-red-500 mb-1 sm:mb-2" style={{ direction: "rtl", fontFamily: "serif" }}>
+                    {word.farsiWord}
+                  </div>
+                  <div className="text-xl sm:text-2xl text-persian-red-400 capitalize mb-2 sm:mb-4">
+                    {word.phonetic}
+                  </div>
+                </>
+              )}
               <p className="text-persian-red-700 text-sm sm:text-lg font-medium">
                 What does this mean in English?
               </p>
@@ -186,11 +208,27 @@ export default function PracticeCard({
 
             {/* Middle: Answer Comparison */}
             <div className="flex-1 flex flex-col justify-center space-y-4 sm:space-y-6">
-              {/* Phonetic (smaller) */}
+              {/* Word display - respects preference */}
               <div className="text-center">
-                <div className="text-xl sm:text-2xl font-semibold text-persian-red-500 capitalize mb-2 sm:mb-4">
-                  {word.phonetic || word.farsiWord}
-                </div>
+                {isPhoneticFirst ? (
+                  <>
+                    <div className="text-xl sm:text-2xl font-semibold text-persian-red-500 capitalize mb-1">
+                      {word.phonetic || word.farsiWord}
+                    </div>
+                    <div className="text-lg sm:text-xl text-persian-red-400" style={{ direction: "rtl", fontFamily: "serif" }}>
+                      {word.farsiWord}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-xl sm:text-2xl font-semibold text-persian-red-500 mb-1" style={{ direction: "rtl", fontFamily: "serif" }}>
+                      {word.farsiWord}
+                    </div>
+                    <div className="text-lg sm:text-xl text-persian-red-400 capitalize">
+                      {word.phonetic}
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Answer Comparison */}
@@ -208,16 +246,6 @@ export default function PracticeCard({
                       {word.englishTranslation}
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Farsi Script */}
-              <div className="text-center">
-                <div
-                  className="text-2xl sm:text-4xl font-semibold text-persian-red-700 mb-2 sm:mb-3"
-                  style={{ direction: "rtl", fontFamily: "serif" }}
-                >
-                  {word.farsiWord}
                 </div>
               </div>
 

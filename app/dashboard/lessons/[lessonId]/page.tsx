@@ -7,6 +7,7 @@ import Image from "next/image";
 import type { Vocabulary } from "@/db/schema";
 import { getLessonProgress } from "@/lib/lesson-progress";
 import { PageLoading } from "@/components/loading-spinner";
+import { useDisplayPreference, DisplayToggle } from "@/components/display-preference";
 
 interface Lesson {
   id: string;
@@ -29,6 +30,7 @@ export default function LessonIntroductionPage() {
   const [lessonData, setLessonData] = useState<LessonData | null>(null);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState<any>(null);
+  const { isPhoneticFirst } = useDisplayPreference();
 
   useEffect(() => {
     async function fetchLessonData() {
@@ -128,24 +130,41 @@ export default function LessonIntroductionPage() {
 
       {/* Words Introduction */}
       <div className="mb-6 sm:mb-8">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-          Words in This Lesson
-        </h2>
+        <div className="flex items-center justify-between mb-3 sm:mb-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+            Words in This Lesson
+          </h2>
+          <DisplayToggle />
+        </div>
         <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2">
           {words.map((word) => (
             <div
               key={word.id}
               className="bg-white border-2 border-gray-200 rounded-lg p-3 sm:p-6 hover:border-blue-300 transition-colors"
             >
-              {/* Farsi Word */}
-              <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2 text-right">
-                {word.farsiWord}
-              </div>
-
-              {/* Phonetic */}
-              <div className="text-base sm:text-lg text-blue-600 font-semibold mb-1 sm:mb-2">
-                {word.phonetic}
-              </div>
+              {isPhoneticFirst ? (
+                <>
+                  {/* Phonetic first */}
+                  <div className="text-xl sm:text-2xl font-bold text-persian-red-500 capitalize mb-0.5 sm:mb-1">
+                    {word.phonetic}
+                  </div>
+                  {/* Farsi script secondary */}
+                  <div className="text-lg sm:text-xl text-gray-500 mb-1 sm:mb-2" style={{ direction: "rtl", fontFamily: "serif" }}>
+                    {word.farsiWord}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Farsi script first */}
+                  <div className="text-2xl sm:text-3xl font-bold text-persian-red-500 mb-0.5 sm:mb-1 text-right" style={{ fontFamily: "serif" }}>
+                    {word.farsiWord}
+                  </div>
+                  {/* Phonetic secondary */}
+                  <div className="text-base sm:text-lg text-gray-500 capitalize mb-1 sm:mb-2">
+                    {word.phonetic}
+                  </div>
+                </>
+              )}
 
               {/* English Translation */}
               <div className="text-lg sm:text-xl text-gray-700 font-medium mb-2 sm:mb-3">

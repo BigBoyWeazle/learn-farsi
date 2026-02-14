@@ -11,7 +11,7 @@ async function seed() {
   const sampleWords = [
     {
       farsiWord: "سلام",
-      englishTranslation: "Hello",
+      englishTranslation: "Hello / Hi / Hey",
       phonetic: "salaam",
       exampleFarsi: "سلام، حال شما چطور است؟",
       exampleEnglish: "Hello, how are you?",
@@ -19,7 +19,7 @@ async function seed() {
     },
     {
       farsiWord: "ممنون",
-      englishTranslation: "Thank you",
+      englishTranslation: "Thank you / Thanks",
       phonetic: "mamnoon",
       exampleFarsi: "خیلی ممنون از کمک شما",
       exampleEnglish: "Thank you very much for your help",
@@ -35,7 +35,7 @@ async function seed() {
     },
     {
       farsiWord: "دوست",
-      englishTranslation: "Friend",
+      englishTranslation: "Friend / Buddy",
       phonetic: "doost",
       exampleFarsi: "او بهترین دوست من است",
       exampleEnglish: "He/She is my best friend",
@@ -44,7 +44,7 @@ async function seed() {
     {
       farsiWord: "خانه",
       englishTranslation: "Home / House",
-      phonetic: "khaane",
+      phonetic: "khooneh",
       exampleFarsi: "خانه من در تهران است",
       exampleEnglish: "My home is in Tehran",
       difficultyLevel: 1,
@@ -59,7 +59,7 @@ async function seed() {
     },
     {
       farsiWord: "زیبا",
-      englishTranslation: "Beautiful",
+      englishTranslation: "Beautiful / Pretty",
       phonetic: "zibaa",
       exampleFarsi: "این گل خیلی زیباست",
       exampleEnglish: "This flower is very beautiful",
@@ -67,15 +67,15 @@ async function seed() {
     },
     {
       farsiWord: "بله",
-      englishTranslation: "Yes",
-      phonetic: "bale",
+      englishTranslation: "Yes / Yeah",
+      phonetic: "baleh",
       exampleFarsi: "بله، من موافقم",
       exampleEnglish: "Yes, I agree",
       difficultyLevel: 1,
     },
     {
       farsiWord: "نه",
-      englishTranslation: "No",
+      englishTranslation: "No / Nah / Nope",
       phonetic: "na",
       exampleFarsi: "نه، متشکرم",
       exampleEnglish: "No, thank you",
@@ -99,7 +99,7 @@ async function seed() {
     },
     {
       farsiWord: "مادر",
-      englishTranslation: "Mother",
+      englishTranslation: "Mother / Mom / Mum",
       phonetic: "maadar",
       exampleFarsi: "مادر من خیلی مهربان است",
       exampleEnglish: "My mother is very kind",
@@ -107,7 +107,7 @@ async function seed() {
     },
     {
       farsiWord: "پدر",
-      englishTranslation: "Father",
+      englishTranslation: "Father / Dad",
       phonetic: "pedar",
       exampleFarsi: "پدر من معلم است",
       exampleEnglish: "My father is a teacher",

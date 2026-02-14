@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import type { Vocabulary } from "@/db/schema";
 import WordCard from "../word-card";
+import { DisplayToggle } from "@/components/display-preference";
 
 interface WordsClientProps {
   words: Vocabulary[];
@@ -68,13 +69,16 @@ export default function WordsClient({ words }: WordsClientProps) {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
-          Word Library
-        </h2>
-        <p className="text-persian-red-700 font-medium">
-          Browse and learn all {words.length} words in the collection
-        </p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
+            Word Library
+          </h2>
+          <p className="text-persian-red-700 font-medium">
+            Browse and learn all {words.length} words in the collection
+          </p>
+        </div>
+        <DisplayToggle />
       </div>
 
       {/* Search Bar */}

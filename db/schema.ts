@@ -288,8 +288,31 @@ export const userLessonProgress = pgTable("user_lesson_progress", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+/**
+ * Lesson vocabulary junction table - directly maps words to specific lessons
+ * Allows splitting a category's words across multiple lessons (Part 1, Part 2, etc.)
+ */
+export const lessonVocabulary = pgTable(
+  "lesson_vocabulary",
+  {
+    lessonId: uuid("lesson_id")
+      .notNull()
+      .references(() => lessons.id, { onDelete: "cascade" }),
+    vocabularyId: uuid("vocabulary_id")
+      .notNull()
+      .references(() => vocabulary.id, { onDelete: "cascade" }),
+    sortOrder: integer("sort_order").default(0).notNull(),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.lessonId, table.vocabularyId] }),
+  })
+);
+
 export type Lesson = typeof lessons.$inferSelect;
 export type NewLesson = typeof lessons.$inferInsert;
+
+export type LessonVocabulary = typeof lessonVocabulary.$inferSelect;
+export type NewLessonVocabulary = typeof lessonVocabulary.$inferInsert;
 
 export type UserLessonProgress = typeof userLessonProgress.$inferSelect;
 export type NewUserLessonProgress = typeof userLessonProgress.$inferInsert;

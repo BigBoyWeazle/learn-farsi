@@ -33,14 +33,14 @@ Personal pronouns are essential for building sentences in Farsi. Unlike English,
 
 man → I
 to → You (informal/singular)
-u (oo) → He/She/It
+oo → He/She/It
 ma → We
 shoma → You (formal/plural)
-anha (oonha) → They
+oonaa → They
 
 ## Key Points
 
-- Farsi has no gender distinction - "u" means both "he" and "she"
+- Farsi has no gender distinction - "oo" means both "he" and "she"
 - "shoma" is used for politeness OR when addressing multiple people
 - "Ishoon" is the polite way of saying "they"
 - In casual speech, pronouns are often dropped because verb endings indicate the subject
@@ -49,10 +49,10 @@ anha (oonha) → They
 
 man irani hastam → I am Iranian
 to khubi? → Are you well?
-u daaneshjo ast → He/She is a student
+oo daaneshjo ast → He/She is a student
 ma irani hastim → We are Iranian
 shoma chetori hastid? → How are you? (formal)
-anha doost hastand → They are friends`,
+oonaa doost hastand → They are friends`,
           difficultyLevel: 1,
           sortOrder: 1,
         },
@@ -61,16 +61,16 @@ anha doost hastand → They are friends`,
             exerciseType: "multiple_choice",
             question: "What is the Farsi word for 'I'?",
             correctAnswer: "man",
-            alternatives: JSON.stringify(["man", "to", "u", "ma"]),
+            alternatives: JSON.stringify(["man", "to", "oo", "ma"]),
             explanation: "'man' means 'I' in Farsi",
             sortOrder: 1,
           },
           {
             exerciseType: "multiple_choice",
             question: "Which pronoun means 'they' in Farsi?",
-            correctAnswer: "anha",
-            alternatives: JSON.stringify(["shoma", "ma", "anha", "u"]),
-            explanation: "'anha' (or 'oonha') is the plural third-person pronoun meaning 'they'",
+            correctAnswer: "oonaa",
+            alternatives: JSON.stringify(["shoma", "ma", "oonaa", "oo"]),
+            explanation: "'oonaa' is the plural third-person pronoun meaning 'they'",
             sortOrder: 2,
           },
           {
@@ -85,7 +85,7 @@ anha doost hastand → They are friends`,
             exerciseType: "multiple_choice",
             question: "Which pronoun would you use to politely address your teacher?",
             correctAnswer: "shoma",
-            alternatives: JSON.stringify(["to", "u", "shoma", "man"]),
+            alternatives: JSON.stringify(["to", "oo", "shoma", "man"]),
             explanation: "'shoma' is used for formal/polite address",
             sortOrder: 4,
           },
@@ -114,19 +114,19 @@ The verb "to be" (boodan) is the most essential verb in Farsi. It conjugates dif
 
 man hastam → I am
 to hasti → You are (informal)
-u ast/hast → He/She/It is
+oo ast/hast → He/She/It is
 ma hastim → We are
 shoma hastid → You are (formal/plural)
-anha hastand → They are
+oonaa hastand → They are
 
 ## Negative Form (Nist)
 
 man nistam → I am not
 to nisti → You are not
-u nist → He/She is not
+oo nist → He/She is not
 ma nistim → We are not
 shoma nistid → You are not (formal)
-anha nistand → They are not
+oonaa nistand → They are not
 
 ## Difference: ast vs hast
 
@@ -171,7 +171,7 @@ ma irani hastim → We are Iranian`,
           },
           {
             exerciseType: "fill_blank",
-            question: "Complete: u daaneshjo ___ (He/She is a student)",
+            question: "Complete: oo daaneshjo ___ (He/She is a student)",
             correctAnswer: "ast",
             hint: "The 'to be' form for he/she",
             explanation: "'ast' is the third-person singular form",
@@ -214,28 +214,28 @@ mi + verb stem + personal ending
 
 man: -am
 to: -i
-u: -ad (or -e in spoken)
+oo: -e (in spoken)
 ma: -im
 shoma: -id
-anha: -and
+oonaa: -an
 
 ## Example: raftan (to go)
 
 Verb stem: rav
 
-miravam → I go / I am going
-miravi → You go
-miravad → He/She goes
-miravim → We go
-miravid → You go (formal)
-miravand → They go
+miram → I go / I am going
+miri → You go
+mire → He/She goes
+mirim → We go
+mirid → You go (formal)
+miran → They go
 
 ## More Examples
 
 khordan (to eat) → stem: khor
 mikhoram → I eat
 mikhori → You eat
-mikhorad → He/She eats
+mikhore → He/She eats
 
 didan (to see) → stem: bin
 mibinam → I see
@@ -243,9 +243,9 @@ mibini → You see
 mibine → He/She sees
 
 goftan (to say) → stem: gu/go
-miguyam → I say
-miguyi → You say
-miguyad → He/She says
+migam → I say
+migi → You say
+mige → He/She says
 
 ## Important Note
 
@@ -265,25 +265,25 @@ The "mi-" prefix indicates ongoing or habitual action in the present.`,
           {
             exerciseType: "conjugation",
             question: "Conjugate 'raftan' (to go) for 'I go'",
-            correctAnswer: "miravam",
-            hint: "mi + rav + am",
-            explanation: "'miravam' = I go",
+            correctAnswer: "miram",
+            hint: "mi + r + am",
+            explanation: "'miram' = I go",
             sortOrder: 2,
           },
           {
             exerciseType: "fill_blank",
-            question: "Complete: u be madrese ___ (He goes to school)",
-            correctAnswer: "miravad",
-            hint: "Present tense of 'raftan' for 'u'",
-            explanation: "'miravad' is the third-person form",
+            question: "Complete: oo be madrese ___ (He goes to school)",
+            correctAnswer: "mire",
+            hint: "Present tense of 'raftan' for 'oo'",
+            explanation: "'mire' is the third-person form",
             sortOrder: 3,
           },
           {
             exerciseType: "multiple_choice",
             question: "What is 'They eat' in Farsi?",
-            correctAnswer: "mikhorand",
-            alternatives: JSON.stringify(["mikhoram", "mikhori", "mikhorad", "mikhorand"]),
-            explanation: "'mikhorand' = They eat",
+            correctAnswer: "mikhoran",
+            alternatives: JSON.stringify(["mikhoram", "mikhori", "mikhore", "mikhoran"]),
+            explanation: "'mikhoran' = They eat",
             sortOrder: 4,
           },
           {
@@ -311,7 +311,7 @@ Negating verbs in Farsi is done by adding a negative prefix. The prefix changes 
 
 Replace "mi-" with "ne-" (or "nemi-"):
 
-miravam → nemiravam (I don't go)
+miram → nemiram (I don't go)
 mikhoram → nemikhoram (I don't eat)
 
 ## "To Be" Negative: nist-
@@ -332,11 +332,11 @@ khordam → nakhordam (I didn't eat)
 
 ## Examples
 
-man nemiravam → I am not going / I don't go
+man nemiram → I am not going / I don't go
 to nadaari → You don't have
-u nist → He/She is not
+oo nist → He/She is not
 ma nemikhorim → We don't eat
-anha naraftand → They didn't go
+oonaa naraftand → They didn't go
 
 ## Key Points
 
@@ -350,9 +350,9 @@ anha naraftand → They didn't go
           {
             exerciseType: "multiple_choice",
             question: "How do you say 'I don't go' in Farsi?",
-            correctAnswer: "nemiravam",
-            alternatives: JSON.stringify(["nemiravam", "miravam", "naravam", "miram"]),
-            explanation: "Add 'ne-' before 'mi-' to negate: nemiravam",
+            correctAnswer: "nemiram",
+            alternatives: JSON.stringify(["nemiram", "miram", "naravam", "nemire"]),
+            explanation: "Add 'ne-' before 'mi-' to negate: nemiram",
             sortOrder: 1,
           },
           {
@@ -365,7 +365,7 @@ anha naraftand → They didn't go
           },
           {
             exerciseType: "fill_blank",
-            question: "Complete: u ___ (He/She is not)",
+            question: "Complete: oo ___ (He/She is not)",
             correctAnswer: "nist",
             hint: "Negative of 'ast'",
             explanation: "'nist' is the negative of 'ast' (is not)",
@@ -375,7 +375,7 @@ anha naraftand → They didn't go
             exerciseType: "multiple_choice",
             question: "What is 'We don't eat' in Farsi?",
             correctAnswer: "nemikhorim",
-            alternatives: JSON.stringify(["mikhorim", "nemikhorim", "nakhorim", "mikhorand"]),
+            alternatives: JSON.stringify(["mikhorim", "nemikhorim", "nakhorim", "mikhoran"]),
             explanation: "'nemikhorim' = We don't eat",
             sortOrder: 4,
           },
@@ -423,14 +423,14 @@ khodkaar-eshoon → their pen
 You can also use "maal-e" + pronoun:
 maal-e man → mine
 maal-e to → yours
-maal-e u → his/hers
+maal-e oo → his/hers
 
 Example: in ketaab maal-e man ast → This book is mine
 
 ## Formal Form with "-e"
 
 ketaab-e man → my book
-khoone-ye to → your house (after vowel, add -ye)
+khooneh-ye to → your house (after vowel, add -ye)
 
 ## Important Notes
 
@@ -507,7 +507,7 @@ doost → doost-haa (friends)
 gorbe-haa → cats
 sag-haa → dogs
 bach'e-haa → children/guys
-khoone-haa → houses
+khooneh-haa → houses
 
 ## Important Exception
 
@@ -594,7 +594,7 @@ Farsi uses simple suffixes to create comparative and superlative forms.
 Add "-tar" to make "more" or "-er":
 
 bozorg → bozorg-tar (bigger)
-koochak → koochak-tar (smaller)
+koochik → koochik-tar (smaller)
 khoob → behtar (better - irregular)
 bad → badtar (worse)
 zibaa → zibaa-tar (more beautiful)
@@ -604,7 +604,7 @@ zibaa → zibaa-tar (more beautiful)
 Add "-tarin" to make "most" or "-est":
 
 bozorg → bozorg-tarin (biggest)
-koochak → koochak-tarin (smallest)
+koochik → koochik-tarin (smallest)
 khoob → behtarin (best - irregular)
 khoshmazze → khoshmazze-tarin (most delicious)
 
@@ -659,9 +659,9 @@ Tah Dig khoshmazze-tarin ghazaa ast!
           {
             exerciseType: "translate",
             question: "Type 'smaller' in Farsi",
-            correctAnswer: "koochak-tar",
-            hint: "koochak + tar",
-            explanation: "koochak-tar = smaller",
+            correctAnswer: "koochik-tar",
+            hint: "koochik + tar",
+            explanation: "koochik-tar = smaller",
             sortOrder: 4,
           },
           {
@@ -894,19 +894,19 @@ goftan → goft (said)
 
 man: -am
 to: -i
-u: (nothing)
+oo: (nothing)
 ma: -im
 shoma: -id
-anha: -and
+oonaa: -and
 
 ## Conjugation Example: raftan (to go)
 
 man raftam → I went
 to rafti → You went
-u raft → He/She went
+oo raft → He/She went
 ma raftim → We went
 shoma raftid → You went (formal)
-anha raftand → They went
+oonaa raftand → They went
 
 ## More Examples
 
@@ -927,7 +927,7 @@ goftam → nagoftam (I didn't say)
 The verb "boodan" (to be) in past:
 man boodam → I was
 to boodi → You were
-u bood → He/She was`,
+oo bood → He/She was`,
           difficultyLevel: 2,
           sortOrder: 10,
         },
@@ -945,7 +945,7 @@ u bood → He/She was`,
             question: "What is 'He/She ate' in Farsi?",
             correctAnswer: "khord",
             alternatives: JSON.stringify(["khordam", "khordi", "khord", "khordim"]),
-            explanation: "Third person has no ending: u khord = He/She ate",
+            explanation: "Third person has no ending: oo khord = He/She ate",
             sortOrder: 2,
           },
           {
@@ -998,17 +998,17 @@ bekhore → that he/she eat
 
 After "baayad" (should/must):
 man baayad bekhoram → I should eat
-to baayad beravi → You should go
+to baayad beri → You should go
 
 After "mikhaad" (want to):
-man mikhaam bekhaanam → I want to read
-u mikhaad bekhore → He wants to eat
+man mikhaam bekhoonam → I want to read
+oo mikhaad bekhore → He wants to eat
 
 After "age" (if):
 age biaay, khoshhaal misham → If you come, I'll be happy
 
 After "shaayad" (maybe):
-shaayad biaayad → Maybe he'll come
+shaayad biaad → Maybe he'll come
 
 After "fekr mikonam" (I think):
 fekr mikonam biaaad → I think he'll come
@@ -1017,13 +1017,13 @@ fekr mikonam biaaad → I think he'll come
 
 Replace "be-" with "na-":
 bekhoram → nakhoram (that I don't eat)
-beravi → naravi (that you don't go)
+beri → naravi (that you don't go)
 
 ## Examples
 
-baayad bekhaanam → I should study
+baayad bekhoonam → I should study
 mikhaaam beram → I want to go
-shaayad biaayad → Maybe he'll come
+shaayad biaad → Maybe he'll come
 age bishini, behtar ast → If you sit, it's better
 
 ## Note on kardan/shodan
@@ -1061,17 +1061,17 @@ shodan → shavam (no 'be-' in formal)`,
           {
             exerciseType: "multiple_choice",
             question: "What is 'maybe he'll come' in Farsi?",
-            correctAnswer: "shaayad biaayad",
-            alternatives: JSON.stringify(["shaayad biaayad", "shaayad aamad", "shaayad miaaad", "hatman miaaad"]),
-            explanation: "shaayad biaayad = maybe he'll come (subjunctive after shaayad)",
+            correctAnswer: "shaayad biaad",
+            alternatives: JSON.stringify(["shaayad biaad", "shaayad aamad", "shaayad miaaad", "hatman miaaad"]),
+            explanation: "shaayad biaad = maybe he'll come (subjunctive after shaayad)",
             sortOrder: 4,
           },
           {
             exerciseType: "conjugation",
-            question: "Make subjunctive: 'that you go' (to beravi)",
-            correctAnswer: "beravi",
-            hint: "be- + rav + i",
-            explanation: "beravi = that you go",
+            question: "Make subjunctive: 'that you go' (to beri)",
+            correctAnswer: "beri",
+            hint: "be- + r + i",
+            explanation: "beri = that you go",
             sortOrder: 5,
           },
         ],
@@ -1097,31 +1097,31 @@ Literally: I food eat
 
 ## Examples
 
-man ketaab mikhaanam → I book read (I read a book)
+man ketaab mikhoonam → I book read (I read a book)
 to chai mikhori → You tea drink (You drink tea)
-u be madrese miravad → He to school goes (He goes to school)
+oo be madrese mire → He to school goes (He goes to school)
 
 ## Verb Always at the End
 
 The verb typically comes at the very end of the sentence:
 
-man emrooz be khoone miram
+man emrooz be khooneh miram
 → I today to home go (I'm going home today)
 
-## Object Marker: "raa" (or "ro")
+## Object Marker: "ro"
 
-When the object is specific/definite, add "raa":
-man ketaab raa mikhaanam → I read THE book
-man oon ghazaa raa doost daaram → I like THAT food
+When the object is specific/definite, add "ro":
+man ketaab ro mikhoonam → I read THE book
+man oon ghazaa ro doost daaram → I like THAT food
 
-Without raa = general:
-man ketaab mikhaanam → I read (a) book
+Without ro = general:
+man ketaab mikhoonam → I read (a) book
 
 ## Connecting Words with "-e" (ezaafe)
 
 Connect nouns to adjectives/possessives:
 ketaab-e bozorg → big book (book of big)
-khoone-ye man → my house (house of me)
+khooneh-ye man → my house (house of me)
 maashin-e ghermez → red car
 
 After consonants: -e
@@ -1149,17 +1149,17 @@ Last adjective doesn't need connector.`,
           {
             exerciseType: "translate",
             question: "Rearrange for Farsi: 'I read a book'",
-            correctAnswer: "man ketaab mikhaanam",
+            correctAnswer: "man ketaab mikhoonam",
             hint: "Subject + Object + Verb",
-            explanation: "man ketaab mikhaanam = I book read",
+            explanation: "man ketaab mikhoonam = I book read",
             sortOrder: 2,
           },
           {
             exerciseType: "fill_blank",
             question: "Complete: man ghazaa ___ doost daaram (I like THAT food)",
-            correctAnswer: "raa",
+            correctAnswer: "ro",
             hint: "Object marker for specific things",
-            explanation: "'raa' marks a specific/definite object",
+            explanation: "'ro' marks a specific/definite object",
             sortOrder: 3,
           },
           {
@@ -1173,9 +1173,9 @@ Last adjective doesn't need connector.`,
           {
             exerciseType: "translate",
             question: "Type 'my house' in Farsi",
-            correctAnswer: "khoone-ye man",
+            correctAnswer: "khooneh-ye man",
             hint: "house-of me (use -ye after vowel)",
-            explanation: "khoone-ye man = my house (house of me)",
+            explanation: "khooneh-ye man = my house (house of me)",
             sortOrder: 5,
           },
         ],
