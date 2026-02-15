@@ -168,51 +168,51 @@ export default async function LandingPage() {
           <h2 className="text-4xl font-bold text-center mb-4 text-persian-red-500">
             Why Learn Farsi?
           </h2>
-          <p className="text-center text-persian-red-700 dark:text-persian-beige-200 mb-12 text-lg font-medium">
+          <p className="text-center text-persian-red-700 dark:text-persian-beige-200 mb-6 sm:mb-12 text-sm sm:text-lg font-medium">
             Everything you need to learn and remember Farsi words fast and easy!
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-8 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
-              <div className="w-14 h-14 mx-auto mb-3 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
-              <div className="text-4xl font-bold text-persian-red-500 mb-1">{lessonCount}</div>
-              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-lg">
+          <div className="grid grid-cols-3 gap-2.5 sm:gap-8 mx-auto md:grid-cols-3">
+            <div className="bg-white dark:bg-persian-beige-800 rounded-xl sm:rounded-2xl p-4 sm:p-8 border-2 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2 sm:mb-3 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-2xl sm:text-4xl font-bold text-persian-red-500 mb-0.5 sm:mb-1">{lessonCount}</div>
+              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-lg">
                 Structured Lessons
               </div>
-              <p className="text-persian-red-600 dark:text-persian-beige-300 text-sm mt-2">
+              <p className="text-persian-red-600 dark:text-persian-beige-300 text-[10px] sm:text-sm mt-0.5 sm:mt-2 hidden sm:block">
                 Vocabulary, grammar & alphabet
               </p>
               {/* Hand-drawn arrow annotation */}
-              <div className="flex items-center justify-center gap-1 mt-3 pointer-events-none">
-                <svg width="28" height="24" viewBox="0 0 28 24" fill="none" className="text-persian-gold-500 flex-shrink-0">
+              <div className="hidden sm:flex items-center justify-center gap-1 mt-2 sm:mt-3 pointer-events-none">
+                <svg width="28" height="24" viewBox="0 0 28 24" fill="none" className="text-persian-gold-500 flex-shrink-0 w-5 h-4 sm:w-7 sm:h-6">
                   <path d="M4 4C8 10 14 16 22 20" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
                   <path d="M18 22L23 21L20 16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span className={`${caveat.className} text-persian-gold-500 font-bold text-lg whitespace-nowrap`} style={{ transform: "rotate(-2deg)" }}>
+                <span className={`${caveat.className} text-persian-gold-500 font-bold text-sm sm:text-lg whitespace-nowrap`} style={{ transform: "rotate(-2deg)" }}>
                   And actively adding more!
                 </span>
               </div>
             </div>
-            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-8 border-3 border-persian-gold-500 dark:border-persian-gold-600 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
-              <div className="w-14 h-14 mx-auto mb-3 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
-              <div className="text-4xl font-bold text-persian-red-500 mb-1">
+            <div className="bg-white dark:bg-persian-beige-800 rounded-xl sm:rounded-2xl p-4 sm:p-8 border-2 border-persian-gold-500 dark:border-persian-gold-600 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2 sm:mb-3 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-2xl sm:text-4xl font-bold text-persian-red-500 mb-0.5 sm:mb-1">
                 Free
               </div>
-              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-lg">
+              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-lg">
                 Forever
               </div>
-              <p className="text-persian-red-600 dark:text-persian-beige-300 text-sm mt-2">
+              <p className="text-persian-red-600 dark:text-persian-beige-300 text-[10px] sm:text-sm mt-0.5 sm:mt-2 hidden sm:block">
                 No subscriptions, no paywalls
               </p>
             </div>
-            <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-8 border-3 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
-              <div className="w-14 h-14 mx-auto mb-3 overflow-hidden"><Image src="/fireicon.png" alt="Fire" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
-              <div className="text-4xl font-bold text-persian-red-500 mb-1">
+            <div className="bg-white dark:bg-persian-beige-800 rounded-xl sm:rounded-2xl p-4 sm:p-8 border-2 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2 sm:mb-3 overflow-hidden"><Image src="/fireicon.png" alt="Fire" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
+              <div className="text-2xl sm:text-4xl font-bold text-persian-red-500 mb-0.5 sm:mb-1">
                 Daily
               </div>
-              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-lg">
+              <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-lg">
                 Practice Streaks
               </div>
-              <p className="text-persian-red-600 dark:text-persian-beige-300 text-sm mt-2">
+              <p className="text-persian-red-600 dark:text-persian-beige-300 text-[10px] sm:text-sm mt-0.5 sm:mt-2 hidden sm:block">
                 Spaced repetition that adapts to you
               </p>
             </div>
@@ -226,83 +226,83 @@ export default async function LandingPage() {
           <h2 className="text-4xl font-bold text-center mb-4 text-persian-red-500">
             Learn & Remember
           </h2>
-          <p className="text-center text-persian-red-700 dark:text-persian-beige-200 mb-16 text-lg font-medium">
+          <p className="text-center text-persian-red-700 dark:text-persian-beige-200 mb-8 sm:mb-16 text-sm sm:text-lg font-medium">
             Two proven ways to build your Farsi vocabulary and make it stick
           </p>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-12">
             {/* Structured Lessons */}
-            <div className="bg-persian-red-500 rounded-3xl p-8 text-white shadow-2xl hover:scale-105 transition-transform border-4 border-persian-red-700">
-              <div className="w-16 h-16 mb-4 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
-              <h3 className="text-3xl font-bold mb-4">Structured Lessons</h3>
-              <p className="text-persian-red-100 mb-6 text-lg">
+            <div className="bg-persian-red-500 rounded-xl sm:rounded-3xl p-5 sm:p-8 text-white shadow-2xl hover:scale-105 transition-transform border-2 sm:border-4 border-persian-red-700">
+              <div className="w-10 h-10 sm:w-16 sm:h-16 mb-2 sm:mb-4 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
+              <h3 className="text-xl sm:text-3xl font-bold mb-1.5 sm:mb-4">Structured Lessons</h3>
+              <p className="text-persian-red-100 mb-3 sm:mb-6 text-sm sm:text-lg">
                 Learn new Farsi words through themed lessons, from beginner to advanced
               </p>
 
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3">
-                  <span className="text-persian-gold-300 text-xl">✓</span>
+              <ul className="space-y-1.5 sm:space-y-3 mb-4 sm:mb-8 text-sm sm:text-base">
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-persian-gold-300 text-sm sm:text-xl">✓</span>
                   <span>Learn words at your own pace</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-persian-gold-300 text-xl">✓</span>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-persian-gold-300 text-sm sm:text-xl">✓</span>
                   <span>Words organized by themes (greetings, food, family)</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-persian-gold-300 text-xl">✓</span>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-persian-gold-300 text-sm sm:text-xl">✓</span>
                   <span>Unlock lessons as you progress</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-persian-gold-300 text-xl">✓</span>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-persian-gold-300 text-sm sm:text-xl">✓</span>
                   <span>80% mastery to advance</span>
                 </li>
               </ul>
 
               <Link
                 href="/dashboard/lessons"
-                className="block w-full py-3 bg-white text-persian-red-500 rounded-xl hover:bg-persian-beige-100 transition-colors text-center font-bold text-lg shadow-lg"
+                className="block w-full py-2 sm:py-3 bg-white text-persian-red-500 rounded-xl hover:bg-persian-beige-100 transition-colors text-center font-bold text-sm sm:text-lg shadow-lg"
               >
                 Browse Lessons <span className="btn-arrow">→</span>
               </Link>
             </div>
 
             {/* Daily Practice */}
-            <div className="bg-persian-beige-200 rounded-3xl p-8 shadow-2xl hover:scale-105 transition-transform border-4 border-persian-red-500">
-              <div className="w-16 h-16 mb-4 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
-              <h3 className="text-3xl font-bold mb-4 text-persian-red-500">
+            <div className="bg-persian-beige-200 rounded-xl sm:rounded-3xl p-5 sm:p-8 shadow-2xl hover:scale-105 transition-transform border-2 sm:border-4 border-persian-red-500">
+              <div className="w-10 h-10 sm:w-16 sm:h-16 mb-2 sm:mb-4 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
+              <h3 className="text-xl sm:text-3xl font-bold mb-1.5 sm:mb-4 text-persian-red-500">
                 Daily Practice
               </h3>
-              <p className="text-persian-red-700 mb-6 text-lg font-medium">
+              <p className="text-persian-red-700 mb-3 sm:mb-6 text-sm sm:text-lg font-medium">
                 Never forget the words you learn, smart repetition helps you remember them for good
               </p>
 
-              <ul className="space-y-3 mb-8 text-persian-red-800">
-                <li className="flex items-start gap-3">
-                  <span className="text-persian-red-500 text-xl font-bold">
+              <ul className="space-y-1.5 sm:space-y-3 mb-4 sm:mb-8 text-persian-red-800 text-sm sm:text-base">
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-persian-red-500 text-sm sm:text-xl font-bold">
                     ✓
                   </span>
                   <span className="font-medium">
                     Words repeat at the perfect time to stick
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-persian-red-500 text-xl font-bold">
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-persian-red-500 text-sm sm:text-xl font-bold">
                     ✓
                   </span>
                   <span className="font-medium">
                     Extra focus on words you find tricky
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-persian-red-500 text-xl font-bold">
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-persian-red-500 text-sm sm:text-xl font-bold">
                     ✓
                   </span>
                   <span className="font-medium">
                     Build daily practice streaks 🔥
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-persian-red-500 text-xl font-bold">
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-persian-red-500 text-sm sm:text-xl font-bold">
                     ✓
                   </span>
                   <span className="font-medium">
@@ -313,7 +313,7 @@ export default async function LandingPage() {
 
               <Link
                 href="/dashboard/practice"
-                className="block w-full py-3 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-colors text-center font-bold text-lg shadow-lg"
+                className="block w-full py-2 sm:py-3 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-colors text-center font-bold text-sm sm:text-lg shadow-lg"
               >
                 Start Practicing <span className="btn-arrow">→</span>
               </Link>
@@ -351,23 +351,23 @@ export default async function LandingPage() {
       </section>
 
       {/* About / Story Section */}
-      <section className="py-20 bg-persian-beige-100 dark:bg-[#543210] transition-colors">
+      <section className="py-12 bg-persian-beige-100 dark:bg-[#543210] transition-colors">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12 text-persian-red-500">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-persian-red-500">
             Our Story
           </h2>
 
-          <div className="bg-white dark:bg-persian-beige-800 rounded-3xl p-6 md:p-8 shadow-xl border-3 border-persian-red-200 dark:border-persian-red-700 group">
-            <div className="flex flex-col items-center gap-6">
+          <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-5 md:p-6 shadow-xl border-3 border-persian-red-200 dark:border-persian-red-700 group">
+            <div className="flex flex-col items-center gap-4">
               {/* Photo + Contact annotation */}
               <div className="relative inline-block">
                 <Link href="/contact" className="block">
                   <Image
                     src="/ProfileFotoTVW.JPG"
                     alt="Thomas van Welsenes"
-                    width={120}
-                    height={120}
-                    className="rounded-full border-4 border-persian-red-500 shadow-lg object-cover w-[120px] h-[120px] transition-transform duration-300 hover:scale-110"
+                    width={100}
+                    height={100}
+                    className="rounded-full border-4 border-persian-red-500 shadow-lg object-cover w-[100px] h-[100px] transition-transform duration-300 hover:scale-110"
                   />
                 </Link>
                 {/* Hand-drawn arrow pointing left toward photo */}
@@ -376,7 +376,7 @@ export default async function LandingPage() {
                     <path d="M26 16C20 12 14 8 4 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
                     <path d="M8 6L3 10L8 14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <span className={`${caveat.className} text-persian-gold-500 font-bold text-xl whitespace-nowrap`} style={{ transform: "rotate(-3deg)" }}>
+                  <span className={`${caveat.className} text-persian-gold-500 font-bold text-lg whitespace-nowrap`} style={{ transform: "rotate(-3deg)" }}>
                     Contact me!
                   </span>
                 </div>
@@ -384,10 +384,10 @@ export default async function LandingPage() {
 
               {/* Story */}
               <div className="text-center">
-                <h3 className="text-xl font-bold text-persian-red-600 dark:text-persian-gold-400 mb-4">
+                <h3 className="text-lg font-bold text-persian-red-600 dark:text-persian-gold-400 mb-3">
                   Hi, I&apos;m Thomas<span className="inline-block group-hover:animate-wave">👋</span>!
                 </h3>
-                <div className="space-y-3 text-persian-red-800 dark:text-persian-beige-200 leading-relaxed text-sm">
+                <div className="space-y-2.5 text-persian-red-800 dark:text-persian-beige-200 leading-relaxed text-xs sm:text-sm">
                   <p>
                     Born in Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿 and raised in the Netherlands 🇳🇱, I have
                     always been drawn to different cultures, languages, and
@@ -424,12 +424,10 @@ export default async function LandingPage() {
       {/* Connect With a Teacher Section */}
       <section className="py-10 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <h2 className="text-2xl md:text-3xl font-bold text-persian-red-500">
-              Connect with a Teacher
-            </h2>
-            <span className="bg-persian-gold-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Coming Soon</span>
-          </div>
+          <span className="inline-block bg-persian-gold-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide mb-2">Coming Soon</span>
+          <h2 className="text-2xl md:text-3xl font-bold text-persian-red-500 mb-2">
+            Connect with a Teacher
+          </h2>
           <p className="text-persian-red-700 dark:text-persian-beige-200 text-base font-semibold mb-2">
             Take your Farsi to the next level.
           </p>

@@ -21,10 +21,10 @@ export function Footer() {
                   className="w-full h-full object-cover scale-150"
                 />
               </div>
-              <h3 className="text-lg font-bold">Learn Farsi</h3>
+              <h3 className="text-base font-bold">Learn Farsi</h3>
               <span className="bg-persian-gold-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">BETA</span>
             </div>
-            <p className="text-persian-beige-200 text-xs leading-relaxed">
+            <p className="text-persian-beige-200 text-[10px] leading-relaxed">
               Learn new Farsi words every day and actually remember them, with structured lessons and smart daily practice. Free forever!
             </p>
           </div>
@@ -42,17 +42,17 @@ export function Footer() {
                     className="w-full h-full object-cover scale-150"
                   />
                 </div>
-                <h3 className="text-lg font-bold">Learn Farsi</h3>
+                <h3 className="text-base font-bold">Learn Farsi</h3>
                 <span className="bg-persian-gold-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">BETA</span>
               </div>
-              <p className="text-persian-beige-200 text-xs leading-relaxed">
+              <p className="text-persian-beige-200 text-[10px] leading-relaxed">
                 Learn new Farsi words every day and actually remember them, with structured lessons and smart daily practice. Free forever!
               </p>
             </div>
           {/* Learn Section */}
           <div>
-            <h4 className="font-bold text-sm mb-2 text-persian-gold-400">Learn</h4>
-            <ul className="space-y-1 text-persian-beige-200 text-xs">
+            <h4 className="font-bold text-xs mb-2 text-persian-gold-400">Learn</h4>
+            <ul className="space-y-1 text-persian-beige-200 text-[10px]">
               <li>
                 <Link href="/dashboard/lessons" className="hover:text-white transition-colors">
                   Structured Lessons
@@ -78,8 +78,8 @@ export function Footer() {
 
           {/* Resources Section */}
           <div>
-            <h4 className="font-bold text-sm mb-2 text-persian-gold-400">Resources</h4>
-            <ul className="space-y-1 text-persian-beige-200 text-xs">
+            <h4 className="font-bold text-xs mb-2 text-persian-gold-400">Resources</h4>
+            <ul className="space-y-1 text-persian-beige-200 text-[10px]">
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
                   Home
@@ -100,8 +100,8 @@ export function Footer() {
 
           {/* Connect Section */}
           <div>
-            <h4 className="font-bold text-sm mb-2 text-persian-gold-400">Connect</h4>
-            <ul className="space-y-1 text-persian-beige-200 text-xs">
+            <h4 className="font-bold text-xs mb-2 text-persian-gold-400">Connect</h4>
+            <ul className="space-y-1 text-persian-beige-200 text-[10px]">
               <li>
                 <Link href="/contact" className="hover:text-white transition-colors">
                   Contact Us
@@ -125,10 +125,10 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t border-persian-red-700 pt-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-2">
-            <p className="text-persian-beige-200 text-xs">
+            <p className="text-persian-beige-200 text-[10px]">
               © {currentYear} Learn Farsi. Built to help you learn and remember Farsi words!
             </p>
-            <div className="flex items-center gap-4 text-xs text-persian-beige-200">
+            <div className="flex items-center gap-4 text-[10px] text-persian-beige-200">
               <Link href="/privacy" className="hover:text-white transition-colors">
                 Privacy Policy
               </Link>

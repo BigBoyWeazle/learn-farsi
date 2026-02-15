@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { syncLessonProgressFromDatabase } from "@/lib/lesson-progress";
@@ -30,6 +30,30 @@ export default function LessonsPage() {
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [completedLessonIds, setCompletedLessonIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  const currentLessonRef = useRef<HTMLDivElement>(null);
+
+  const scrollToCurrentLesson = useCallback(() => {
+    currentLessonRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, []);
+
+  useEffect(() => {
+    if (!loading && currentLessonRef.current) {
+      setTimeout(() => {
+        currentLessonRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    if (loading || !currentLessonRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowScrollButton(!entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(currentLessonRef.current);
+    return () => observer.disconnect();
+  }, [loading]);
 
   useEffect(() => {
     async function fetchLessonsAndProgress() {
@@ -158,7 +182,10 @@ export default function LessonsPage() {
               )}
 
               {/* Lesson Node */}
-              <div className="relative flex items-start gap-3 sm:gap-4 pb-5 sm:pb-6">
+              <div
+                ref={isCurrent ? currentLessonRef : undefined}
+                className="relative flex items-start gap-3 sm:gap-4 pb-5 sm:pb-6"
+              >
                 {/* Node circle */}
                 <div
                   className={`relative z-10 flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all ${
@@ -238,6 +265,20 @@ export default function LessonsPage() {
           <span className="font-bold text-persian-gold-600 text-sm sm:text-base">Course Complete!</span>
         </div>
       </div>
+
+      {/* Scroll to current lesson indicator */}
+      {showScrollButton && currentLessonId && (
+        <button
+          onClick={scrollToCurrentLesson}
+          className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 text-persian-red-300/50 hover:text-persian-red-500 transition-colors cursor-pointer animate-fade-in-up"
+          aria-label="Scroll to current lesson"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="7 13 12 18 17 13" />
+            <line x1="12" y1="18" x2="12" y2="6" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
