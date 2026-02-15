@@ -357,7 +357,7 @@ export default async function LandingPage() {
             Our Story
           </h2>
 
-          <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-5 md:p-6 shadow-xl border-3 border-persian-red-200 dark:border-persian-red-700 group">
+          <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-5 md:p-6 shadow-xl group persian-border">
             <div className="flex flex-col items-center gap-4">
               {/* Photo + Contact annotation */}
               <div className="relative inline-block">
