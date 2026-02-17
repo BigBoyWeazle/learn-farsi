@@ -142,8 +142,8 @@ export default function DashboardClient() {
         const xpToNext = getXPToNextLevel(userStats.totalXP);
 
         return (
-          <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-xl shadow-xl p-4 sm:p-5 text-white border-2 border-persian-red-700">
-            <div className="flex flex-col md:flex-row md:items-center gap-4 sm:gap-5">
+          <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-xl shadow-xl p-4 sm:p-5 md:p-7 text-white border-2 border-persian-red-700">
+            <div className="flex flex-col md:flex-row md:items-center gap-4 sm:gap-5 md:gap-6">
               {/* Current Title */}
               <div className="flex-1">
                 <div className="flex items-baseline gap-2 sm:gap-3">
