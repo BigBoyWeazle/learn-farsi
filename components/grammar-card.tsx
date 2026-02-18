@@ -220,7 +220,7 @@ export default function GrammarCard({
 
       {/* Card */}
       <div
-        className={`bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-12 min-h-[450px] flex flex-col justify-between transition-all duration-300`}
+        className={`bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-12 min-h-[450px] flex flex-col justify-between transition-all duration-300 persian-border`}
       >
         {cardState === "question" ? (
           /* Question State */

@@ -4,8 +4,7 @@ A modern web application for learning Farsi (Persian) vocabulary one word at a t
 
 # TO BUILD
 
-- Also when on the lesson overview. Make alle the cards use less height so it is easier to see the words on desktop and mobile version.
-- Add foto site where publish my travel foto's to personal page
+- TBD
 
 ## Features
 

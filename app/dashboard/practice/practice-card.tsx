@@ -104,7 +104,7 @@ export default function PracticeCard({
 
       {/* Card */}
       <div
-        className={`bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-5 sm:p-12 min-h-[380px] sm:min-h-[500px] flex flex-col justify-between transition-all duration-300 ${
+        className={`bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-5 sm:p-12 min-h-[380px] sm:min-h-[500px] flex flex-col justify-between transition-all duration-300 persian-border ${
           showAnimation && cardState === "correct" ? "animate-correct-pulse" : ""
         } ${showAnimation && cardState === "incorrect" ? "animate-shake" : ""}`}
       >
