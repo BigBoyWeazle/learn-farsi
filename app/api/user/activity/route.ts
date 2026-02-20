@@ -46,8 +46,8 @@ export async function GET() {
     const vocabCompleted = vocabResult[0]?.count || 0;
     const grammarCompleted = grammarResult[0]?.count || 0;
     const totalPracticeReviews = practiceResult[0]?.totalReviews || 0;
-    // Each daily practice session is 5 words
-    const practiceSessionsCompleted = Math.floor(Number(totalPracticeReviews) / 5);
+    // Each daily practice session is 10 words
+    const practiceSessionsCompleted = Math.floor(Number(totalPracticeReviews) / 10);
 
     return NextResponse.json({
       vocabCompleted,

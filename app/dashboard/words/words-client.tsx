@@ -147,7 +147,7 @@ export default function WordsClient({ words }: WordsClientProps) {
           </p>
         </div>
       ) : (
-        <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {filteredWords.map((word) => (
             <WordCard key={word.id} word={word} />
           ))}

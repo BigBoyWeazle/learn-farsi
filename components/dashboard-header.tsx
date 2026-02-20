@@ -36,11 +36,11 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
   }, [isGuest]);
 
   return (
-    <header className="bg-white border-b-3 border-persian-red-500 shadow-md">
+    <header className="bg-white border-b-3 border-persian-red-500 shadow-md relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/dashboard" className="flex items-center gap-3">
+          <Link href="/dashboard" className="flex items-center gap-3 z-10">
             <Image
               src="/pomegranatedrawn.png"
               alt="Learn Farsi"
@@ -52,8 +52,8 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
             </span>
           </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Navigation — centered absolutely */}
+          <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
             <Link
               href="/dashboard"
               className="text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"

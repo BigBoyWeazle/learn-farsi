@@ -9,7 +9,7 @@ export async function GET() {
   try {
     const session = await auth();
 
-    // Guest fallback: return 5 random level-1 words
+    // Guest fallback: return 10 random level-1 words
     if (!session?.user?.id) {
       const words = await db
         .select()
@@ -21,7 +21,7 @@ export async function GET() {
           )
         )
         .orderBy(sql`RANDOM()`)
-        .limit(5);
+        .limit(10);
 
       return NextResponse.json({ words });
     }
@@ -39,7 +39,7 @@ export async function GET() {
 
     // Use smart word selection with DB-backed progress
     const words = await selectWordsForSession({
-      sessionSize: 5,
+      sessionSize: 10,
       currentLevel,
       userId,
     });
