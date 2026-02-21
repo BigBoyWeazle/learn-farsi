@@ -1,0 +1,35 @@
+# Learn Farsi (learnfarsi.app)
+
+## About
+Learn Farsi is a free online platform for learning Persian (Farsi) vocabulary, grammar, and the Persian alphabet. It uses spaced repetition to help learners remember words long-term. The platform is completely free with no subscriptions or paywalls.
+
+## Features
+- Structured vocabulary lessons organized by theme (greetings, food, family, travel, etc.) and difficulty level (beginner to expert)
+- Persian grammar lessons covering verb conjugation, sentence structure, tenses, and more
+- Full Persian alphabet guide with all 32 letters, their four positional forms, and example words
+- Daily practice mode with spaced repetition algorithm that adapts to each learner
+- Progress tracking with XP points, streaks, and leveling system
+- Interactive quizzes with multiple choice, typing, and matching exercises
+- Both Farsi script and phonetic transliteration for every word
+- Example sentences with translations for contextual learning
+- Free forever — no subscriptions, no paywalls, no ads
+
+## Who It's For
+- Complete beginners who want to start learning Farsi/Persian
+- Heritage speakers looking to improve their vocabulary
+- Travelers planning to visit Iran, Afghanistan, or Tajikistan
+- Anyone interested in Persian culture and language
+- Students supplementing their formal Farsi studies
+
+## Key Facts
+- Persian (Farsi) is spoken by over 110 million people worldwide
+- Farsi uses a modified Arabic script written right-to-left
+- The Persian alphabet has 32 letters, including 4 unique to Persian (پ, چ, ژ, گ)
+- Farsi is the official language of Iran, and Dari/Tajik are closely related variants spoken in Afghanistan and Tajikistan
+
+## Key Pages
+- Home: https://learnfarsi.app
+- Blog: https://learnfarsi.app/blog
+- Contact: https://learnfarsi.app/contact
+- Privacy Policy: https://learnfarsi.app/privacy
+- Terms of Use: https://learnfarsi.app/terms

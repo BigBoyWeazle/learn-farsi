@@ -82,7 +82,7 @@ export default function WordsClient({ words }: WordsClientProps) {
       </div>
 
       {/* Search Bar */}
-      <div className="bg-white border-2 border-persian-red-500 rounded-lg p-4 shadow-lg">
+      <div className="bg-persian-beige-200 border-2 border-persian-red-500 rounded-lg p-4 shadow-lg">
         <div className="flex items-center gap-3">
           <span className="text-2xl">🔍</span>
           <input
@@ -109,7 +109,7 @@ export default function WordsClient({ words }: WordsClientProps) {
       </div>
 
       {/* Clickable Difficulty Filter */}
-      <div className="bg-white border-2 border-persian-red-500 rounded-lg p-4 shadow-lg">
+      <div className="bg-persian-beige-200 border-2 border-persian-red-500 rounded-lg p-4 shadow-lg">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-sm font-semibold text-persian-red-500">Filter by Level:</span>
           <button

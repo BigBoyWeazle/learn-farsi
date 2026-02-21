@@ -59,6 +59,12 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
               Persian Alphabet
             </Link>
             <Link
+              href="/blog"
+              className="text-sm font-semibold text-persian-red-700 hover:text-persian-red-500 transition-colors"
+            >
+              Blog
+            </Link>
+            <Link
               href="/dashboard"
               className="px-4 py-2 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors text-sm font-semibold shadow-md"
             >
@@ -124,6 +130,13 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
               onClick={() => setMobileMenuOpen(false)}
             >
               Persian Alphabet
+            </Link>
+            <Link
+              href="/blog"
+              className="block px-3 py-2 rounded-lg text-sm font-semibold text-persian-red-700 hover:bg-persian-beige-300 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Blog
             </Link>
           </div>
         </div>

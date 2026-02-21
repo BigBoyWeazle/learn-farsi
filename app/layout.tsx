@@ -5,23 +5,62 @@ import { Providers } from "@/components/providers";
 import { FeedbackWidget } from "@/components/feedback-widget";
 
 export const metadata: Metadata = {
-  title: "Learn Farsi - Learn Persian Daily",
+  title: {
+    default: "Learn Farsi - Learn Persian Daily | Free Farsi Lessons Online",
+    template: "%s | Learn Farsi",
+  },
   description:
-    "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever.",
+    "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever. Start learning Persian today.",
   metadataBase: new URL("https://learnfarsi.app"),
+  applicationName: "Learn Farsi",
+  keywords: [
+    "learn farsi",
+    "learn persian",
+    "farsi lessons",
+    "persian language",
+    "farsi vocabulary",
+    "persian alphabet",
+    "farsi grammar",
+    "learn farsi online",
+    "learn farsi free",
+    "persian words",
+    "farsi for beginners",
+    "spaced repetition farsi",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  alternates: {
+    canonical: "https://learnfarsi.app",
+  },
   openGraph: {
-    title: "Learn Farsi - Learn Persian Daily",
+    title: "Learn Farsi - Learn Persian Daily | Free Farsi Lessons Online",
     description:
-      "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever.",
+      "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever. Start learning Persian today.",
     siteName: "Learn Farsi",
     locale: "en_US",
     type: "website",
+    url: "https://learnfarsi.app",
+    images: [
+      {
+        url: "/learnfarsiOGIMAGE.png",
+        width: 1200,
+        height: 630,
+        alt: "Learn Farsi - Learn Persian Daily",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Learn Farsi - Learn Persian Daily",
+    title: "Learn Farsi - Learn Persian Daily | Free Farsi Lessons Online",
     description:
-      "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever.",
+      "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever. Start learning Persian today.",
+    images: ["/learnfarsiOGIMAGE.png"],
   },
 };
 

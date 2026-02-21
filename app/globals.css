@@ -151,3 +151,12 @@ button:hover .btn-arrow,
 a:hover .btn-arrow {
   transform: translateX(4px);
 }
+
+/* Hide scrollbar for carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

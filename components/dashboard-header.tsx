@@ -38,49 +38,49 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
   return (
     <header className="bg-white border-b-3 border-persian-red-500 shadow-md relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-12">
           {/* Logo */}
-          <Link href="/dashboard" className="flex items-center gap-3 z-10">
+          <Link href="/dashboard" className="flex items-center gap-2 z-10">
             <Image
               src="/pomegranatedrawn.png"
               alt="Learn Farsi"
-              width={40}
-              height={40}
+              width={30}
+              height={30}
             />
-            <span className="text-xl font-bold text-persian-red-500 hidden sm:inline">
+            <span className="text-base font-bold text-persian-red-500 hidden sm:inline">
               Learn Farsi
             </span>
           </Link>
 
           {/* Navigation — centered absolutely */}
-          <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+          <nav className="hidden md:flex items-center gap-5 absolute left-1/2 -translate-x-1/2">
             <Link
               href="/dashboard"
-              className="text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
+              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
             >
               Dashboard
             </Link>
             <Link
               href="/dashboard/lessons"
-              className="text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
+              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
             >
               Lessons
             </Link>
             <Link
               href="/dashboard/grammar"
-              className="text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
+              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
             >
               Grammar
             </Link>
             <Link
               href="/dashboard/practice"
-              className="text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
+              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
             >
               Practice
             </Link>
             <Link
               href="/dashboard/alphabet"
-              className="text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
+              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
             >
               Alphabet
             </Link>
@@ -92,15 +92,15 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
               {/* Mobile menu button for guests */}
               <button
                 onClick={() => setShowMenu(!showMenu)}
-                className="md:hidden flex items-center px-3 py-2 rounded-lg hover:bg-persian-beige-100 transition-colors"
+                className="md:hidden flex items-center px-2 py-1.5 rounded-lg hover:bg-persian-beige-100 transition-colors"
               >
-                <svg className="w-6 h-6 text-persian-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-persian-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={showMenu ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
                 </svg>
               </button>
               <Link
                 href="/login"
-                className="px-5 py-2 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold text-sm shadow-md"
+                className="px-4 py-1.5 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold text-xs shadow-md"
               >
                 Sign In
               </Link>
@@ -112,33 +112,33 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
             <div className="relative">
               <button
                 onClick={() => setShowMenu(!showMenu)}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-persian-beige-100 transition-colors"
+                className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg hover:bg-persian-beige-100 transition-colors"
               >
                 {user.image ? (
                   <Image
                     src={user.image}
                     alt={displayName}
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 rounded-full object-cover border-2 border-persian-red-400"
+                    width={26}
+                    height={26}
+                    className="w-[26px] h-[26px] rounded-full object-cover border-2 border-persian-red-400"
                   />
                 ) : (
-                  <div className="w-8 h-8 bg-persian-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-[26px] h-[26px] bg-persian-red-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
                     {displayName[0].toUpperCase()}
                   </div>
                 )}
                 <div className="hidden sm:flex flex-col items-start">
-                  <span className="text-persian-red-700 font-medium">
+                  <span className="text-sm text-persian-red-700 font-medium">
                     Hi, {displayName}!
                   </span>
                   {userLevel && (
-                    <span className="text-xs text-persian-gold-600 font-semibold">
+                    <span className="text-[10px] text-persian-gold-600 font-semibold">
                       Lvl {userLevel.level} {userLevel.title}
                     </span>
                   )}
                 </div>
                 <svg
-                  className={`w-4 h-4 text-persian-red-500 transition-transform ${showMenu ? "rotate-180" : ""}`}
+                  className={`w-3.5 h-3.5 text-persian-red-500 transition-transform ${showMenu ? "rotate-180" : ""}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -226,7 +226,7 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
 
           {/* Guest mobile dropdown */}
           {isGuest && showMenu && (
-            <div className="absolute top-16 right-4 w-56 bg-white border-2 border-persian-red-300 rounded-lg shadow-xl z-50 md:hidden">
+            <div className="absolute top-12 right-4 w-56 bg-white border-2 border-persian-red-300 rounded-lg shadow-xl z-50 md:hidden">
               <div className="py-2">
                 <Link href="/dashboard" className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Dashboard</Link>
                 <Link href="/dashboard/lessons" className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Lessons</Link>

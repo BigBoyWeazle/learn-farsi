@@ -14,5 +14,9 @@ export default async function AllWordsPage() {
     .where(eq(vocabulary.isActive, true))
     .orderBy(desc(vocabulary.createdAt));
 
-  return <WordsClient words={words} />;
+  return (
+    <div className="md:-mx-20 md:w-[calc(100%+10rem)]">
+      <WordsClient words={words} />
+    </div>
+  );
 }

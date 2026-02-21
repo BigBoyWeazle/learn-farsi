@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import LoginForm from "./login-form";
 import { Footer } from "@/components/footer";
+
+export const metadata: Metadata = {
+  title: "Sign In",
+  description:
+    "Sign in to Learn Farsi to continue learning Persian vocabulary, grammar, and alphabet with spaced repetition.",
+};
 
 export default async function LoginPage() {
   const session = await auth();

@@ -48,8 +48,32 @@ export default async function LandingPage() {
   const totalLessonsCompleted =
     (vocabCompletedResult[0]?.count || 0) + (grammarCompletedResult[0]?.count || 0);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Learn Farsi",
+    url: "https://learnfarsi.app",
+    description:
+      "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever.",
+    inLanguage: "en",
+    about: {
+      "@type": "Language",
+      name: "Persian",
+      alternateName: "Farsi",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Learn Farsi",
+      url: "https://learnfarsi.app",
+    },
+  };
+
   return (
     <div className="min-h-screen bg-persian-beige-200 dark:bg-[#654321] transition-colors">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section */}
       <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
