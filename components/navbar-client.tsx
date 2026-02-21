@@ -17,15 +17,13 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
         <div className="flex justify-between h-16 items-center">
           {/* Logo / Brand */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 overflow-hidden flex-shrink-0">
-              <Image
-                src="/carpetlogo.png"
-                alt="Learn Farsi"
-                width={80}
-                height={80}
-                className="w-full h-full object-cover scale-150"
-              />
-            </div>
+            <Image
+              src="/logodesertsmall.png"
+              alt="Learn Farsi"
+              width={36}
+              height={36}
+              className="w-9 h-9 object-contain flex-shrink-0"
+            />
             <span className="text-xl font-bold text-persian-red-500">
               Learn Farsi
             </span>

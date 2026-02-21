@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { blogPosts } from "@/lib/blog-data";
+import { blogPosts, type BlogPost } from "@/lib/blog-data";
 import { BlogCarousel } from "@/components/blog-carousel";
 import { Footer } from "@/components/footer";
 
@@ -14,10 +14,44 @@ export const metadata: Metadata = {
   },
 };
 
+function getReadingTime(post: BlogPost): number {
+  const totalWords = post.sections.reduce(
+    (sum, s) => sum + s.content.split(/\s+/).length,
+    0
+  );
+  return Math.max(1, Math.round(totalWords / 200));
+}
+
+function getTags(post: BlogPost): string[] {
+  const kw = post.keywords.join(" ").toLowerCase();
+  const tags: string[] = [];
+  if (kw.includes("alphabet") || kw.includes("letters")) tags.push("Alphabet");
+  if (kw.includes("phrases") || kw.includes("greetings")) tags.push("Phrases");
+  if (kw.includes("beginner") || kw.includes("how to learn")) tags.push("Beginner");
+  if (kw.includes("grammar")) tags.push("Grammar");
+  if (kw.includes("best way") || kw.includes("tips") || kw.includes("online")) tags.push("Tips");
+  if (kw.includes("farsi vs") || kw.includes("difference") || kw.includes("persian")) tags.push("Culture");
+  return tags.slice(0, 2);
+}
+
+const tagColors: Record<string, string> = {
+  Alphabet: "bg-persian-turquoise-500 text-white",
+  Phrases: "bg-persian-gold-500 text-white",
+  Beginner: "bg-green-500 text-white",
+  Grammar: "bg-purple-500 text-white",
+  Tips: "bg-persian-red-400 text-white",
+  Culture: "bg-amber-600 text-white",
+};
+
 export default function BlogPage() {
   const sortedPosts = [...blogPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
+
+  const featuredPost = sortedPosts[0];
+  const remainingPosts = sortedPosts.slice(1);
+  const featuredTags = getTags(featuredPost);
+  const featuredReadingTime = getReadingTime(featuredPost);
 
   return (
     <div className="min-h-screen bg-persian-beige-200 flex flex-col transition-colors">
@@ -42,16 +76,87 @@ export default function BlogPage() {
           </p>
         </div>
 
-        {/* Blog carousel */}
-        <div className="max-w-4xl mx-auto px-6 sm:px-10 pb-10">
-          <BlogCarousel
-            posts={sortedPosts.map((p) => ({
-              slug: p.slug,
-              title: p.title,
-              description: p.description,
-              date: p.date,
-            }))}
-          />
+        {/* Featured post */}
+        <div className="max-w-xl mx-auto px-4 sm:px-6 pb-8">
+          <Link
+            href={`/blog/${featuredPost.slug}`}
+            className="block bg-white rounded-2xl shadow-lg border-2 border-persian-red-300 hover:border-persian-red-500 hover:shadow-xl transition-all overflow-hidden group"
+          >
+            <div className="bg-persian-red-500 px-5 py-2 flex items-center justify-between">
+              <span className="text-white text-xs font-bold uppercase tracking-wide">
+                Latest Article
+              </span>
+              <span className="text-persian-red-100 text-xs font-medium">
+                {featuredReadingTime} min read
+              </span>
+            </div>
+            <div className="p-5 sm:p-6">
+              <div className="flex flex-wrap gap-1.5 mb-3">
+                {featuredTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${tagColors[tag] || "bg-persian-red-300 text-white"}`}
+                  >
+                    {tag}
+                  </span>
+                ))}
+                <time className="text-xs text-persian-red-400 font-medium ml-auto self-center">
+                  {new Date(featuredPost.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-persian-red-600 mb-2 leading-snug">
+                {featuredPost.title}
+              </h2>
+              <p className="text-persian-red-700 text-sm sm:text-base leading-relaxed mb-3">
+                {featuredPost.description}
+              </p>
+              <span className="text-persian-red-500 font-semibold text-sm group-hover:translate-x-1 inline-block transition-transform">
+                Read article →
+              </span>
+            </div>
+          </Link>
+        </div>
+
+        {/* More articles carousel */}
+        {remainingPosts.length > 0 && (
+          <div className="max-w-4xl mx-auto px-6 sm:px-10 pb-10">
+            <h2 className="text-lg font-bold text-persian-red-600 mb-4">
+              More Articles
+            </h2>
+            <BlogCarousel
+              posts={remainingPosts.map((p) => ({
+                slug: p.slug,
+                title: p.title,
+                description: p.description,
+                date: p.date,
+                readingTime: getReadingTime(p),
+                tags: getTags(p),
+              }))}
+            />
+          </div>
+        )}
+
+        {/* CTA banner */}
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-8">
+          <div className="bg-persian-red-500 rounded-xl p-6 text-center shadow-lg">
+            <h3 className="text-xl font-bold text-white mb-2">
+              Ready to start learning Farsi?
+            </h3>
+            <p className="text-persian-red-100 mb-4">
+              Try our free structured lessons and daily practice with spaced repetition.
+            </p>
+            <Link
+              href="/dashboard/lessons"
+              className="group/cta inline-flex items-center gap-2 px-6 py-3 bg-white text-persian-red-500 rounded-lg font-bold hover:bg-persian-beige-100 hover:scale-105 transition-all shadow-md hover:shadow-lg"
+            >
+              Start Learning Free
+              <span className="inline-block group-hover/cta:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
         </div>
 
         {/* Back link */}

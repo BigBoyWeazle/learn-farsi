@@ -8,6 +8,21 @@ interface BlogPost {
   title: string;
   description: string;
   date: string;
+  readingTime: number;
+  tags: string[];
+}
+
+const tagColors: Record<string, string> = {
+  Alphabet: "bg-persian-turquoise-500 text-white",
+  Phrases: "bg-persian-gold-500 text-white",
+  Beginner: "bg-green-500 text-white",
+  Grammar: "bg-purple-500 text-white",
+  Tips: "bg-persian-red-400 text-white",
+  Culture: "bg-amber-600 text-white",
+};
+
+function getTagColor(tag: string) {
+  return tagColors[tag] || "bg-persian-red-300 text-white";
 }
 
 export function BlogCarousel({ posts }: { posts: BlogPost[] }) {
@@ -82,16 +97,31 @@ export function BlogCarousel({ posts }: { posts: BlogPost[] }) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="flex-shrink-0 w-[280px] sm:w-[300px] snap-start bg-white rounded-xl p-5 shadow-md border-2 border-persian-red-300 hover:border-persian-red-500 hover:shadow-lg transition-all group"
+            className="flex-shrink-0 w-[280px] sm:w-[300px] snap-start bg-white rounded-xl p-5 shadow-md border-2 border-persian-red-300 hover:border-persian-red-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all group cursor-pointer"
           >
             <div className="flex flex-col gap-2 h-full">
-              <time className="text-xs text-persian-red-400 font-medium">
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
+              <div className="flex items-center justify-between">
+                <time className="text-xs text-persian-red-400 font-medium">
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+                <span className="text-xs text-persian-red-400 font-medium">
+                  {post.readingTime} min read
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${getTagColor(tag)}`}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <h2 className="text-lg font-bold text-persian-red-600 leading-snug">
                 {post.title}
               </h2>
