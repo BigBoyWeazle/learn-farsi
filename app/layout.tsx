@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     url: "https://learnfarsi.app",
     images: [
       {
-        url: "/learnfarsiOGIMAGE.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Learn Farsi - Learn Persian Daily",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "Learn Farsi - Learn Persian Daily | Free Farsi Lessons Online",
     description:
       "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever. Start learning Persian today.",
-    images: ["/learnfarsiOGIMAGE.png"],
+    images: ["/og-image.png"],
   },
 };
 
