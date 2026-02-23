@@ -46,21 +46,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
     url: "https://learnfarsi.app",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Learn Farsi - Learn Persian Daily",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Learn Farsi - Learn Persian Daily | Free Farsi Lessons Online",
     description:
       "Learn Farsi (Persian) vocabulary, grammar, and alphabet with structured lessons and spaced repetition. Free forever. Start learning Persian today.",
-    images: ["/og-image.png"],
   },
 };
 
