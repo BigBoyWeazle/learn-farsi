@@ -8,6 +8,13 @@
       "when": 1770176861015,
       "tag": "0000_loose_thena",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1771797411926,
+      "tag": "0001_sweet_mac_gargan",
+      "breakpoints": true
     }
   ]
 }

@@ -20,9 +20,9 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
             <Image
               src="/logodesertsmall.png"
               alt="Learn Farsi"
-              width={36}
-              height={36}
-              className="w-9 h-9 object-contain flex-shrink-0"
+              width={44}
+              height={44}
+              className="w-11 h-11 object-contain flex-shrink-0"
             />
             <span className="text-xl font-bold text-persian-red-500">
               Learn Farsi

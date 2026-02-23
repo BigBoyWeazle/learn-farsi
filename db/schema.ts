@@ -402,3 +402,14 @@ export type NewGrammarExercise = typeof grammarExercises.$inferInsert;
 
 export type UserGrammarProgress = typeof userGrammarProgress.$inferSelect;
 export type NewUserGrammarProgress = typeof userGrammarProgress.$inferInsert;
+
+/**
+ * Blog views table - tracks view counts for blog posts
+ * Simple counter per slug, no per-user tracking
+ */
+export const blogViews = pgTable("blog_views", {
+  slug: text("slug").primaryKey(),
+  views: integer("views").default(0).notNull(),
+});
+
+export type BlogViews = typeof blogViews.$inferSelect;

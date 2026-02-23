@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Caveat } from "next/font/google";
 import { blogPosts, type BlogPost } from "@/lib/blog-data";
+import { db } from "@/db";
+import { blogViews } from "@/db/schema";
+
+const caveat = Caveat({ subsets: ["latin"] });
 import { BlogCarousel } from "@/components/blog-carousel";
 import { Footer } from "@/components/footer";
 
@@ -43,22 +48,30 @@ const tagColors: Record<string, string> = {
   Culture: "bg-amber-600 text-white",
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
   const sortedPosts = [...blogPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
+
+  // Fetch all view counts from database
+  const allViews = await db.select().from(blogViews);
+  const viewMap: Record<string, number> = {};
+  for (const row of allViews) {
+    viewMap[row.slug] = row.views;
+  }
 
   const featuredPost = sortedPosts[0];
   const remainingPosts = sortedPosts.slice(1);
   const featuredTags = getTags(featuredPost);
   const featuredReadingTime = getReadingTime(featuredPost);
+  const featuredViews = viewMap[featuredPost.slug] ?? 0;
 
   return (
     <div className="min-h-screen bg-persian-beige-200 flex flex-col transition-colors">
       <div className="flex-1">
         {/* Hero section with LogoDesert2 */}
         <div className="text-center pt-10 pb-6">
-          <div className="flex justify-center mb-5">
+          <div className="flex justify-center mb-5 relative">
             <Image
               src="/LogoDesert2.png"
               alt="Learn Farsi - Persian arch with desert landscape"
@@ -67,6 +80,18 @@ export default function BlogPage() {
               className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] object-contain"
               priority
             />
+            {/* Handwritten text with arrow */}
+            <div className="absolute left-[calc(50%+35px)] sm:left-[calc(50%+55px)] top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-2">
+              <svg width="28" height="24" viewBox="0 0 28 24" fill="none" className="text-persian-gold-500 flex-shrink-0">
+                <path d="M26 16C20 12 14 8 4 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                <path d="M8 6L3 10L8 14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <p className={`${caveat.className} text-persian-gold-500 font-bold text-xl leading-snug`} style={{ transform: "rotate(-2deg)" }}>
+                Learn more about Farsi
+                <br />
+                and the Persian culture
+              </p>
+            </div>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-persian-red-500 mb-2">
             Learn Farsi Blog
@@ -86,9 +111,21 @@ export default function BlogPage() {
               <span className="text-white text-xs font-bold uppercase tracking-wide">
                 Latest Article
               </span>
-              <span className="text-persian-red-100 text-xs font-medium">
-                {featuredReadingTime} min read
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="inline-flex items-center gap-1 text-persian-red-100 text-xs font-medium">
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                  {featuredViews}
+                </span>
+                <span className="inline-flex items-center gap-1 text-persian-red-100 text-xs font-medium">
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {featuredReadingTime} min read
+                </span>
+              </div>
             </div>
             <div className="p-5 sm:p-6">
               <div className="flex flex-wrap gap-1.5 mb-3">
@@ -135,6 +172,7 @@ export default function BlogPage() {
                 date: p.date,
                 readingTime: getReadingTime(p),
                 tags: getTags(p),
+                views: viewMap[p.slug] ?? 0,
               }))}
             />
           </div>
@@ -159,15 +197,6 @@ export default function BlogPage() {
           </div>
         </div>
 
-        {/* Back link */}
-        <div className="text-center pb-10">
-          <Link
-            href="/"
-            className="text-persian-red-500 hover:underline font-semibold"
-          >
-            ← Back to Home
-          </Link>
-        </div>
       </div>
       <Footer />
     </div>

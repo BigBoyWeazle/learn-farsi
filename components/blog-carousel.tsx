@@ -10,6 +10,7 @@ interface BlogPost {
   date: string;
   readingTime: number;
   tags: string[];
+  views: number;
 }
 
 const tagColors: Record<string, string> = {
@@ -29,12 +30,18 @@ export function BlogCarousel({ posts }: { posts: BlogPost[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const checkScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollLeft(el.scrollLeft > 4);
     setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+
+    // Calculate which card is most visible
+    const cardWidth = 320;
+    const index = Math.round(el.scrollLeft / cardWidth);
+    setActiveIndex(Math.min(index, posts.length - 1));
   };
 
   useEffect(() => {
@@ -60,8 +67,28 @@ export function BlogCarousel({ posts }: { posts: BlogPost[] }) {
     });
   };
 
+  const scrollToIndex = (index: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = 320;
+    el.scrollTo({
+      left: index * cardWidth,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="relative">
+      {/* Left fade gradient */}
+      {canScrollLeft && (
+        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-persian-beige-200 to-transparent z-[5] pointer-events-none" />
+      )}
+
+      {/* Right fade gradient */}
+      {canScrollRight && (
+        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-persian-beige-200 to-transparent z-[5] pointer-events-none" />
+      )}
+
       {/* Left arrow */}
       {canScrollLeft && (
         <button
@@ -108,9 +135,21 @@ export function BlogCarousel({ posts }: { posts: BlogPost[] }) {
                     day: "numeric",
                   })}
                 </time>
-                <span className="text-xs text-persian-red-400 font-medium">
-                  {post.readingTime} min read
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1 text-xs text-persian-red-400 font-medium">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                    {post.views}
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-xs text-persian-red-400 font-medium">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {post.readingTime} min
+                  </span>
+                </div>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {post.tags.map((tag) => (
@@ -136,10 +175,21 @@ export function BlogCarousel({ posts }: { posts: BlogPost[] }) {
         ))}
       </div>
 
-      {/* Scroll hint for mobile */}
-      <p className="text-center text-xs text-persian-red-400 mt-3 md:hidden">
-        Swipe to see more articles →
-      </p>
+      {/* Scroll position dots */}
+      <div className="flex justify-center items-center gap-2 mt-4">
+        {posts.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollToIndex(i)}
+            aria-label={`Go to article ${i + 1}`}
+            className={`rounded-full transition-all duration-300 ${
+              i === activeIndex
+                ? "w-6 h-2.5 bg-persian-red-500"
+                : "w-2.5 h-2.5 bg-persian-red-300 hover:bg-persian-red-400"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
