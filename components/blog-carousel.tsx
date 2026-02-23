@@ -2,7 +2,6 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-
 interface BlogPost {
   slug: string;
   title: string;
