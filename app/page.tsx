@@ -6,7 +6,7 @@ import { Caveat } from "next/font/google";
 
 const caveat = Caveat({ subsets: ["latin"] });
 import { db } from "@/db";
-import { lessons, users, userStats, userLessonProgress, userGrammarProgress } from "@/db/schema";
+import { lessons, users, userStats, userLessonProgress, userGrammarProgress, userProgress } from "@/db/schema";
 import { eq, count, sql } from "drizzle-orm";
 import { AnimatedCounter } from "@/components/animated-counter";
 
@@ -28,25 +28,36 @@ export default async function LandingPage() {
     .from(users);
   const userCount = userCountResult[0]?.count || 0;
 
-  // Fetch total XP earned by all users
-  const totalXPResult = await db
-    .select({ total: sql<number>`COALESCE(SUM(${userStats.totalXP}), 0)` })
-    .from(userStats);
-  const totalXP = totalXPResult[0]?.total || 0;
-
-  // Fetch total lessons completed by all users (vocab + grammar)
-  const [vocabCompletedResult, grammarCompletedResult] = await Promise.all([
+  // Fetch total XP: max of stored counter vs computed from review history (across all users)
+  const [storedXPResult, reviewXPResult] = await Promise.all([
     db
-      .select({ count: count() })
-      .from(userLessonProgress)
-      .where(eq(userLessonProgress.isCompleted, true)),
+      .select({ total: sql<number>`COALESCE(SUM(${userStats.totalXP}), 0)` })
+      .from(userStats),
     db
-      .select({ count: count() })
-      .from(userGrammarProgress)
-      .where(eq(userGrammarProgress.isCompleted, true)),
+      .select({ total: sql<number>`COALESCE(SUM(${userProgress.totalCorrect} * 3 + ${userProgress.totalWrong} * 1), 0)` })
+      .from(userProgress),
   ]);
-  const totalLessonsCompleted =
-    (vocabCompletedResult[0]?.count || 0) + (grammarCompletedResult[0]?.count || 0);
+  const totalXP = Math.max(
+    Number(storedXPResult[0]?.total || 0),
+    Number(reviewXPResult[0]?.total || 0)
+  );
+
+  // Fetch total lessons completed by all users: attempts (vocab + grammar) + daily practice sessions
+  const [vocabResult, grammarResult, practiceResult] = await Promise.all([
+    db
+      .select({ totalAttempts: sql<number>`COALESCE(SUM(${userLessonProgress.attempts}), 0)` })
+      .from(userLessonProgress),
+    db
+      .select({ totalAttempts: sql<number>`COALESCE(SUM(${userGrammarProgress.attempts}), 0)` })
+      .from(userGrammarProgress),
+    db
+      .select({ totalReviews: sql<number>`COALESCE(SUM(${userProgress.reviewCount}), 0)` })
+      .from(userProgress),
+  ]);
+  const vocabAttempts = Number(vocabResult[0]?.totalAttempts || 0);
+  const grammarAttempts = Number(grammarResult[0]?.totalAttempts || 0);
+  const practiceSessionsCompleted = Math.floor(Number(practiceResult[0]?.totalReviews || 0) / 10);
+  const totalLessonsCompleted = vocabAttempts + grammarAttempts + practiceSessionsCompleted;
 
   const jsonLd = {
     "@context": "https://schema.org",

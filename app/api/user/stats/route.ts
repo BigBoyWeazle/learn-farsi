@@ -1,10 +1,10 @@
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { userStats } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { userStats, userProgress } from "@/db/schema";
+import { eq, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-// GET - Fetch user stats
+// GET - Fetch user stats (with XP reconciliation from review history)
 export async function GET() {
   try {
     const session = await auth();
@@ -15,32 +15,62 @@ export async function GET() {
 
     const userId = session.user.id;
 
-    // Fetch user stats from database
-    const stats = await db
-      .select()
-      .from(userStats)
-      .where(eq(userStats.userId, userId))
-      .limit(1);
+    // Fetch stored stats and compute XP from review history in parallel
+    const [stats, reviewData] = await Promise.all([
+      db
+        .select()
+        .from(userStats)
+        .where(eq(userStats.userId, userId))
+        .limit(1),
+      // Compute XP from actual review data: 3 XP per correct, 1 XP per wrong
+      // This is the reliable source of truth since reviews are tracked server-side per word
+      db
+        .select({
+          reviewXP: sql<number>`COALESCE(SUM(${userProgress.totalCorrect} * 3 + ${userProgress.totalWrong} * 1), 0)`,
+          wordsLearned: sql<number>`COALESCE(SUM(CASE WHEN ${userProgress.isLearned} = true THEN 1 ELSE 0 END), 0)`,
+        })
+        .from(userProgress)
+        .where(eq(userProgress.userId, userId)),
+    ]);
+
+    const reviewXP = Number(reviewData[0]?.reviewXP || 0);
+    const wordsLearned = Number(reviewData[0]?.wordsLearned || 0);
 
     if (stats.length === 0) {
-      // Return default stats if none exist
       return NextResponse.json({
         currentLevel: 1,
-        totalWordsLearned: 0,
+        totalWordsLearned: wordsLearned,
         currentStreak: 0,
         longestStreak: 0,
         lastPracticeDate: null,
-        totalXP: 0,
+        totalXP: reviewXP,
       });
+    }
+
+    // Use the higher of stored XP vs computed review XP
+    // Stored may include grammar XP; computed catches missed client-side POST calls
+    const storedXP = stats[0].totalXP;
+    const actualXP = Math.max(storedXP, reviewXP);
+
+    // Sync stored values if review data shows higher numbers
+    if (reviewXP > storedXP || wordsLearned > stats[0].totalWordsLearned) {
+      await db
+        .update(userStats)
+        .set({
+          ...(reviewXP > storedXP ? { totalXP: reviewXP } : {}),
+          ...(wordsLearned > stats[0].totalWordsLearned ? { totalWordsLearned: wordsLearned } : {}),
+          updatedAt: new Date(),
+        })
+        .where(eq(userStats.userId, userId));
     }
 
     return NextResponse.json({
       currentLevel: stats[0].currentLevel,
-      totalWordsLearned: stats[0].totalWordsLearned,
+      totalWordsLearned: wordsLearned,
       currentStreak: stats[0].currentStreak,
       longestStreak: stats[0].longestStreak,
       lastPracticeDate: stats[0].lastPracticeDate?.toISOString().split("T")[0] || null,
-      totalXP: stats[0].totalXP,
+      totalXP: actualXP,
     });
   } catch (error) {
     console.error("Error fetching user stats:", error);

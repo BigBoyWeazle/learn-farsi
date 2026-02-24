@@ -28,7 +28,10 @@ interface UserStats {
 interface ActivityCounts {
   vocabCompleted: number;
   grammarCompleted: number;
+  vocabAttempts: number;
+  grammarAttempts: number;
   practiceSessionsCompleted: number;
+  totalLessonsCompleted: number;
   totalActivities: number;
 }
 
@@ -221,7 +224,7 @@ export default function DashboardClient() {
               <span className="text-sm sm:text-xl">✅</span>
               <div>
                 <div className="text-sm sm:text-xl font-bold text-[#4aa6a6] leading-tight">
-                  {activity?.totalActivities ?? 0}
+                  {activity?.totalLessonsCompleted ?? 0}
                 </div>
                 <div className="text-[10px] sm:text-xs text-[#3d8a8a] font-semibold">Lessons Done</div>
               </div>

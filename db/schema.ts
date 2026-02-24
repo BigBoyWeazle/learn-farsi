@@ -81,6 +81,8 @@ export const vocabulary = pgTable("vocabulary", {
   exampleEnglish: text("example_english"),
   // Difficulty level (1-5, can be used for future features)
   difficultyLevel: integer("difficulty_level").default(1),
+  // Entry type: "word" (single word/compound), "phrase" (phrasal verb/expression), "sentence" (proverb/idiom)
+  entryType: text("entry_type").default("word").notNull(),
   // Whether this word is formal register
   isFormal: boolean("is_formal").default(false),
   // Whether this word is active/published

@@ -40,11 +40,6 @@ export default function WordCard({ word }: WordCardProps) {
               )}
             </>
           )}
-          {word.isFormal && (
-            <span className="inline-block px-1.5 py-0.5 bg-purple-100 text-purple-700 text-[10px] font-semibold rounded-full border border-purple-300">
-              Formal
-            </span>
-          )}
         </div>
 
         {/* Translation reveal button */}
@@ -94,29 +89,29 @@ export default function WordCard({ word }: WordCardProps) {
           )}
         </div>
 
-        {/* Difficulty indicator */}
-        {word.difficultyLevel && (
-          <div className="flex justify-center">
-            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-0.5 ${
-              word.difficultyLevel === 1 ? "bg-emerald-100 text-emerald-700 border border-emerald-400" :
-              word.difficultyLevel === 2 ? "bg-sky-100 text-sky-700 border border-sky-400" :
-              word.difficultyLevel === 3 ? "bg-amber-100 text-amber-700 border border-amber-400" :
-              word.difficultyLevel === 4 ? "bg-orange-100 text-orange-700 border border-orange-400" :
-              "bg-rose-100 text-rose-700 border border-rose-400"
-            }`}>
-              <span>
-                {word.difficultyLevel === 1 ? "🌱" :
-                 word.difficultyLevel === 2 ? "📘" :
-                 word.difficultyLevel === 3 ? "⭐" :
-                 word.difficultyLevel === 4 ? "🔥" :
-                 "👑"}
+        {/* Consolidated badge row */}
+        {(word.entryType !== "word" || word.isFormal || word.difficultyLevel) && (
+          <div className="flex items-center justify-center gap-1.5 text-[10px] font-semibold">
+            {word.entryType === "phrase" && <span className="text-persian-gold-600">Phrase</span>}
+            {word.entryType === "sentence" && <span className="text-teal-600">Sentence</span>}
+            {(word.entryType !== "word" && (word.isFormal || word.difficultyLevel)) && <span className="text-persian-red-300">·</span>}
+            {word.isFormal && <span className="text-persian-red-600">Formal</span>}
+            {word.isFormal && word.difficultyLevel && <span className="text-persian-red-300">·</span>}
+            {word.difficultyLevel && (
+              <span className={`font-bold ${
+                word.difficultyLevel === 1 ? "text-emerald-600" :
+                word.difficultyLevel === 2 ? "text-sky-600" :
+                word.difficultyLevel === 3 ? "text-amber-600" :
+                word.difficultyLevel === 4 ? "text-orange-600" :
+                "text-rose-600"
+              }`}>
+                {word.difficultyLevel === 1 ? "🌱 Beginner" :
+                 word.difficultyLevel === 2 ? "📘 Elementary" :
+                 word.difficultyLevel === 3 ? "⭐ Intermediate" :
+                 word.difficultyLevel === 4 ? "🔥 Advanced" :
+                 "👑 Expert"}
               </span>
-              {word.difficultyLevel === 1 ? "Beginner" :
-               word.difficultyLevel === 2 ? "Elementary" :
-               word.difficultyLevel === 3 ? "Intermediate" :
-               word.difficultyLevel === 4 ? "Advanced" :
-               "Expert"}
-            </span>
+            )}
           </div>
         )}
       </div>

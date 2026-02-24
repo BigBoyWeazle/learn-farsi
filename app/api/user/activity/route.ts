@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { userLessonProgress, userGrammarProgress, userProgress } from "@/db/schema";
-import { eq, count, sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 /**
@@ -20,40 +20,51 @@ export async function GET() {
 
     // Run all queries in parallel
     const [vocabResult, grammarResult, practiceResult] = await Promise.all([
-      // Completed vocabulary lessons
+      // Vocab lesson data: total attempts and unique completions
       db
-        .select({ count: count() })
+        .select({
+          completed: sql<number>`COALESCE(SUM(CASE WHEN ${userLessonProgress.isCompleted} = true THEN 1 ELSE 0 END), 0)`,
+          totalAttempts: sql<number>`COALESCE(SUM(${userLessonProgress.attempts}), 0)`,
+        })
         .from(userLessonProgress)
-        .where(
-          sql`${userLessonProgress.userId} = ${userId} AND ${userLessonProgress.isCompleted} = true`
-        ),
+        .where(eq(userLessonProgress.userId, userId)),
 
-      // Completed grammar lessons
+      // Grammar lesson data: total attempts and unique completions
       db
-        .select({ count: count() })
+        .select({
+          completed: sql<number>`COALESCE(SUM(CASE WHEN ${userGrammarProgress.isCompleted} = true THEN 1 ELSE 0 END), 0)`,
+          totalAttempts: sql<number>`COALESCE(SUM(${userGrammarProgress.attempts}), 0)`,
+        })
         .from(userGrammarProgress)
-        .where(
-          sql`${userGrammarProgress.userId} = ${userId} AND ${userGrammarProgress.isCompleted} = true`
-        ),
+        .where(eq(userGrammarProgress.userId, userId)),
 
-      // Total practice sessions (unique words reviewed = rows in userProgress)
+      // Total word reviews (for estimating daily practice sessions)
       db
         .select({ totalReviews: sql<number>`COALESCE(SUM(${userProgress.reviewCount}), 0)` })
         .from(userProgress)
         .where(eq(userProgress.userId, userId)),
     ]);
 
-    const vocabCompleted = vocabResult[0]?.count || 0;
-    const grammarCompleted = grammarResult[0]?.count || 0;
-    const totalPracticeReviews = practiceResult[0]?.totalReviews || 0;
-    // Each daily practice session is 10 words
-    const practiceSessionsCompleted = Math.floor(Number(totalPracticeReviews) / 10);
+    const vocabCompleted = Number(vocabResult[0]?.completed || 0);
+    const vocabAttempts = Number(vocabResult[0]?.totalAttempts || 0);
+    const grammarCompleted = Number(grammarResult[0]?.completed || 0);
+    const grammarAttempts = Number(grammarResult[0]?.totalAttempts || 0);
+    const totalPracticeReviews = Number(practiceResult[0]?.totalReviews || 0);
+    // Estimate daily practice sessions (10 words each)
+    const practiceSessionsCompleted = Math.floor(totalPracticeReviews / 10);
+
+    // Total lessons completed = all lesson attempts + daily practice sessions
+    // This counts every time the user practiced across all activity types
+    const totalLessonsCompleted = vocabAttempts + grammarAttempts + practiceSessionsCompleted;
 
     return NextResponse.json({
       vocabCompleted,
       grammarCompleted,
+      vocabAttempts,
+      grammarAttempts,
       practiceSessionsCompleted,
-      totalActivities: vocabCompleted + grammarCompleted + practiceSessionsCompleted,
+      totalLessonsCompleted,
+      totalActivities: totalLessonsCompleted + practiceSessionsCompleted,
     });
   } catch (error) {
     console.error("Error fetching user activity:", error);

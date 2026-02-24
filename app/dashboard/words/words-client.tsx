@@ -17,9 +17,16 @@ const difficultyLevels = [
   { level: 5, name: "Expert", emoji: "👑", colors: "bg-rose-100 text-rose-700 border-rose-400", activeColors: "bg-rose-500 text-white border-rose-600" },
 ];
 
+const entryTypes = [
+  { type: "word", name: "Words", colors: "bg-persian-red-100 text-persian-red-700 border-persian-red-300", activeColors: "bg-persian-red-500 text-white border-persian-red-600" },
+  { type: "phrase", name: "Phrases", colors: "bg-amber-100 text-amber-700 border-persian-gold-400", activeColors: "bg-persian-gold-500 text-white border-persian-gold-600" },
+  { type: "sentence", name: "Sentences", colors: "bg-teal-100 text-teal-700 border-teal-400", activeColors: "bg-teal-500 text-white border-teal-600" },
+] as const;
+
 export default function WordsClient({ words }: WordsClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLevel, setSelectedLevel] = useState<number | null>(null);
+  const [selectedType, setSelectedType] = useState<string | null>(null);
 
   // Filter and sort words alphabetically
   const filteredWords = useMemo(() => {
@@ -28,6 +35,11 @@ export default function WordsClient({ words }: WordsClientProps) {
     // Filter by difficulty level
     if (selectedLevel !== null) {
       result = result.filter((word) => word.difficultyLevel === selectedLevel);
+    }
+
+    // Filter by entry type
+    if (selectedType !== null) {
+      result = result.filter((word) => word.entryType === selectedType);
     }
 
     // Filter by search query
@@ -49,7 +61,7 @@ export default function WordsClient({ words }: WordsClientProps) {
     });
 
     return result;
-  }, [words, searchQuery, selectedLevel]);
+  }, [words, searchQuery, selectedLevel, selectedType]);
 
   // Count words per level
   const levelCounts = useMemo(() => {
@@ -62,9 +74,20 @@ export default function WordsClient({ words }: WordsClientProps) {
     return counts;
   }, [words]);
 
+  // Count words per entry type
+  const typeCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    words.forEach((word) => {
+      const type = word.entryType || "word";
+      counts[type] = (counts[type] || 0) + 1;
+    });
+    return counts;
+  }, [words]);
+
   const clearFilters = () => {
     setSearchQuery("");
     setSelectedLevel(null);
+    setSelectedType(null);
   };
 
   return (
@@ -92,7 +115,7 @@ export default function WordsClient({ words }: WordsClientProps) {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 px-4 py-2 border-2 border-persian-red-300 rounded-lg focus:outline-none focus:border-persian-red-500 text-persian-red-700 placeholder:text-persian-red-400"
           />
-          {(searchQuery || selectedLevel !== null) && (
+          {(searchQuery || selectedLevel !== null || selectedType !== null) && (
             <button
               onClick={clearFilters}
               className="px-4 py-2 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-semibold"
@@ -101,20 +124,21 @@ export default function WordsClient({ words }: WordsClientProps) {
             </button>
           )}
         </div>
-        {(searchQuery || selectedLevel !== null) && (
+        {(searchQuery || selectedLevel !== null || selectedType !== null) && (
           <p className="mt-2 text-sm text-persian-red-600 font-medium">
             Showing {filteredWords.length} word{filteredWords.length !== 1 ? "s" : ""} (sorted A-Z)
           </p>
         )}
       </div>
 
-      {/* Clickable Difficulty Filter */}
-      <div className="bg-persian-beige-200 border-2 border-persian-red-500 rounded-lg p-4 shadow-lg">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm font-semibold text-persian-red-500">Filter by Level:</span>
+      {/* Filters */}
+      <div className="bg-persian-beige-200 border-2 border-persian-red-500 rounded-lg p-3 shadow-lg space-y-2">
+        {/* Level Filter */}
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className="text-xs font-semibold text-persian-red-500">Level:</span>
           <button
             onClick={() => setSelectedLevel(null)}
-            className={`px-3 py-1 rounded-full text-xs font-bold border-2 transition-colors ${
+            className={`px-2 py-0.5 rounded-full text-[10px] font-bold border transition-colors ${
               selectedLevel === null
                 ? "bg-persian-red-500 text-white border-persian-red-600"
                 : "bg-persian-red-50 text-persian-red-600 border-persian-red-300 hover:bg-persian-red-100"
@@ -126,11 +150,37 @@ export default function WordsClient({ words }: WordsClientProps) {
             <button
               key={level.level}
               onClick={() => setSelectedLevel(selectedLevel === level.level ? null : level.level)}
-              className={`px-3 py-1 rounded-full text-xs font-bold border-2 transition-colors flex items-center gap-1 ${
+              className={`px-2 py-0.5 rounded-full text-[10px] font-bold border transition-colors flex items-center gap-0.5 ${
                 selectedLevel === level.level ? level.activeColors : level.colors
               } hover:opacity-80`}
             >
               <span>{level.emoji}</span> {level.name} ({levelCounts[level.level] || 0})
+            </button>
+          ))}
+        </div>
+
+        {/* Type Filter */}
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className="text-xs font-semibold text-persian-red-500">Type:</span>
+          <button
+            onClick={() => setSelectedType(null)}
+            className={`px-2 py-0.5 rounded-full text-[10px] font-bold border transition-colors ${
+              selectedType === null
+                ? "bg-persian-red-500 text-white border-persian-red-600"
+                : "bg-persian-red-50 text-persian-red-600 border-persian-red-300 hover:bg-persian-red-100"
+            }`}
+          >
+            All
+          </button>
+          {entryTypes.map((et) => (
+            <button
+              key={et.type}
+              onClick={() => setSelectedType(selectedType === et.type ? null : et.type)}
+              className={`px-2 py-0.5 rounded-full text-[10px] font-bold border transition-colors ${
+                selectedType === et.type ? et.activeColors : et.colors
+              } hover:opacity-80`}
+            >
+              {et.name} ({typeCounts[et.type] || 0})
             </button>
           ))}
         </div>
@@ -140,8 +190,8 @@ export default function WordsClient({ words }: WordsClientProps) {
       {filteredWords.length === 0 ? (
         <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-8 text-center">
           <p className="text-persian-red-700 font-medium">
-            {searchQuery || selectedLevel !== null
-              ? "No words found with current filters. Try adjusting your search or level filter."
+            {searchQuery || selectedLevel !== null || selectedType !== null
+              ? "No words found with current filters. Try adjusting your search or filters."
               : "No vocabulary words available yet. Check back soon!"
             }
           </p>
