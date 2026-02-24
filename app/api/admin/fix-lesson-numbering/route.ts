@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 import { db } from "@/db";
 import { lessons } from "@/db/schema";
 import { eq, asc } from "drizzle-orm";
@@ -8,6 +9,11 @@ import { eq, asc } from "drizzle-orm";
  * Renumber all lessons sequentially and ensure consistent "Lesson X: Name" format
  */
 export async function POST() {
+  const session = await auth();
+  if (!session?.user?.email || session.user.email !== process.env.ADMIN_EMAIL) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     // Get all lessons ordered by sortOrder
     const allLessons = await db

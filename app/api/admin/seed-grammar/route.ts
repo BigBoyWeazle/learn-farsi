@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 import { db } from "@/db";
 import { grammarLessons, grammarExercises } from "@/db/schema";
 
@@ -8,6 +9,11 @@ import { grammarLessons, grammarExercises } from "@/db/schema";
  * All exercises use PHONETIC Farsi (Latin script) for questions and answers
  */
 export async function POST() {
+  const session = await auth();
+  if (!session?.user?.email || session.user.email !== process.env.ADMIN_EMAIL) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     // Check if lessons already exist
     const existingLessons = await db.select().from(grammarLessons).limit(1);

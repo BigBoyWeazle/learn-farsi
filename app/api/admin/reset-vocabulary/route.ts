@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 import { db } from "@/db";
 import { lessons, userLessonProgress, vocabulary, vocabularyCategories, wordCategories, userProgress } from "@/db/schema";
 
@@ -8,6 +9,11 @@ import { lessons, userLessonProgress, vocabulary, vocabularyCategories, wordCate
  * Use this to start fresh before re-seeding
  */
 export async function POST() {
+  const session = await auth();
+  if (!session?.user?.email || session.user.email !== process.env.ADMIN_EMAIL) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     // Delete in order of dependencies (most dependent first)
 

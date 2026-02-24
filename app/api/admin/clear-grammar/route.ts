@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 import { db } from "@/db";
 import { grammarLessons, grammarExercises, userGrammarProgress } from "@/db/schema";
 
@@ -7,6 +8,11 @@ import { grammarLessons, grammarExercises, userGrammarProgress } from "@/db/sche
  * Clear all grammar data to allow re-seeding
  */
 export async function POST() {
+  const session = await auth();
+  if (!session?.user?.email || session.user.email !== process.env.ADMIN_EMAIL) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     // Delete in order due to foreign key constraints
     await db.delete(userGrammarProgress);

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 
@@ -7,6 +8,11 @@ import { sql } from "drizzle-orm";
  * Create grammar tables if they don't exist
  */
 export async function POST() {
+  const session = await auth();
+  if (!session?.user?.email || session.user.email !== process.env.ADMIN_EMAIL) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     // Create grammar_lessons table
     await db.execute(sql`

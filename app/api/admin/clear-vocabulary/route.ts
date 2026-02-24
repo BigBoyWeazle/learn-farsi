@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 import { db } from "@/db";
 import { lessons, userLessonProgress } from "@/db/schema";
 
@@ -7,6 +8,11 @@ import { lessons, userLessonProgress } from "@/db/schema";
  * Delete all vocabulary lessons (but keep categories and words)
  */
 export async function POST() {
+  const session = await auth();
+  if (!session?.user?.email || session.user.email !== process.env.ADMIN_EMAIL) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     // First delete user progress for lessons
     await db.delete(userLessonProgress);
