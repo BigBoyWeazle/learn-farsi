@@ -5,6 +5,100 @@ import { blogPosts, type BlogPost } from "@/lib/blog-data";
 import { Footer } from "@/components/footer";
 import { BlogViewCounter } from "@/components/blog-view-counter";
 
+function renderInlineMarkdown(text: string): React.ReactNode[] {
+  // Parse bold, links, and plain text
+  const parts: React.ReactNode[] = [];
+  // Regex matches **bold**, [text](url), or plain text segments
+  const regex = /\*\*(.+?)\*\*|\[(.+?)\]\((.+?)\)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    // Add plain text before this match
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    if (match[1]) {
+      // Bold
+      parts.push(<strong key={match.index} className="font-semibold">{match[1]}</strong>);
+    } else if (match[2] && match[3]) {
+      // Link
+      parts.push(
+        <Link key={match.index} href={match[3]} className="text-persian-red-500 dark:text-persian-gold-400 underline hover:no-underline">
+          {match[2]}
+        </Link>
+      );
+    }
+    lastIndex = match.index + match[0].length;
+  }
+  // Remaining plain text
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+  return parts;
+}
+
+function renderBlock(paragraph: string, pIndex: number): React.ReactNode {
+  const lines = paragraph.split("\n");
+  // Check if this block is a list (all lines start with - )
+  const isAllList = lines.every((l) => l.startsWith("- "));
+  // Check if it's a mixed block with some list items
+  const hasListItems = lines.some((l) => l.startsWith("- "));
+
+  if (isAllList) {
+    return (
+      <ul key={pIndex} className="list-disc list-inside space-y-1.5">
+        {lines.map((line, i) => (
+          <li key={i}>{renderInlineMarkdown(line.slice(2))}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  if (hasListItems) {
+    // Mixed block: render non-list lines as text, list lines as a list
+    const elements: React.ReactNode[] = [];
+    let currentList: string[] = [];
+
+    const flushList = () => {
+      if (currentList.length > 0) {
+        elements.push(
+          <ul key={`list-${elements.length}`} className="list-disc list-inside space-y-1.5">
+            {currentList.map((line, i) => (
+              <li key={i}>{renderInlineMarkdown(line.slice(2))}</li>
+            ))}
+          </ul>
+        );
+        currentList = [];
+      }
+    };
+
+    for (const line of lines) {
+      if (line.startsWith("- ")) {
+        currentList.push(line);
+      } else {
+        flushList();
+        elements.push(<p key={`p-${elements.length}`}>{renderInlineMarkdown(line)}</p>);
+      }
+    }
+    flushList();
+
+    return <div key={pIndex} className="space-y-2">{elements}</div>;
+  }
+
+  // Plain paragraph (may contain \n for soft breaks)
+  return (
+    <p key={pIndex}>
+      {lines.map((line, i) => (
+        <span key={i}>
+          {i > 0 && <br />}
+          {renderInlineMarkdown(line)}
+        </span>
+      ))}
+    </p>
+  );
+}
+
 function getReadingTime(post: BlogPost): number {
   const totalWords = post.sections.reduce(
     (sum, s) => sum + s.content.split(/\s+/).length,
@@ -168,9 +262,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   {section.heading}
                 </h2>
                 <div className="text-persian-red-800 dark:text-persian-beige-200 leading-relaxed space-y-4 text-sm sm:text-base">
-                  {section.content.split("\n\n").map((paragraph, pIndex) => (
-                    <p key={pIndex}>{paragraph}</p>
-                  ))}
+                  {section.content.split("\n\n").map((paragraph, pIndex) =>
+                    renderBlock(paragraph, pIndex)
+                  )}
                 </div>
               </div>
             ))}
