@@ -255,7 +255,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </p>
           </header>
 
-          <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-6 sm:p-8 shadow-xl border-2 border-persian-red-300 dark:border-persian-red-700">
+          <div className="bg-white/40 dark:bg-persian-beige-800/40 backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-persian-red-300/40 dark:border-persian-red-700/40 ring-1 ring-white/20">
             {post.sections.map((section, index) => (
               <div key={index} className={index > 0 ? "mt-8" : ""}>
                 <h2 className="text-xl sm:text-2xl font-bold text-persian-red-600 dark:text-persian-gold-400 mb-4">
@@ -270,7 +270,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             ))}
           </div>
 
-          <div className="mt-8 bg-persian-red-500 rounded-xl p-6 text-center shadow-lg">
+          <div className="mt-8 bg-persian-red-500/90 backdrop-blur-lg rounded-xl p-6 text-center shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-persian-red-600/50 ring-1 ring-white/10">
             <h3 className="text-xl font-bold text-white mb-2">
               Ready to start learning Farsi?
             </h3>
@@ -279,7 +279,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </p>
             <Link
               href="/dashboard/lessons"
-              className="inline-block px-6 py-3 bg-white text-persian-red-500 rounded-lg font-bold hover:bg-persian-beige-100 transition-colors shadow-md"
+              className="inline-block px-6 py-3 bg-white/90 backdrop-blur-lg text-persian-red-500 rounded-xl font-bold hover:bg-white hover:scale-105 transition-all shadow-[0_4px_24px_rgba(0,0,0,0.1)] hover:shadow-lg border border-white/50 ring-1 ring-white/30"
             >
               Start Learning Free →
             </Link>

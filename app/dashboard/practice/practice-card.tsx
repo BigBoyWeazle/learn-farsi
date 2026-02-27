@@ -94,7 +94,7 @@ export default function PracticeCard({
           </div>
         </div>
         {/* Progress Bar */}
-        <div className="w-full bg-persian-beige-200 rounded-full h-2.5 sm:h-3 border border-persian-red-300">
+        <div className="w-full bg-persian-beige-200/50 backdrop-blur-lg rounded-full h-2.5 sm:h-3 border border-persian-red-300/40 ring-1 ring-white/20">
           <div
             className="bg-persian-red-500 h-full rounded-full transition-all duration-300"
             style={{ width: `${progressPercent}%` }}
@@ -104,7 +104,7 @@ export default function PracticeCard({
 
       {/* Card */}
       <div
-        className={`bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-5 sm:p-12 min-h-[380px] sm:min-h-[500px] flex flex-col justify-between transition-all duration-300 persian-border ${
+        className={`bg-white/40 backdrop-blur-lg border border-persian-red-400/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-5 sm:p-12 min-h-[380px] sm:min-h-[500px] flex flex-col justify-between transition-all duration-300 ring-1 ring-white/20 ${
           showAnimation && cardState === "correct" ? "animate-correct-pulse" : ""
         } ${showAnimation && cardState === "incorrect" ? "animate-shake" : ""}`}
       >
@@ -144,7 +144,7 @@ export default function PracticeCard({
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
                 placeholder="Type answer here..."
-                className="w-full px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg border-2 border-persian-red-300 rounded-lg focus:border-persian-red-500 focus:outline-none transition-colors text-persian-red-700 placeholder:text-persian-red-400"
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg bg-white/50 backdrop-blur-lg border border-persian-red-300/40 rounded-xl focus:border-persian-red-500/60 focus:outline-none focus:ring-2 focus:ring-persian-red-300/30 transition-all text-persian-red-700 placeholder:text-persian-red-400 ring-1 ring-white/20"
                 autoFocus
                 autoComplete="off"
               />
@@ -152,7 +152,7 @@ export default function PracticeCard({
               <button
                 type="submit"
                 disabled={!userAnswer.trim()}
-                className="w-full px-6 sm:px-8 py-3 sm:py-4 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 disabled:bg-persian-beige-300 disabled:text-persian-red-400 disabled:cursor-not-allowed transition-colors text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl"
+                className="w-full px-6 sm:px-8 py-3 sm:py-4 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 disabled:bg-persian-beige-300/50 disabled:text-persian-red-400 disabled:cursor-not-allowed transition-all text-base sm:text-lg font-semibold shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-xl border border-persian-red-600/50 ring-1 ring-white/10"
               >
                 Submit Answer <span className="btn-arrow">→</span>
               </button>
@@ -232,7 +232,7 @@ export default function PracticeCard({
               </div>
 
               {/* Answer Comparison */}
-              <div className="text-center space-y-2 sm:space-y-3 p-3 sm:p-6 bg-persian-beige-100 rounded-lg border-2 border-persian-red-200">
+              <div className="text-center space-y-2 sm:space-y-3 p-3 sm:p-6 bg-persian-beige-100/50 backdrop-blur-lg rounded-xl border border-persian-red-200/40 ring-1 ring-white/20">
                 <div className="grid grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                   <div className="text-left">
                     <span className="text-persian-red-600 font-medium">Your answer:</span>
@@ -279,10 +279,10 @@ export default function PracticeCard({
             <div className="mt-4 sm:mt-8">
               <button
                 onClick={handleContinue}
-                className={`w-full px-6 sm:px-8 py-3 sm:py-4 text-white rounded-lg transition-colors text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl ${
+                className={`w-full px-6 sm:px-8 py-3 sm:py-4 text-white rounded-xl transition-all text-base sm:text-lg font-semibold shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-xl backdrop-blur-lg border ring-1 ring-white/10 ${
                   cardState === "correct"
-                    ? "bg-emerald-500 hover:bg-emerald-600"
-                    : "bg-persian-red-500 hover:bg-persian-red-600"
+                    ? "bg-emerald-500/90 hover:bg-emerald-600 border-emerald-600/50"
+                    : "bg-persian-red-500/90 hover:bg-persian-red-600 border-persian-red-600/50"
                 }`}
               >
                 {cardState === "correct" ? <>Continue <span className="btn-arrow">→</span></> : "Continue (Review Again)"} <span className="text-xs sm:text-sm opacity-75">[Enter]</span>

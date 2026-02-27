@@ -84,7 +84,7 @@ export default function DashboardClient() {
   return (
     <div className="space-y-8">
       {/* Beta Banner */}
-      <div className="bg-persian-gold-100 border-2 border-persian-gold-400 rounded-lg px-4 py-3 flex items-center gap-3">
+      <div className="bg-persian-gold-100/50 backdrop-blur-lg border border-persian-gold-400/50 rounded-xl px-4 py-3 flex items-center gap-3 ring-1 ring-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
         <span className="bg-persian-gold-500 text-white text-xs font-bold px-2 py-1 rounded">BETA</span>
         <p className="text-persian-gold-800 text-sm font-medium">
           Learn Farsi is currently in beta. We&apos;re actively adding new content and features. <Link href="/contact" className="underline hover:text-persian-gold-900">Share your feedback!</Link>
@@ -93,7 +93,7 @@ export default function DashboardClient() {
 
       {/* Guest Sign-In Banner */}
       {isGuest && (
-        <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 text-white rounded-xl px-4 py-3 sm:px-5 sm:py-4 shadow-xl border-3 border-persian-red-700">
+        <div className="bg-gradient-to-r from-persian-red-500/90 to-persian-red-600/90 backdrop-blur-lg text-white rounded-xl px-4 py-3 sm:px-5 sm:py-4 shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-persian-red-600/50 ring-1 ring-white/10">
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
               <h3 className="text-sm sm:text-base font-bold">Save your progress!</h3>
@@ -145,7 +145,7 @@ export default function DashboardClient() {
         const xpToNext = getXPToNextLevel(userStats.totalXP);
 
         return (
-          <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-xl shadow-xl p-4 sm:p-5 md:p-7 text-white border-2 border-persian-red-700">
+          <div className="bg-gradient-to-r from-persian-red-500/90 to-persian-red-600/90 backdrop-blur-lg rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] p-4 sm:p-5 md:p-7 text-white border border-persian-red-600/50 ring-1 ring-white/10">
             <div className="flex flex-col md:flex-row md:items-center gap-4 sm:gap-5 md:gap-6">
               {/* Current Title */}
               <div className="flex-1">
@@ -197,7 +197,7 @@ export default function DashboardClient() {
       {/* Progress Stats - 4 compact cards */}
       {!loading && userStats && (
         <div className="grid grid-cols-4 gap-1.5 sm:gap-3">
-          <div className="bg-white border-2 border-persian-red-500 rounded-lg p-1.5 sm:p-3 shadow-lg">
+          <div className="bg-white/40 backdrop-blur-lg border border-persian-red-400/40 rounded-xl p-1.5 sm:p-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-white/30 transition-all hover:scale-[1.05] hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:bg-white/55">
             <div className="flex items-center gap-1 sm:gap-2">
               <span className="text-sm sm:text-xl">🔥</span>
               <div>
@@ -208,7 +208,7 @@ export default function DashboardClient() {
               </div>
             </div>
           </div>
-          <div className="bg-white border-2 border-persian-gold-500 rounded-lg p-1.5 sm:p-3 shadow-lg">
+          <div className="bg-white/40 backdrop-blur-lg border border-persian-gold-400/40 rounded-xl p-1.5 sm:p-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-white/30 transition-all hover:scale-[1.05] hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:bg-white/55">
             <div className="flex items-center gap-1 sm:gap-2">
               <span className="text-sm sm:text-xl">🏆</span>
               <div>
@@ -219,7 +219,7 @@ export default function DashboardClient() {
               </div>
             </div>
           </div>
-          <div className="bg-white border-2 border-[#4aa6a6] rounded-lg p-1.5 sm:p-3 shadow-lg">
+          <div className="bg-white/40 backdrop-blur-lg border border-[#4aa6a6]/40 rounded-xl p-1.5 sm:p-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-white/30 transition-all hover:scale-[1.05] hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:bg-white/55">
             <div className="flex items-center gap-1 sm:gap-2">
               <span className="text-sm sm:text-xl">✅</span>
               <div>
@@ -230,7 +230,7 @@ export default function DashboardClient() {
               </div>
             </div>
           </div>
-          <div className="bg-white border-2 border-persian-red-500 rounded-lg p-1.5 sm:p-3 shadow-lg">
+          <div className="bg-white/40 backdrop-blur-lg border border-persian-red-400/40 rounded-xl p-1.5 sm:p-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-white/30 transition-all hover:scale-[1.05] hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:bg-white/55">
             <div className="flex items-center gap-1 sm:gap-2">
               <span className="text-sm sm:text-xl">⭐</span>
               <div>
@@ -248,7 +248,7 @@ export default function DashboardClient() {
       <div className="grid grid-cols-3 gap-2 sm:gap-4">
         <Link
           href="/dashboard/lessons"
-          className="bg-persian-red-500 hover:bg-persian-red-600 text-white rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-4 sm:py-3 shadow-lg transition-all hover:shadow-xl border-2 border-persian-red-700"
+          className="bg-persian-red-500/85 hover:bg-persian-red-500/95 backdrop-blur-lg text-white rounded-xl px-3 py-1.5 sm:px-4 sm:py-3 shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:scale-[1.03] border border-persian-red-600/50 ring-1 ring-white/10"
         >
           <div className="flex items-center gap-2.5">
             <div className="w-6 h-6 sm:w-7 sm:h-7 overflow-hidden flex-shrink-0"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
@@ -260,7 +260,7 @@ export default function DashboardClient() {
         </Link>
         <Link
           href="/dashboard/grammar"
-          className="bg-persian-gold-500 hover:bg-persian-gold-600 text-white rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-4 sm:py-3 shadow-lg transition-all hover:shadow-xl border-2 border-persian-gold-700"
+          className="bg-persian-gold-500/85 hover:bg-persian-gold-500/95 backdrop-blur-lg text-white rounded-xl px-3 py-1.5 sm:px-4 sm:py-3 shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:scale-[1.03] border border-persian-gold-600/50 ring-1 ring-white/10"
         >
           <div className="flex items-center gap-2.5">
             <div className="w-6 h-6 sm:w-7 sm:h-7 overflow-hidden flex-shrink-0"><Image src="/bookicon.png" alt="Book" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
@@ -272,7 +272,7 @@ export default function DashboardClient() {
         </Link>
         <Link
           href="/dashboard/alphabet"
-          className="bg-[#4aa6a6] hover:bg-[#3d8a8a] text-white rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-4 sm:py-3 shadow-lg transition-all hover:shadow-xl border-2 border-[#3d8a8a]"
+          className="bg-[#4aa6a6]/85 hover:bg-[#4aa6a6]/95 backdrop-blur-lg text-white rounded-xl px-3 py-1.5 sm:px-4 sm:py-3 shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:scale-[1.03] border border-[#3d8a8a]/50 ring-1 ring-white/10"
         >
           <div className="flex items-center gap-2.5">
             <div className="w-6 h-6 sm:w-7 sm:h-7 overflow-hidden flex-shrink-0"><Image src="/pencilicon.png" alt="Alphabet" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
@@ -286,7 +286,7 @@ export default function DashboardClient() {
 
       {/* Lessons CTA */}
       {!loading && nextLessonId && (
-        <div className="bg-persian-red-500 rounded-xl shadow-xl px-3 py-2.5 sm:px-4 sm:py-3 text-white border-2 border-persian-red-700">
+        <div className="bg-persian-red-500/90 backdrop-blur-lg rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] px-3 py-2.5 sm:px-4 sm:py-3 text-white border border-persian-red-600/50 ring-1 ring-white/10">
           <div className="flex items-center justify-between gap-3">
             <div className="flex-1">
               <h3 className="text-sm sm:text-base font-bold mb-0.5">
@@ -297,10 +297,11 @@ export default function DashboardClient() {
               </p>
               <Link
                 href={`/dashboard/lessons/${nextLessonId}`}
-                className="inline-flex items-center px-3 py-1.5 bg-persian-beige-200 text-persian-red-500 rounded-lg hover:bg-white transition-colors font-bold text-xs sm:text-sm shadow-md"
+                className="group inline-flex items-center px-3 py-1.5 bg-persian-beige-200 text-persian-red-500 rounded-lg hover:bg-white hover:scale-[1.05] transition-all font-bold text-xs sm:text-sm shadow-md hover:shadow-lg"
               >
                 <span className="inline-block w-4 h-4 overflow-hidden align-middle mr-1.5"><Image src="/multiplebooks_icon.png" alt="Books" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
                 Continue Next Lesson
+                <span className="ml-1 inline-block transition-transform group-hover:translate-x-0.5">&rarr;</span>
               </Link>
             </div>
             <div className="hidden md:block w-12 h-12 overflow-hidden flex-shrink-0"><Image src="/bookicon.png" alt="Book" width={160} height={160} className="w-full h-full object-cover scale-125" /></div>
@@ -309,7 +310,7 @@ export default function DashboardClient() {
       )}
 
       {/* Practice CTA */}
-      <div className="bg-persian-beige-200 rounded-xl shadow-xl px-3 py-2.5 sm:px-4 sm:py-3 border-2 border-persian-red-500">
+      <div className="bg-persian-beige-200/50 backdrop-blur-lg rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] px-3 py-2.5 sm:px-4 sm:py-3 border border-persian-red-400/40 ring-1 ring-white/30">
         <div className="flex items-center justify-between gap-3">
           <div className="flex-1">
             <h3 className="text-sm sm:text-base font-bold mb-0.5 text-persian-red-500">
@@ -320,10 +321,11 @@ export default function DashboardClient() {
             </p>
             <Link
               href="/dashboard/practice"
-              className="inline-flex items-center px-3 py-1.5 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold text-xs sm:text-sm shadow-md"
+              className="group inline-flex items-center px-3 py-1.5 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 hover:scale-[1.05] transition-all font-bold text-xs sm:text-sm shadow-md hover:shadow-lg"
             >
               <span className="inline-block w-4 h-4 overflow-hidden align-middle mr-1.5"><Image src="/targeticon.png" alt="Target" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
               Start Daily Practice
+              <span className="ml-1 inline-block transition-transform group-hover:translate-x-0.5">&rarr;</span>
             </Link>
           </div>
           <div className="hidden md:block w-12 h-12 overflow-hidden flex-shrink-0"><Image src="/targeticon.png" alt="Target" width={160} height={160} className="w-full h-full object-cover scale-125" /></div>

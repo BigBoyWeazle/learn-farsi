@@ -127,7 +127,7 @@ export default function AlphabetPracticePage() {
     return (
       <div className="min-h-screen bg-persian-beige-200 dark:bg-[#654321] py-8 px-4">
         <div className="max-w-md mx-auto">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 text-center">
+          <div className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-lg rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] p-8 text-center border border-white/40 dark:border-gray-700/40 ring-1 ring-white/20">
             <div className="text-6xl mb-4">
               {accuracy >= 80 ? "🎉" : accuracy >= 60 ? "👍" : "💪"}
             </div>
@@ -138,7 +138,7 @@ export default function AlphabetPracticePage() {
               You practiced {SESSION_SIZE} letters
             </p>
 
-            <div className="bg-persian-beige-50 dark:bg-gray-700 rounded-xl p-6 mb-6">
+            <div className="bg-persian-beige-50/50 dark:bg-gray-700/50 backdrop-blur-lg rounded-xl p-6 mb-6 border border-persian-beige-200/40 dark:border-gray-600/40 ring-1 ring-white/20">
               <div className="text-4xl font-bold text-persian-red-600 dark:text-persian-gold-400 mb-2">
                 {accuracy}%
               </div>
@@ -159,13 +159,13 @@ export default function AlphabetPracticePage() {
             <div className="space-y-3">
               <button
                 onClick={startNewSession}
-                className="w-full bg-persian-red-600 hover:bg-persian-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                className="w-full bg-persian-red-600/90 backdrop-blur-lg hover:bg-persian-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-persian-red-700/50 ring-1 ring-white/10"
               >
                 Practice Again
               </button>
               <Link
                 href="/dashboard/alphabet"
-                className="block w-full bg-persian-beige-100 dark:bg-gray-700 hover:bg-persian-beige-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold py-3 px-6 rounded-lg transition-colors"
+                className="block w-full bg-persian-beige-100/50 dark:bg-gray-700/50 backdrop-blur-lg hover:bg-persian-beige-200/60 dark:hover:bg-gray-600/60 text-gray-700 dark:text-gray-300 font-semibold py-3 px-6 rounded-xl transition-all border border-persian-beige-200/40 dark:border-gray-600/40 ring-1 ring-white/20"
               >
                 View All Letters
               </Link>
@@ -203,7 +203,7 @@ export default function AlphabetPracticePage() {
             <span>{sessionStats.total} of {SESSION_SIZE}</span>
             <span>{sessionStats.correct} correct</span>
           </div>
-          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div className="w-full bg-gray-200/50 dark:bg-gray-700/50 backdrop-blur-lg rounded-full h-2 ring-1 ring-white/20">
             <div
               className="bg-persian-red-600 h-2 rounded-full transition-all duration-300"
               style={{ width: `${(sessionStats.total / SESSION_SIZE) * 100}%` }}
@@ -223,7 +223,7 @@ export default function AlphabetPracticePage() {
 
         {/* Question Card */}
         {currentLetter && (
-          <div className={`bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-6 transition-all duration-300 ${
+          <div className={`bg-white/40 dark:bg-gray-800/40 backdrop-blur-lg rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] p-8 mb-6 transition-all duration-300 border border-white/40 dark:border-gray-700/40 ring-1 ring-white/20 ${
             showResult && isCorrect ? "ring-4 ring-green-400 animate-pulse" : ""
           } ${
             showResult && !isCorrect ? "ring-4 ring-red-400 animate-shake" : ""
@@ -261,15 +261,15 @@ export default function AlphabetPracticePage() {
             const isSelected = selectedAnswer === option.letter;
             const isCorrectAnswer = option.letter === currentLetter?.letter;
 
-            let buttonClass = "bg-white dark:bg-gray-800 hover:bg-persian-beige-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white";
+            let buttonClass = "bg-white/40 dark:bg-gray-800/40 hover:bg-white/60 dark:hover:bg-gray-700/60 text-gray-900 dark:text-white border border-white/40 dark:border-gray-700/40 ring-1 ring-white/20";
 
             if (showResult) {
               if (isCorrectAnswer) {
-                buttonClass = "bg-green-500 text-white";
+                buttonClass = "bg-green-500/90 text-white border border-green-600/50 ring-1 ring-white/10";
               } else if (isSelected && !isCorrect) {
-                buttonClass = "bg-red-500 text-white";
+                buttonClass = "bg-red-500/90 text-white border border-red-600/50 ring-1 ring-white/10";
               } else {
-                buttonClass = "bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500";
+                buttonClass = "bg-gray-100/40 dark:bg-gray-700/40 text-gray-400 dark:text-gray-500 border border-gray-200/40 dark:border-gray-600/40";
               }
             }
 
@@ -278,7 +278,7 @@ export default function AlphabetPracticePage() {
                 key={option.letter}
                 onClick={() => handleAnswer(option)}
                 disabled={showResult}
-                className={`p-4 rounded-xl shadow-md transition-all duration-200 ${buttonClass} ${
+                className={`p-4 rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] backdrop-blur-lg transition-all duration-200 ${buttonClass} ${
                   !showResult ? "hover:scale-105" : ""
                 }`}
               >
@@ -314,7 +314,7 @@ export default function AlphabetPracticePage() {
 
             {/* Show example word */}
             {currentLetter && (
-              <div className="bg-persian-beige-50 dark:bg-gray-700 rounded-lg p-3 mb-4">
+              <div className="bg-persian-beige-50/50 dark:bg-gray-700/50 backdrop-blur-lg rounded-xl p-3 mb-4 border border-persian-beige-200/40 dark:border-gray-600/40 ring-1 ring-white/20">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Example:</p>
                 <p className="text-xl font-bold text-gray-900 dark:text-white" dir="rtl">
                   {currentLetter.example.word}
@@ -331,7 +331,7 @@ export default function AlphabetPracticePage() {
 
             <button
               onClick={nextQuestion}
-              className="w-full bg-persian-red-600 hover:bg-persian-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+              className="w-full bg-persian-red-600/90 backdrop-blur-lg hover:bg-persian-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-persian-red-700/50 ring-1 ring-white/10"
             >
               {sessionStats.total >= SESSION_SIZE ? "See Results" : "Next Letter"}
             </button>

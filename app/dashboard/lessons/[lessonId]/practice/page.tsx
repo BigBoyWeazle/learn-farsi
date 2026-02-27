@@ -121,7 +121,7 @@ export default function LessonPracticePage() {
   if (words.length === 0) {
     return (
       <div className="max-w-2xl mx-auto mt-12">
-        <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-8 text-center">
+        <div className="bg-white/40 backdrop-blur-lg border border-persian-red-400/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-xl p-8 text-center ring-1 ring-white/20">
           <div className="w-16 h-16 mx-auto mb-4 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
           <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
             No Words Available
@@ -131,7 +131,7 @@ export default function LessonPracticePage() {
           </p>
           <button
             onClick={() => router.push("/dashboard/lessons")}
-            className="px-6 py-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-semibold"
+            className="px-6 py-3 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all font-semibold shadow-lg border border-persian-red-600/50 ring-1 ring-white/10"
           >
             Back to Lessons
           </button>
@@ -144,7 +144,7 @@ export default function LessonPracticePage() {
     <div className="py-8">
       {/* Progress indicator showing it's a lesson */}
       <div className="max-w-2xl mx-auto mb-4">
-        <div className="bg-persian-beige-200 border-2 border-persian-red-500 rounded-lg px-4 py-2 text-center">
+        <div className="bg-persian-beige-200/50 backdrop-blur-lg border border-persian-red-400/40 rounded-xl px-4 py-2 text-center ring-1 ring-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
           <p className="text-sm text-persian-red-700 font-semibold">
             <span className="inline-block w-5 h-5 overflow-hidden align-middle"><Image src="/multiplebooks_icon.png" alt="Books" width={40} height={40} className="w-full h-full object-cover scale-125" /></span> Lesson Practice Session
           </p>

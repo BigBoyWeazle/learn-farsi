@@ -21,7 +21,6 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
   const isGuest = !user;
   const displayName = user?.name || user?.email?.split("@")[0] || "Learner";
 
-  // Fetch user stats to get level (only for logged-in users)
   useEffect(() => {
     if (isGuest) return;
     fetch("/api/user/stats")
@@ -36,211 +35,206 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
   }, [isGuest]);
 
   return (
-    <header className="bg-white border-b-3 border-persian-red-500 shadow-md relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-12">
-          {/* Logo */}
-          <Link href="/dashboard" className="flex items-center gap-2 z-10">
-            <Image
-              src="/pomegranatedrawn.png"
-              alt="Learn Farsi"
-              width={30}
-              height={30}
-            />
-            <span className="text-base font-bold text-persian-red-500 hidden sm:inline">
-              Learn Farsi
-            </span>
-          </Link>
+    <div className="px-4 sm:px-6 lg:px-8 pt-3">
+      <header className="bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.08)] rounded-2xl relative max-w-5xl mx-auto ring-1 ring-white/20">
+        <div className="px-4 sm:px-5">
+          <div className="flex justify-between items-center h-10">
+            {/* Logo — links to dashboard */}
+            <Link href="/dashboard" className="flex items-center gap-1.5 z-10 hover:scale-110 transition-transform duration-200">
+              <Image
+                src="/pomegranatedrawn.png"
+                alt="Dashboard"
+                width={22}
+                height={22}
+              />
+              <span className="text-xs font-bold text-persian-red-500 hidden sm:inline">
+                Dashboard
+              </span>
+            </Link>
 
-          {/* Navigation — centered absolutely */}
-          <nav className="hidden md:flex items-center gap-5 absolute left-1/2 -translate-x-1/2">
-            <Link
-              href="/dashboard"
-              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
-            >
-              Dashboard
-            </Link>
-            <Link
-              href="/dashboard/lessons"
-              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
-            >
-              Lessons
-            </Link>
-            <Link
-              href="/dashboard/grammar"
-              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
-            >
-              Grammar
-            </Link>
-            <Link
-              href="/dashboard/practice"
-              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
-            >
-              Practice
-            </Link>
-            <Link
-              href="/dashboard/alphabet"
-              className="text-sm text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
-            >
-              Alphabet
-            </Link>
-          </nav>
-
-          {/* Guest: Sign In button */}
-          {isGuest && (
-            <div className="flex items-center gap-3">
-              {/* Mobile menu button for guests */}
-              <button
-                onClick={() => setShowMenu(!showMenu)}
-                className="md:hidden flex items-center px-2 py-1.5 rounded-lg hover:bg-persian-beige-100 transition-colors"
-              >
-                <svg className="w-5 h-5 text-persian-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={showMenu ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-                </svg>
-              </button>
+            {/* Navigation — centered */}
+            <nav className="hidden md:flex items-center gap-4 absolute left-1/2 -translate-x-1/2">
               <Link
-                href="/login"
-                className="px-4 py-1.5 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold text-xs shadow-md"
+                href="/dashboard/lessons"
+                className="text-xs text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
               >
-                Sign In
+                Lessons
               </Link>
-            </div>
-          )}
-
-          {/* Logged-in: User Menu */}
-          {!isGuest && (
-            <div className="relative">
-              <button
-                onClick={() => setShowMenu(!showMenu)}
-                className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg hover:bg-persian-beige-100 transition-colors"
+              <Link
+                href="/dashboard/grammar"
+                className="text-xs text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
               >
-                {user.image ? (
-                  <Image
-                    src={user.image}
-                    alt={displayName}
-                    width={26}
-                    height={26}
-                    className="w-[26px] h-[26px] rounded-full object-cover border-2 border-persian-red-400"
-                  />
-                ) : (
-                  <div className="w-[26px] h-[26px] bg-persian-red-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
-                    {displayName[0].toUpperCase()}
+                Grammar
+              </Link>
+              <Link
+                href="/dashboard/practice"
+                className="text-xs text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
+              >
+                Practice
+              </Link>
+              <Link
+                href="/dashboard/alphabet"
+                className="text-xs text-persian-red-700 hover:text-persian-red-500 font-medium transition-colors"
+              >
+                Alphabet
+              </Link>
+            </nav>
+
+            {/* Guest: Sign In button */}
+            {isGuest && (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setShowMenu(!showMenu)}
+                  className="md:hidden flex items-center px-1.5 py-1 rounded-lg hover:bg-persian-beige-100 transition-colors"
+                >
+                  <svg className="w-4 h-4 text-persian-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={showMenu ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+                  </svg>
+                </button>
+                <Link
+                  href="/login"
+                  className="px-3 py-1 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-bold text-[11px] shadow-md"
+                >
+                  Sign In
+                </Link>
+              </div>
+            )}
+
+            {/* Logged-in: User Menu */}
+            {!isGuest && (
+              <div className="relative">
+                <button
+                  onClick={() => setShowMenu(!showMenu)}
+                  className="flex items-center gap-1.5 px-1.5 py-1 rounded-lg hover:bg-persian-beige-100/50 transition-colors"
+                >
+                  {user.image ? (
+                    <Image
+                      src={user.image}
+                      alt={displayName}
+                      width={22}
+                      height={22}
+                      className="w-[22px] h-[22px] rounded-full object-cover border-2 border-persian-red-400"
+                    />
+                  ) : (
+                    <div className="w-[22px] h-[22px] bg-persian-red-500 rounded-full flex items-center justify-center text-white font-bold text-[10px]">
+                      {displayName[0].toUpperCase()}
+                    </div>
+                  )}
+                  <div className="hidden sm:flex flex-col items-start">
+                    <span className="text-xs text-persian-red-700 font-medium">
+                      {displayName}
+                    </span>
+                    {userLevel && (
+                      <span className="text-[9px] text-persian-gold-600 font-semibold leading-tight">
+                        Lvl {userLevel.level} {userLevel.title}
+                      </span>
+                    )}
+                  </div>
+                  <svg
+                    className={`w-3 h-3 text-persian-red-500 transition-transform ${showMenu ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Dropdown Menu */}
+                {showMenu && (
+                  <div className="absolute right-0 mt-2 w-52 bg-white/90 backdrop-blur-md border border-persian-red-300/50 rounded-xl shadow-xl z-50">
+                    <div className="px-3 py-2.5 border-b border-persian-red-200/50 flex items-center gap-2.5">
+                      {user.image ? (
+                        <Image
+                          src={user.image}
+                          alt={displayName}
+                          width={32}
+                          height={32}
+                          className="w-8 h-8 rounded-full object-cover border-2 border-persian-red-400"
+                        />
+                      ) : (
+                        <div className="w-8 h-8 bg-persian-red-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                          {displayName[0].toUpperCase()}
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-bold text-persian-red-700">{displayName}</p>
+                        {userLevel && (
+                          <p className="text-[10px] font-semibold text-persian-gold-600">
+                            Level {userLevel.level}: {userLevel.title}
+                          </p>
+                        )}
+                        <p className="text-[10px] text-persian-red-500 truncate">{user.email}</p>
+                      </div>
+                    </div>
+                    <div className="py-1.5">
+                      <Link
+                        href="/dashboard"
+                        className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
+                        onClick={() => setShowMenu(false)}
+                      >
+                        Dashboard
+                      </Link>
+                      <Link
+                        href="/dashboard/lessons"
+                        className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
+                        onClick={() => setShowMenu(false)}
+                      >
+                        Lessons
+                      </Link>
+                      <Link
+                        href="/dashboard/grammar"
+                        className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
+                        onClick={() => setShowMenu(false)}
+                      >
+                        Grammar
+                      </Link>
+                      <Link
+                        href="/dashboard/practice"
+                        className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
+                        onClick={() => setShowMenu(false)}
+                      >
+                        Practice
+                      </Link>
+                      <Link
+                        href="/dashboard/alphabet"
+                        className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
+                        onClick={() => setShowMenu(false)}
+                      >
+                        Alphabet
+                      </Link>
+                      <div className="border-t border-persian-red-200/50 mt-1.5 pt-1.5 md:border-t-0 md:mt-0 md:pt-0">
+                        <button
+                          onClick={() => signOut({ callbackUrl: "/" })}
+                          className="block w-full text-left px-3 py-1.5 text-xs text-persian-red-600 hover:bg-persian-beige-100 font-medium"
+                        >
+                          Sign Out
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 )}
-                <div className="hidden sm:flex flex-col items-start">
-                  <span className="text-sm text-persian-red-700 font-medium">
-                    Hi, {displayName}!
-                  </span>
-                  {userLevel && (
-                    <span className="text-[10px] text-persian-gold-600 font-semibold">
-                      Lvl {userLevel.level} {userLevel.title}
-                    </span>
-                  )}
-                </div>
-                <svg
-                  className={`w-3.5 h-3.5 text-persian-red-500 transition-transform ${showMenu ? "rotate-180" : ""}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+              </div>
+            )}
 
-              {/* Dropdown Menu */}
-              {showMenu && (
-                <div className="absolute right-0 mt-2 w-56 bg-white border-2 border-persian-red-300 rounded-lg shadow-xl z-50">
-                  <div className="px-4 py-3 border-b border-persian-red-200 flex items-center gap-3">
-                    {user.image ? (
-                      <Image
-                        src={user.image}
-                        alt={displayName}
-                        width={40}
-                        height={40}
-                        className="w-10 h-10 rounded-full object-cover border-2 border-persian-red-400"
-                      />
-                    ) : (
-                      <div className="w-10 h-10 bg-persian-red-500 rounded-full flex items-center justify-center text-white font-bold">
-                        {displayName[0].toUpperCase()}
-                      </div>
-                    )}
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-bold text-persian-red-700">{displayName}</p>
-                      {userLevel && (
-                        <p className="text-xs font-semibold text-persian-gold-600">
-                          Level {userLevel.level}: {userLevel.title}
-                        </p>
-                      )}
-                      <p className="text-xs text-persian-red-500 truncate">{user.email}</p>
-                    </div>
+            {/* Guest mobile dropdown */}
+            {isGuest && showMenu && (
+              <div className="absolute top-10 right-4 w-52 bg-white/90 backdrop-blur-md border border-persian-red-300/50 rounded-xl shadow-xl z-50 md:hidden">
+                <div className="py-1.5">
+                  <Link href="/dashboard" className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Dashboard</Link>
+                  <Link href="/dashboard/lessons" className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Lessons</Link>
+                  <Link href="/dashboard/grammar" className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Grammar</Link>
+                  <Link href="/dashboard/practice" className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Practice</Link>
+                  <Link href="/dashboard/alphabet" className="block px-3 py-1.5 text-xs text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Alphabet</Link>
+                  <div className="border-t border-persian-red-200/50 mt-1.5 pt-1.5">
+                    <Link href="/login" className="block px-3 py-1.5 text-xs text-persian-red-500 hover:bg-persian-beige-100 font-bold" onClick={() => setShowMenu(false)}>Sign In</Link>
                   </div>
-                  <div className="py-2">
-                    <Link
-                      href="/dashboard"
-                      className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
-                      onClick={() => setShowMenu(false)}
-                    >
-                      Dashboard
-                    </Link>
-                    <Link
-                      href="/dashboard/lessons"
-                      className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
-                      onClick={() => setShowMenu(false)}
-                    >
-                      Lessons
-                    </Link>
-                    <Link
-                      href="/dashboard/grammar"
-                      className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
-                      onClick={() => setShowMenu(false)}
-                    >
-                      Grammar
-                    </Link>
-                    <Link
-                      href="/dashboard/practice"
-                      className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
-                      onClick={() => setShowMenu(false)}
-                    >
-                      Practice
-                    </Link>
-                    <Link
-                      href="/dashboard/alphabet"
-                      className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100 md:hidden"
-                      onClick={() => setShowMenu(false)}
-                    >
-                      Alphabet
-                    </Link>
-                    <div className="border-t border-persian-red-200 mt-2 pt-2 md:border-t-0 md:mt-0 md:pt-0">
-                      <button
-                        onClick={() => signOut({ callbackUrl: "/" })}
-                        className="block w-full text-left px-4 py-2 text-sm text-persian-red-600 hover:bg-persian-beige-100 font-medium"
-                      >
-                        Sign Out
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Guest mobile dropdown */}
-          {isGuest && showMenu && (
-            <div className="absolute top-12 right-4 w-56 bg-white border-2 border-persian-red-300 rounded-lg shadow-xl z-50 md:hidden">
-              <div className="py-2">
-                <Link href="/dashboard" className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Dashboard</Link>
-                <Link href="/dashboard/lessons" className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Lessons</Link>
-                <Link href="/dashboard/grammar" className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Grammar</Link>
-                <Link href="/dashboard/practice" className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Practice</Link>
-                <Link href="/dashboard/alphabet" className="block px-4 py-2 text-sm text-persian-red-700 hover:bg-persian-beige-100" onClick={() => setShowMenu(false)}>Alphabet</Link>
-                <div className="border-t border-persian-red-200 mt-2 pt-2">
-                  <Link href="/login" className="block px-4 py-2 text-sm text-persian-red-500 hover:bg-persian-beige-100 font-bold" onClick={() => setShowMenu(false)}>Sign In</Link>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }

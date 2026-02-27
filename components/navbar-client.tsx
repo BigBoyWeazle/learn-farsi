@@ -16,7 +16,7 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo / Brand */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 hover:scale-105 transition-transform duration-200">
             <Image
               src="/logodesertsmall.png"
               alt="Learn Farsi"
@@ -64,7 +64,7 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
             </Link>
             <Link
               href="/dashboard"
-              className="px-4 py-2 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors text-sm font-semibold shadow-md"
+              className="px-4 py-2 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 hover:scale-110 hover:shadow-xl transition-all duration-200 text-sm font-semibold shadow-md border border-persian-red-600/50 ring-1 ring-white/10"
             >
               {isLoggedIn ? "Continue Learning" : "Get Started"}
             </Link>
@@ -74,7 +74,7 @@ export function NavbarClient({ isLoggedIn = false }: NavbarClientProps) {
           <div className="flex items-center gap-3 md:hidden">
             <Link
               href="/dashboard"
-              className="px-3 py-1.5 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors text-sm font-semibold shadow-md"
+              className="px-3 py-1.5 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 hover:scale-110 transition-all duration-200 text-sm font-semibold shadow-md border border-persian-red-600/50 ring-1 ring-white/10"
             >
               {isLoggedIn ? "Continue" : "Get Started"}
             </Link>

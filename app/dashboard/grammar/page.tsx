@@ -120,7 +120,7 @@ export default function GrammarPage() {
       </div>
 
       {/* Progress Overview */}
-      <div className="bg-persian-red-500 rounded-xl shadow-xl p-4 sm:p-6 mb-6 sm:mb-8 text-white border-2 border-persian-red-700">
+      <div className="bg-persian-red-500/90 backdrop-blur-lg rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] p-4 sm:p-6 mb-6 sm:mb-8 text-white border border-persian-red-600/50 ring-1 ring-white/10">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-lg sm:text-xl font-bold mb-1">Your Grammar Progress</h2>
@@ -145,7 +145,7 @@ export default function GrammarPage() {
       {/* Grammar Reference Card */}
       <Link
         href="/dashboard/grammar/reference"
-        className="block bg-white border-2 border-persian-gold-500 rounded-xl shadow-xl p-4 sm:p-5 mb-6 sm:mb-8 hover:shadow-2xl hover:border-persian-gold-600 transition-all"
+        className="block bg-white/40 backdrop-blur-lg border border-persian-gold-400/50 rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] p-4 sm:p-5 mb-6 sm:mb-8 hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:bg-white/50 transition-all ring-1 ring-white/20"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 sm:gap-4">
@@ -162,7 +162,7 @@ export default function GrammarPage() {
       </Link>
 
       {lessons.length === 0 ? (
-        <div className="bg-white border-2 border-persian-red-500 shadow-xl rounded-lg p-8 text-center">
+        <div className="bg-white/40 backdrop-blur-lg border border-persian-red-400/40 shadow-[0_8px_32px_rgba(0,0,0,0.08)] rounded-xl p-8 text-center ring-1 ring-white/20">
           <div className="w-16 h-16 mx-auto mb-4 overflow-hidden">
             <Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" />
           </div>
@@ -231,14 +231,14 @@ export default function GrammarPage() {
 
                   {/* Lesson card */}
                   <div
-                    className={`flex-1 rounded-lg border-2 p-3 sm:p-4 transition-all ${
+                    className={`flex-1 rounded-xl p-3 sm:p-4 transition-all backdrop-blur-lg ring-1 ${
                       isLocked
-                        ? "border-persian-beige-300 bg-persian-beige-50 opacity-50"
+                        ? "border border-persian-beige-300/50 bg-persian-beige-50/30 opacity-50 ring-white/10"
                         : isCompleted
-                        ? "border-emerald-300 bg-emerald-50/50"
+                        ? "border border-emerald-300/50 bg-emerald-50/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-white/20"
                         : isCurrent
-                        ? "border-persian-red-500 bg-white shadow-lg"
-                        : "border-persian-red-200 bg-white"
+                        ? "border border-persian-red-400/50 bg-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.1)] ring-white/30"
+                        : "border border-persian-red-200/40 bg-white/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-white/20"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-2 mb-1">

@@ -63,7 +63,7 @@ export default function SessionCompletePage() {
   if (!stats) {
     return (
       <div className="max-w-2xl mx-auto py-4 sm:py-8 px-2 sm:px-0">
-        <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-5 sm:p-8 text-center">
+        <div className="bg-white/40 backdrop-blur-lg border border-persian-red-400/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-5 sm:p-8 text-center ring-1 ring-white/20">
           <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
           <h2 className="text-lg sm:text-xl font-bold text-persian-red-500 mb-2 sm:mb-3">
             No Session Data
@@ -73,7 +73,7 @@ export default function SessionCompletePage() {
           </p>
           <Link
             href="/dashboard/practice"
-            className="inline-block px-5 py-2.5 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-semibold text-sm"
+            className="inline-block px-5 py-2.5 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all font-semibold text-sm shadow-lg border border-persian-red-600/50 ring-1 ring-white/10"
           >
             Start Practice Session
           </Link>
@@ -93,14 +93,14 @@ export default function SessionCompletePage() {
 
   return (
     <div className="max-w-2xl mx-auto py-4 sm:py-8 px-2 sm:px-0">
-      <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-4 sm:p-8 text-center">
+      <div className="bg-white/40 backdrop-blur-lg border border-persian-red-400/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-4 sm:p-8 text-center ring-1 ring-white/20">
         {/* Celebration Icon + Title */}
         <div className="text-4xl sm:text-6xl mb-2 sm:mb-3 animate-bounce">🎉</div>
         <h1 className="text-xl sm:text-3xl font-bold text-persian-red-500 mb-0.5 sm:mb-1">Great Work!</h1>
         <p className="text-sm sm:text-base text-persian-red-700 font-medium mb-3 sm:mb-5">Session Complete</p>
 
         {/* Stats Box */}
-        <div className="bg-persian-beige-100 rounded-xl p-3 sm:p-5 mb-3 sm:mb-5 border-2 border-persian-red-300">
+        <div className="bg-persian-beige-100/50 backdrop-blur-lg rounded-xl p-3 sm:p-5 mb-3 sm:mb-5 border border-persian-red-300/40 ring-1 ring-white/20">
           {/* Score + Stats row */}
           <div className="flex items-center justify-center gap-4 sm:gap-8 mb-2 sm:mb-3">
             <div>
@@ -146,7 +146,7 @@ export default function SessionCompletePage() {
 
         {/* Streak Display */}
         {streakUpdate && (
-          <div className="mb-3 sm:mb-5 p-2.5 sm:p-3 bg-amber-50 rounded-lg border-2 border-amber-400">
+          <div className="mb-3 sm:mb-5 p-2.5 sm:p-3 bg-amber-50/50 backdrop-blur-lg rounded-xl border border-amber-400/50 ring-1 ring-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
             <div className="flex items-center justify-center gap-4 sm:gap-6">
               <div className="text-center">
                 <div className="text-lg sm:text-xl">🔥</div>
@@ -176,7 +176,7 @@ export default function SessionCompletePage() {
         <div className="space-y-2 sm:space-y-3">
           <button
             onClick={() => router.push("/dashboard/practice")}
-            className="w-full py-2.5 sm:py-3 px-4 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-all text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl"
+            className="w-full py-2.5 sm:py-3 px-4 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all text-sm sm:text-base font-semibold shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-xl border border-persian-red-600/50 ring-1 ring-white/10"
           >
             Continue Practicing <span className="btn-arrow">→</span>
           </button>

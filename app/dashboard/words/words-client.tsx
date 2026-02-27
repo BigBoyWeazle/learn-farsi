@@ -105,7 +105,7 @@ export default function WordsClient({ words }: WordsClientProps) {
       </div>
 
       {/* Search Bar */}
-      <div className="bg-persian-beige-200 border-2 border-persian-red-500 rounded-lg p-4 shadow-lg">
+      <div className="bg-white/40 backdrop-blur-lg border border-persian-red-500/40 rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-white/20">
         <div className="flex items-center gap-3">
           <span className="text-2xl">🔍</span>
           <input
@@ -113,12 +113,12 @@ export default function WordsClient({ words }: WordsClientProps) {
             placeholder="Search by phonetic, Farsi, or English translation..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 px-4 py-2 border-2 border-persian-red-300 rounded-lg focus:outline-none focus:border-persian-red-500 text-persian-red-700 placeholder:text-persian-red-400"
+            className="flex-1 px-4 py-2 bg-white/50 backdrop-blur-lg border border-persian-red-300/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-persian-red-300/30 focus:border-persian-red-500 text-persian-red-700 placeholder:text-persian-red-400"
           />
           {(searchQuery || selectedLevel !== null || selectedType !== null) && (
             <button
               onClick={clearFilters}
-              className="px-4 py-2 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-semibold"
+              className="px-4 py-2 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 hover:scale-105 transition-all font-semibold shadow-md border border-persian-red-600/50 ring-1 ring-white/10"
             >
               Clear
             </button>
@@ -132,7 +132,7 @@ export default function WordsClient({ words }: WordsClientProps) {
       </div>
 
       {/* Filters */}
-      <div className="bg-persian-beige-200 border-2 border-persian-red-500 rounded-lg p-3 shadow-lg space-y-2">
+      <div className="bg-white/40 backdrop-blur-lg border border-persian-red-500/40 rounded-xl p-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-white/20 space-y-2">
         {/* Level Filter */}
         <div className="flex items-center gap-1.5 flex-wrap">
           <span className="text-xs font-semibold text-persian-red-500">Level:</span>
@@ -188,7 +188,7 @@ export default function WordsClient({ words }: WordsClientProps) {
 
       {/* Words Grid */}
       {filteredWords.length === 0 ? (
-        <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-lg p-8 text-center">
+        <div className="bg-white/40 backdrop-blur-lg border border-persian-red-500/40 shadow-[0_8px_32px_rgba(0,0,0,0.08)] rounded-xl p-8 text-center ring-1 ring-white/20">
           <p className="text-persian-red-700 font-medium">
             {searchQuery || selectedLevel !== null || selectedType !== null
               ? "No words found with current filters. Try adjusting your search or filters."

@@ -94,21 +94,22 @@ export default async function LandingPage() {
               alt="Pomegranate"
               width={120}
               height={120}
+              className="hover:scale-110 transition-transform duration-200"
             />
           </div>
 
           {/* Personalized Greeting for Logged-in Users */}
           {isLoggedIn && userName && (
             <div className="mb-6">
-              <span className="inline-block px-6 py-2 bg-persian-gold-500 text-white rounded-full font-bold text-lg shadow-lg">
-                👋 Welcome back, {userName}!
+              <span className="group/welcome inline-block px-6 py-2 bg-persian-gold-500/90 backdrop-blur-lg text-white rounded-full font-bold text-lg shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-persian-gold-600/50 ring-1 ring-white/10 hover:scale-105 hover:shadow-xl transition-all cursor-default">
+                <span className="inline-block group-hover/welcome:animate-wave">👋</span> Welcome back, {userName}!
               </span>
             </div>
           )}
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="text-persian-red-500">Learn Farsi</span>
-            <span className="ml-3 inline-block align-top bg-persian-gold-500 text-white text-sm md:text-base font-bold px-3 py-1 rounded-lg shadow-lg">BETA</span>
+            <span className="ml-3 inline-block align-top bg-persian-gold-500/90 backdrop-blur-lg text-white text-sm md:text-base font-bold px-3 py-1 rounded-lg shadow-lg border border-persian-gold-600/50 ring-1 ring-white/10">BETA</span>
             <br />
             <span
               className="text-persian-red-700 dark:text-persian-beige-100"
@@ -148,13 +149,13 @@ export default async function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link
               href="/dashboard/lessons"
-              className="px-8 py-4 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
+              className="px-8 py-4 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform border border-persian-red-600/50 ring-1 ring-white/10"
             >
               {isLoggedIn ? "Continue Learning" : "Start Learning"} <span className="btn-arrow">→</span>
             </Link>
             <Link
               href="/dashboard/practice"
-              className="px-8 py-4 bg-white dark:bg-persian-beige-800 text-persian-red-500 dark:text-persian-red-400 border-3 border-persian-red-500 dark:border-persian-red-400 rounded-xl hover:bg-persian-beige-100 dark:hover:bg-persian-beige-700 transition-all shadow-lg text-lg font-bold"
+              className="px-8 py-4 bg-white/40 dark:bg-persian-beige-800/40 backdrop-blur-lg text-persian-red-500 dark:text-persian-red-400 border border-persian-red-500/40 dark:border-persian-red-400/40 rounded-xl hover:bg-white/60 dark:hover:bg-persian-beige-700/60 hover:scale-105 hover:shadow-xl transition-all shadow-lg text-lg font-bold ring-1 ring-white/20"
             >
               {isLoggedIn ? "Practice Mode" : "Try Practice Mode"}
             </Link>
@@ -164,7 +165,7 @@ export default async function LandingPage() {
           <div className="flex flex-col items-center mb-12">
             <div className="flex flex-wrap justify-center items-center gap-3">
               {userCount > 0 && (
-                <Link href="/dashboard" className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 transition-all duration-200 hover:scale-105 hover:shadow-xl cursor-pointer">
+                <Link href="/dashboard" className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-white/40 dark:bg-persian-beige-800/40 backdrop-blur-lg rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-persian-gold-400/50 ring-1 ring-white/20 transition-all duration-200 hover:scale-105 hover:shadow-xl hover:bg-white/60 cursor-pointer">
                   <div className="flex -space-x-2 flex-shrink-0">
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-red-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">F</div>
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-persian-gold-500 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
@@ -176,7 +177,7 @@ export default async function LandingPage() {
                 </Link>
               )}
               {totalXP > 0 && (
-                <div className="inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 transition-all duration-200 hover:scale-105 hover:shadow-xl">
+                <div className="inline-flex items-center gap-2 px-5 py-3 bg-white/40 dark:bg-persian-beige-800/40 backdrop-blur-lg rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-persian-gold-400/50 ring-1 ring-white/20 transition-all duration-200 hover:scale-105 hover:shadow-xl hover:bg-white/60">
                   <span className="text-xl">⚡</span>
                   <span className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-base">
                     <AnimatedCounter target={totalXP} className="text-persian-red-500 font-bold" /> Total XP Earned
@@ -184,7 +185,7 @@ export default async function LandingPage() {
                 </div>
               )}
               {totalLessonsCompleted > 0 && (
-                <div className="inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-persian-beige-800 rounded-full shadow-lg border-2 border-persian-gold-400 transition-all duration-200 hover:scale-105 hover:shadow-xl">
+                <div className="inline-flex items-center gap-2 px-5 py-3 bg-white/40 dark:bg-persian-beige-800/40 backdrop-blur-lg rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-persian-gold-400/50 ring-1 ring-white/20 transition-all duration-200 hover:scale-105 hover:shadow-xl hover:bg-white/60">
                   <span className="text-xl">✅</span>
                   <span className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-base">
                     <AnimatedCounter target={totalLessonsCompleted} className="text-persian-red-500 font-bold" /> Total Lessons Completed
@@ -207,7 +208,7 @@ export default async function LandingPage() {
             Everything you need to learn and remember Farsi words fast and easy!
           </p>
           <div className="grid grid-cols-3 gap-2.5 sm:gap-8 mx-auto md:grid-cols-3">
-            <div className="bg-white dark:bg-persian-beige-800 rounded-xl sm:rounded-2xl p-4 sm:p-8 border-2 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
+            <div className="bg-white/40 dark:bg-persian-beige-800/40 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-persian-red-500/40 dark:border-persian-red-700/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-white/20 transition-all hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:scale-105 hover:bg-white/55 text-center">
               <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2 sm:mb-3 overflow-hidden"><Image src="/multiplebooks_icon.png" alt="Books" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
               <div className="text-2xl sm:text-4xl font-bold text-persian-red-500 mb-0.5 sm:mb-1">{lessonCount}</div>
               <div className="text-persian-red-700 dark:text-persian-beige-200 font-semibold text-sm sm:text-lg">
@@ -227,7 +228,7 @@ export default async function LandingPage() {
                 </span>
               </div>
             </div>
-            <div className="bg-white dark:bg-persian-beige-800 rounded-xl sm:rounded-2xl p-4 sm:p-8 border-2 border-persian-gold-500 dark:border-persian-gold-600 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
+            <div className="bg-white/40 dark:bg-persian-beige-800/40 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-persian-gold-500/40 dark:border-persian-gold-600/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-white/20 transition-all hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:scale-105 hover:bg-white/55 text-center">
               <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2 sm:mb-3 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
               <div className="text-2xl sm:text-4xl font-bold text-persian-red-500 mb-0.5 sm:mb-1">
                 Free
@@ -239,7 +240,7 @@ export default async function LandingPage() {
                 No subscriptions, no paywalls
               </p>
             </div>
-            <div className="bg-white dark:bg-persian-beige-800 rounded-xl sm:rounded-2xl p-4 sm:p-8 border-2 border-persian-red-500 dark:border-persian-red-700 shadow-xl transition-all hover:shadow-2xl hover:scale-105 text-center">
+            <div className="bg-white/40 dark:bg-persian-beige-800/40 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-persian-red-500/40 dark:border-persian-red-700/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-white/20 transition-all hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:scale-105 hover:bg-white/55 text-center">
               <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2 sm:mb-3 overflow-hidden"><Image src="/fireicon.png" alt="Fire" width={80} height={80} className="w-full h-full object-cover scale-125" /></div>
               <div className="text-2xl sm:text-4xl font-bold text-persian-red-500 mb-0.5 sm:mb-1">
                 Daily
@@ -267,7 +268,7 @@ export default async function LandingPage() {
 
           <div className="grid md:grid-cols-2 gap-4 sm:gap-12">
             {/* Structured Lessons */}
-            <div className="bg-persian-red-500 rounded-xl sm:rounded-3xl p-5 sm:p-8 text-white shadow-2xl hover:scale-105 transition-transform border-2 sm:border-4 border-persian-red-700">
+            <div className="bg-persian-red-500/90 backdrop-blur-lg rounded-xl sm:rounded-3xl p-5 sm:p-8 text-white shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.2)] hover:scale-105 transition-all border border-persian-red-700/50 ring-1 ring-white/10">
               <div className="w-10 h-10 sm:w-16 sm:h-16 mb-2 sm:mb-4 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
               <h3 className="text-xl sm:text-3xl font-bold mb-1.5 sm:mb-4">Structured Lessons</h3>
               <p className="text-persian-red-100 mb-3 sm:mb-6 text-sm sm:text-lg">
@@ -295,14 +296,14 @@ export default async function LandingPage() {
 
               <Link
                 href="/dashboard/lessons"
-                className="block w-full py-2 sm:py-3 bg-white text-persian-red-500 rounded-xl hover:bg-persian-beige-100 transition-colors text-center font-bold text-sm sm:text-lg shadow-lg"
+                className="block w-full py-2 sm:py-3 bg-white/90 backdrop-blur-lg text-persian-red-500 rounded-xl hover:bg-white hover:scale-[1.02] hover:shadow-xl transition-all text-center font-bold text-sm sm:text-lg shadow-lg border border-white/50 ring-1 ring-white/30"
               >
                 Browse Lessons <span className="btn-arrow">→</span>
               </Link>
             </div>
 
             {/* Daily Practice */}
-            <div className="bg-persian-beige-200 rounded-xl sm:rounded-3xl p-5 sm:p-8 shadow-2xl hover:scale-105 transition-transform border-2 sm:border-4 border-persian-red-500">
+            <div className="bg-persian-beige-200/40 backdrop-blur-lg rounded-xl sm:rounded-3xl p-5 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.15)] hover:scale-105 transition-all border border-persian-red-500/40 ring-1 ring-white/20">
               <div className="w-10 h-10 sm:w-16 sm:h-16 mb-2 sm:mb-4 overflow-hidden"><Image src="/targeticon.png" alt="Target" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>
               <h3 className="text-xl sm:text-3xl font-bold mb-1.5 sm:mb-4 text-persian-red-500">
                 Daily Practice
@@ -348,7 +349,7 @@ export default async function LandingPage() {
 
               <Link
                 href="/dashboard/practice"
-                className="block w-full py-2 sm:py-3 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-colors text-center font-bold text-sm sm:text-lg shadow-lg"
+                className="block w-full py-2 sm:py-3 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 hover:scale-[1.02] hover:shadow-xl transition-all text-center font-bold text-sm sm:text-lg shadow-lg border border-persian-red-600/50 ring-1 ring-white/10"
               >
                 Start Practicing <span className="btn-arrow">→</span>
               </Link>
@@ -369,14 +370,14 @@ export default async function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/dashboard/alphabet"
-              className="px-8 py-4 bg-persian-gold-500 text-white rounded-xl hover:bg-persian-gold-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
+              className="px-8 py-4 bg-persian-gold-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-gold-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform border border-persian-gold-600/50 ring-1 ring-white/10"
             >
               <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/bookicon.png" alt="Book" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
               View All Letters
             </Link>
             <Link
               href="/dashboard/alphabet/practice"
-              className="px-8 py-4 bg-persian-red-500 text-white rounded-xl hover:bg-persian-red-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform"
+              className="px-8 py-4 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all shadow-xl hover:shadow-2xl text-lg font-bold hover:scale-105 transform border border-persian-red-600/50 ring-1 ring-white/10"
             >
               <span className="inline-block w-6 h-6 overflow-hidden align-middle mr-2"><Image src="/pencilicon.png" alt="Pencil" width={40} height={40} className="w-full h-full object-cover scale-125" /></span>
               Practice Alphabet
@@ -392,7 +393,7 @@ export default async function LandingPage() {
             Our Story
           </h2>
 
-          <div className="bg-white dark:bg-persian-beige-800 rounded-2xl p-5 md:p-6 shadow-xl group persian-border">
+          <div className="bg-white/40 dark:bg-persian-beige-800/40 backdrop-blur-lg rounded-2xl p-5 md:p-6 shadow-[0_8px_32px_rgba(0,0,0,0.08)] group border-2 border-persian-red-500/60 dark:border-persian-red-700/60 ring-1 ring-white/20">
             <div className="flex flex-col items-center gap-4">
               {/* Photo + Contact annotation */}
               <div className="relative inline-block">
@@ -459,7 +460,7 @@ export default async function LandingPage() {
       {/* Connect With a Teacher Section */}
       <section className="py-10 bg-persian-beige-200 dark:bg-[#654321] transition-colors">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block bg-persian-gold-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide mb-2">Coming Soon</span>
+          <span className="inline-block bg-persian-gold-500/90 backdrop-blur-lg text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide mb-2 border border-persian-gold-600/50 ring-1 ring-white/10">Coming Soon</span>
           <h2 className="text-2xl md:text-3xl font-bold text-persian-red-500 mb-2">
             Connect with a Teacher
           </h2>
@@ -475,7 +476,7 @@ export default async function LandingPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-persian-red-500 hover:bg-persian-red-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-persian-red-500/90 backdrop-blur-lg hover:bg-persian-red-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105 border border-persian-red-600/50 ring-1 ring-white/10"
           >
             <span className="text-base">✉️</span>
             <span>Want to Contribute? Get in Touch</span>
@@ -496,7 +497,7 @@ export default async function LandingPage() {
           </p>
           <Link
             href="/dashboard"
-            className="inline-block px-8 py-3 bg-persian-beige-200 text-persian-red-500 rounded-xl hover:bg-white transition-all text-base font-bold shadow-2xl hover:scale-105 transform border-2 border-white"
+            className="inline-block px-8 py-3 bg-persian-beige-200/90 backdrop-blur-lg text-persian-red-500 rounded-xl hover:bg-white transition-all text-base font-bold shadow-2xl hover:scale-105 transform border border-white/50 ring-1 ring-white/30"
           >
             {isLoggedIn ? "Back to Learning" : "Get Started Free"} <span className="btn-arrow">→</span>
           </Link>

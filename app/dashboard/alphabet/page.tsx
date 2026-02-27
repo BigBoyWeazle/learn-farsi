@@ -47,7 +47,7 @@ export default function AlphabetPage() {
           </p>
           <Link
             href="/dashboard/alphabet/practice"
-            className="inline-flex items-center gap-2 bg-persian-red-600 hover:bg-persian-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 bg-persian-red-600/90 backdrop-blur-lg hover:bg-persian-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all hover:scale-[1.03] shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-persian-red-700/50 ring-1 ring-white/10"
           >
             <span>Practice Alphabet</span>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -60,18 +60,19 @@ export default function AlphabetPage() {
         <div className="flex justify-center mb-6">
           <button
             onClick={() => setShowUniqueToPersian(!showUniqueToPersian)}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 backdrop-blur-lg ${
               showUniqueToPersian
-                ? "bg-persian-gold-500 text-white"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600"
+                ? "bg-persian-gold-500/90 text-white shadow-lg hover:bg-persian-gold-600/90 hover:scale-[1.03] hover:shadow-xl border border-persian-gold-600/50 ring-1 ring-white/10"
+                : "bg-white/40 text-gray-700 dark:text-gray-300 hover:bg-white/60 dark:hover:bg-gray-700/60 hover:scale-[1.03] hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-persian-gold-400/40 dark:border-persian-gold-500/40 ring-1 ring-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.06)] outline outline-1 outline-persian-gold-400/50"
             }`}
           >
-            {showUniqueToPersian ? "Show All Letters" : "Show Unique to Persian (4)"}
+            <img src="/persianflag2.webp" alt="" width={20} height={12} className="inline-block rounded-sm" style={{ imageRendering: "-webkit-optimize-contrast" }} decoding="sync" />
+            {showUniqueToPersian ? "Show All Letters" : "Unique to Persian (4)"}
           </button>
         </div>
 
         {/* Info Card */}
-        <div className="bg-persian-beige-100 dark:bg-gray-800 rounded-xl p-4 mb-8 border border-persian-gold-300 dark:border-gray-700">
+        <div className="bg-persian-beige-100/50 dark:bg-gray-800/50 backdrop-blur-lg rounded-xl p-4 mb-8 border border-persian-gold-300/50 dark:border-gray-700/50 ring-1 ring-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
           <p className="text-gray-700 dark:text-gray-300 text-center">
             <span className="font-semibold">Tip:</span> Persian is written right-to-left.
             Click on any letter to see all its forms and an example word.
@@ -91,13 +92,13 @@ export default function AlphabetPage() {
                       <button
                         key={letter.letter}
                         onClick={() => setSelectedLetter(isSelected ? null : letter)}
-                        className={`relative p-4 rounded-xl transition-all duration-200 ${
+                        className={`relative p-4 rounded-xl transition-all duration-200 backdrop-blur-lg ${
                           isSelected
-                            ? "bg-persian-red-600 text-white scale-105 shadow-lg"
-                            : "bg-white dark:bg-gray-800 hover:bg-persian-beige-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white shadow-md hover:shadow-lg"
+                            ? "bg-persian-red-600/90 text-white scale-105 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-persian-red-700/50 ring-1 ring-white/10"
+                            : "bg-white/40 dark:bg-gray-800/40 hover:bg-white/60 dark:hover:bg-gray-700/60 hover:scale-105 text-gray-900 dark:text-white shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/40 dark:border-gray-700/40 ring-1 ring-white/20"
                         } ${
                           letterGroups.uniqueToPersian.includes(letter.letter)
-                            ? "ring-2 ring-persian-gold-400"
+                            ? "outline outline-2 outline-persian-gold-400"
                             : ""
                         }`}
                       >
@@ -121,7 +122,7 @@ export default function AlphabetPage() {
 
                 {/* Detail panel — shown between rows */}
                 {rowHasSelected && selectedLetter && (
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-5 md:p-8">
+                  <div className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-lg rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] p-5 md:p-8 border border-white/40 dark:border-gray-700/40 ring-1 ring-white/20">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-8">
                       {/* Letter Info */}
                       <div className="flex-1">
@@ -143,7 +144,7 @@ export default function AlphabetPage() {
                         </div>
 
                         {selectedLetter.notes && (
-                          <div className="bg-persian-beige-100 dark:bg-gray-700 rounded-lg p-3 mb-4">
+                          <div className="bg-persian-beige-100/50 dark:bg-gray-700/50 backdrop-blur-lg rounded-lg p-3 mb-4 border border-persian-beige-200/40 dark:border-gray-600/40 ring-1 ring-white/20">
                             <p className="text-gray-700 dark:text-gray-300 text-sm">
                               <span className="font-semibold">Note:</span> {selectedLetter.notes}
                             </p>
@@ -151,7 +152,7 @@ export default function AlphabetPage() {
                         )}
 
                         {/* Example Word */}
-                        <div className="bg-persian-beige-50 dark:bg-gray-700 rounded-xl p-4">
+                        <div className="bg-persian-beige-50/50 dark:bg-gray-700/50 backdrop-blur-lg rounded-xl p-4 border border-persian-beige-200/40 dark:border-gray-600/40 ring-1 ring-white/20">
                           <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">
                             Example Word
                           </h3>
@@ -177,7 +178,7 @@ export default function AlphabetPage() {
                           {Object.entries(selectedLetter.forms).map(([position, form]) => (
                             <div
                               key={position}
-                              className="bg-persian-beige-50 dark:bg-gray-700 rounded-xl p-3 md:p-4 text-center"
+                              className="bg-persian-beige-50/50 dark:bg-gray-700/50 backdrop-blur-lg rounded-xl p-3 md:p-4 text-center border border-persian-beige-200/40 dark:border-gray-600/40 ring-1 ring-white/20"
                             >
                               <p className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2" dir="rtl">
                                 {form}
@@ -213,7 +214,7 @@ export default function AlphabetPage() {
         {/* Legend */}
         <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
           <div className="flex items-center gap-2">
-            <span className="w-4 h-4 rounded ring-2 ring-persian-gold-400 bg-white dark:bg-gray-800"></span>
+            <span className="w-4 h-4 rounded outline outline-2 outline-persian-gold-400 bg-white dark:bg-gray-800"></span>
             <span>Unique to Persian</span>
           </div>
           <div className="flex items-center gap-2">

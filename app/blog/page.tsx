@@ -77,7 +77,7 @@ export default async function BlogPage() {
               alt="Learn Farsi - Persian arch with desert landscape"
               width={220}
               height={220}
-              className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] object-contain"
+              className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] object-contain hover:scale-110 transition-transform duration-200"
               priority
             />
             {/* Handwritten text with arrow */}
@@ -105,9 +105,9 @@ export default async function BlogPage() {
         <div className="max-w-xl mx-auto px-4 sm:px-6 pb-8">
           <Link
             href={`/blog/${featuredPost.slug}`}
-            className="block bg-white rounded-2xl shadow-lg border-2 border-persian-red-300 hover:border-persian-red-500 hover:shadow-xl transition-all overflow-hidden group"
+            className="block bg-white/40 backdrop-blur-lg rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-persian-red-300/40 hover:border-persian-red-400/60 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:bg-white/55 transition-all overflow-hidden group ring-1 ring-white/20"
           >
-            <div className="bg-persian-red-500 px-5 py-2 flex items-center justify-between">
+            <div className="bg-persian-red-500/90 backdrop-blur-lg px-5 py-2 flex items-center justify-between">
               <span className="text-white text-xs font-bold uppercase tracking-wide">
                 Latest Article
               </span>
@@ -180,7 +180,7 @@ export default async function BlogPage() {
 
         {/* CTA banner */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-8">
-          <div className="bg-persian-red-500 rounded-xl p-6 text-center shadow-lg">
+          <div className="bg-persian-red-500/90 backdrop-blur-lg rounded-xl p-6 text-center shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-persian-red-600/50 ring-1 ring-white/10">
             <h3 className="text-xl font-bold text-white mb-2">
               Ready to start learning Farsi?
             </h3>
@@ -189,7 +189,7 @@ export default async function BlogPage() {
             </p>
             <Link
               href="/dashboard/lessons"
-              className="group/cta inline-flex items-center gap-2 px-6 py-3 bg-white text-persian-red-500 rounded-lg font-bold hover:bg-persian-beige-100 hover:scale-105 transition-all shadow-md hover:shadow-lg"
+              className="group/cta inline-flex items-center gap-2 px-6 py-3 bg-white/90 backdrop-blur-lg text-persian-red-500 rounded-xl font-bold hover:bg-white hover:scale-105 transition-all shadow-[0_4px_24px_rgba(0,0,0,0.1)] hover:shadow-lg border border-white/50 ring-1 ring-white/30"
             >
               Start Learning Free
               <span className="inline-block group-hover/cta:translate-x-1 transition-transform">→</span>

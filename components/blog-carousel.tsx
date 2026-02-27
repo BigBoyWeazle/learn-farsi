@@ -92,7 +92,7 @@ export function BlogCarousel({ posts }: { posts: BlogPost[] }) {
       {canScrollLeft && (
         <button
           onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-10 h-10 bg-white border-2 border-persian-red-300 rounded-full shadow-lg flex items-center justify-center text-persian-red-500 hover:bg-persian-red-500 hover:text-white transition-colors hidden md:flex"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-10 h-10 bg-white/60 backdrop-blur-lg border border-persian-red-300/40 rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.08)] flex items-center justify-center text-persian-red-500 hover:bg-persian-red-500/90 hover:text-white hover:scale-110 transition-all ring-1 ring-white/30 hidden md:flex"
           aria-label="Scroll left"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,7 +105,7 @@ export function BlogCarousel({ posts }: { posts: BlogPost[] }) {
       {canScrollRight && (
         <button
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-10 h-10 bg-white border-2 border-persian-red-300 rounded-full shadow-lg flex items-center justify-center text-persian-red-500 hover:bg-persian-red-500 hover:text-white transition-colors hidden md:flex"
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-10 h-10 bg-white/60 backdrop-blur-lg border border-persian-red-300/40 rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.08)] flex items-center justify-center text-persian-red-500 hover:bg-persian-red-500/90 hover:text-white hover:scale-110 transition-all ring-1 ring-white/30 hidden md:flex"
           aria-label="Scroll right"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,7 +123,7 @@ export function BlogCarousel({ posts }: { posts: BlogPost[] }) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="flex-shrink-0 w-[280px] sm:w-[300px] snap-start bg-white rounded-xl p-5 shadow-md border-2 border-persian-red-300 hover:border-persian-red-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all group cursor-pointer"
+            className="flex-shrink-0 w-[280px] sm:w-[300px] snap-start bg-white/40 backdrop-blur-lg rounded-xl p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-persian-red-300/40 hover:border-persian-red-400/60 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/55 transition-all group cursor-pointer ring-1 ring-white/20"
           >
             <div className="flex flex-col gap-2 h-full">
               <div className="flex items-center justify-between">

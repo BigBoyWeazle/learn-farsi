@@ -13,7 +13,7 @@ export default function WordCard({ word }: WordCardProps) {
   const { isPhoneticFirst } = useDisplayPreference();
 
   return (
-    <div className="bg-white border-2 border-persian-red-500 shadow-md rounded-lg p-3 hover:shadow-lg hover:border-persian-red-600 transition-all">
+    <div className="bg-white/40 backdrop-blur-lg border border-persian-red-500/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-xl p-3 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:border-persian-red-500/60 hover:bg-white/55 hover:scale-[1.02] transition-all ring-1 ring-white/20">
       <div className="space-y-2">
         {/* Word display - respects display preference */}
         <div className="text-center">
@@ -47,7 +47,7 @@ export default function WordCard({ word }: WordCardProps) {
           {!showTranslation ? (
             <button
               onClick={() => setShowTranslation(true)}
-              className="w-full py-1.5 px-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors text-xs font-semibold shadow-sm"
+              className="w-full py-1.5 px-3 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all text-xs font-semibold shadow-sm border border-persian-red-600/50 ring-1 ring-white/10"
             >
               Show Translation
             </button>
@@ -81,7 +81,7 @@ export default function WordCard({ word }: WordCardProps) {
 
               <button
                 onClick={() => setShowTranslation(false)}
-                className="w-full py-1.5 px-3 bg-persian-beige-200 text-persian-red-500 rounded-lg hover:bg-persian-beige-300 transition-colors text-xs font-semibold border border-persian-red-500"
+                className="w-full py-1.5 px-3 bg-persian-beige-200/50 backdrop-blur-lg text-persian-red-500 rounded-xl hover:bg-persian-beige-300/60 transition-all text-xs font-semibold border border-persian-red-500/40 ring-1 ring-white/20"
               >
                 Hide Translation
               </button>

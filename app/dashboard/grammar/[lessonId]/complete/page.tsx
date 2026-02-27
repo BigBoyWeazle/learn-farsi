@@ -75,7 +75,7 @@ export default function GrammarCompletePage() {
   if (!stats) {
     return (
       <div className="max-w-2xl mx-auto py-4 sm:py-8 px-2 sm:px-0">
-        <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-5 sm:p-8 text-center">
+        <div className="bg-white/40 backdrop-blur-lg border border-persian-red-400/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-5 sm:p-8 text-center ring-1 ring-white/20">
           <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 overflow-hidden"><Image src="/bookicon.png" alt="Book" width={100} height={100} className="w-full h-full object-cover scale-125" /></div>
           <h2 className="text-lg sm:text-xl font-bold text-persian-red-500 mb-2 sm:mb-3">
             No Session Data
@@ -85,7 +85,7 @@ export default function GrammarCompletePage() {
           </p>
           <Link
             href={`/dashboard/grammar/${lessonId}`}
-            className="inline-block px-5 py-2.5 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-semibold text-sm"
+            className="inline-block px-5 py-2.5 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all font-semibold text-sm shadow-lg border border-persian-red-600/50 ring-1 ring-white/10"
           >
             Back to Lesson
           </Link>
@@ -96,7 +96,7 @@ export default function GrammarCompletePage() {
 
   return (
     <div className="max-w-2xl mx-auto py-4 sm:py-8 px-2 sm:px-0">
-      <div className="bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-4 sm:p-8 text-center">
+      <div className="bg-white/40 backdrop-blur-lg border border-persian-red-400/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-4 sm:p-8 text-center ring-1 ring-white/20">
         {/* Celebration/Try Again Icon + Title */}
         <div className={`text-4xl sm:text-6xl mb-2 sm:mb-3 ${isPassed ? 'animate-bounce' : ''}`}>
           {isPassed ? '🎉' : <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto overflow-hidden"><Image src="/bookicon.png" alt="Book" width={120} height={120} className="w-full h-full object-cover scale-125" /></div>}
@@ -111,10 +111,10 @@ export default function GrammarCompletePage() {
         </p>
 
         {/* Score Display */}
-        <div className={`rounded-xl p-3 sm:p-5 mb-3 sm:mb-5 ${
+        <div className={`rounded-xl p-3 sm:p-5 mb-3 sm:mb-5 backdrop-blur-lg ring-1 ${
           isPassed
-            ? 'bg-emerald-50 border-2 border-emerald-500'
-            : 'bg-amber-50 border-2 border-amber-500'
+            ? 'bg-emerald-50/50 border border-emerald-400/50 ring-white/20'
+            : 'bg-amber-50/50 border border-amber-400/50 ring-white/20'
         }`}>
           {/* Score + Stats row */}
           <div className="flex items-center justify-center gap-4 sm:gap-8 mb-2 sm:mb-3">
@@ -145,7 +145,7 @@ export default function GrammarCompletePage() {
 
         {/* Streak Display */}
         {streakUpdate && (
-          <div className="mb-3 sm:mb-5 p-2.5 sm:p-3 bg-amber-50 rounded-lg border-2 border-amber-400">
+          <div className="mb-3 sm:mb-5 p-2.5 sm:p-3 bg-amber-50/50 backdrop-blur-lg rounded-xl border border-amber-400/50 ring-1 ring-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
             <div className="flex items-center justify-center gap-4 sm:gap-6">
               <div className="text-center">
                 <div className="text-lg sm:text-xl">🔥</div>
@@ -190,7 +190,7 @@ export default function GrammarCompletePage() {
             <>
               <Link
                 href="/dashboard/grammar"
-                className="block w-full py-2.5 sm:py-3 px-4 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-all text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl"
+                className="block w-full py-2.5 sm:py-3 px-4 bg-emerald-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-emerald-600 transition-all text-sm sm:text-base font-semibold shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-xl border border-emerald-600/50 ring-1 ring-white/10"
               >
                 Continue to Next Lesson <span className="btn-arrow">→</span>
               </Link>
@@ -205,7 +205,7 @@ export default function GrammarCompletePage() {
             <>
               <Link
                 href={`/dashboard/grammar/${lessonId}`}
-                className="block w-full py-2.5 sm:py-3 px-4 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-all text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl"
+                className="block w-full py-2.5 sm:py-3 px-4 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all text-sm sm:text-base font-semibold shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-xl border border-persian-red-600/50 ring-1 ring-white/10"
               >
                 Review & Try Again <span className="btn-arrow">→</span>
               </Link>

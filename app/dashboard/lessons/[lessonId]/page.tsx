@@ -62,7 +62,7 @@ export default function LessonIntroductionPage() {
   if (!lessonData) {
     return (
       <div className="max-w-2xl mx-auto mt-12">
-        <div className="bg-white border-3 border-persian-red-500 shadow-xl rounded-2xl p-8 text-center">
+        <div className="bg-white/40 backdrop-blur-lg border border-persian-red-400/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-2xl p-8 text-center ring-1 ring-white/20">
           <div className="text-6xl mb-4">❌</div>
           <h2 className="text-2xl font-bold text-persian-red-500 mb-2">
             Lesson Not Found
@@ -72,7 +72,7 @@ export default function LessonIntroductionPage() {
           </p>
           <Link
             href="/dashboard/lessons"
-            className="inline-block px-6 py-3 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors font-semibold"
+            className="inline-block px-6 py-3 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-lg hover:bg-persian-red-600 transition-colors font-semibold shadow-lg"
           >
             Back to Lessons
           </Link>
@@ -103,7 +103,7 @@ export default function LessonIntroductionPage() {
 
       {/* Progress Badge */}
       {progress?.isCompleted && (
-        <div className="mb-4 sm:mb-6 bg-emerald-50 border-2 border-emerald-500 rounded-lg p-3 sm:p-4">
+        <div className="mb-4 sm:mb-6 bg-emerald-50/40 backdrop-blur-lg border border-emerald-400/50 rounded-xl p-3 sm:p-4 ring-1 ring-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="text-2xl sm:text-3xl">✓</div>
             <div>
@@ -117,7 +117,7 @@ export default function LessonIntroductionPage() {
       )}
 
       {/* Lesson Overview */}
-      <div className="bg-gradient-to-r from-persian-red-500 to-persian-red-600 rounded-xl shadow-lg px-4 py-3 sm:px-6 sm:py-4 mb-4 sm:mb-6 text-white border-3 border-persian-red-700">
+      <div className="bg-gradient-to-r from-persian-red-500/90 to-persian-red-600/90 backdrop-blur-lg rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] px-4 py-3 sm:px-6 sm:py-4 mb-4 sm:mb-6 text-white border border-persian-red-600/50 ring-1 ring-white/10">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-base sm:text-lg font-bold">Lesson Overview</h2>
@@ -141,7 +141,7 @@ export default function LessonIntroductionPage() {
           {words.map((word) => (
             <div
               key={word.id}
-              className="bg-white border-2 border-persian-red-200 rounded-lg px-3 py-2 sm:px-4 sm:py-3 hover:border-persian-red-400 transition-colors"
+              className="bg-white/40 backdrop-blur-lg border border-persian-red-200/40 rounded-xl px-3 py-2 sm:px-4 sm:py-3 hover:border-persian-red-400/60 hover:bg-white/55 transition-all ring-1 ring-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
             >
               <div className="flex items-baseline justify-between gap-2 mb-0.5">
                 {isPhoneticFirst ? (
@@ -182,7 +182,7 @@ export default function LessonIntroductionPage() {
       </div>
 
       {/* Study Tips — collapsible */}
-      <div className="bg-persian-beige-100 border-2 border-persian-gold-400 rounded-lg mb-4 sm:mb-6">
+      <div className="bg-persian-beige-100/50 backdrop-blur-lg border border-persian-gold-400/50 rounded-xl mb-4 sm:mb-6 ring-1 ring-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
         <button
           onClick={() => setShowTips(!showTips)}
           className="w-full flex items-center justify-between px-3 py-2 sm:px-4 sm:py-2.5 text-left"
@@ -204,13 +204,13 @@ export default function LessonIntroductionPage() {
       <div className="flex gap-3 sm:gap-4">
         <button
           onClick={() => router.push(`/dashboard/lessons/${lessonId}/practice`)}
-          className="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-all text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl"
+          className="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all text-base sm:text-lg font-semibold shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-xl hover:scale-[1.02] border border-persian-red-600/50 ring-1 ring-white/10"
         >
           Start Practicing <span className="btn-arrow">→</span>
         </button>
         <Link
           href="/dashboard/lessons"
-          className="px-4 sm:px-6 py-3 sm:py-4 border-2 border-persian-red-300 text-persian-red-600 rounded-lg hover:border-persian-red-400 transition-colors font-semibold text-sm sm:text-base"
+          className="px-4 sm:px-6 py-3 sm:py-4 bg-white/40 backdrop-blur-lg border border-persian-red-300/40 text-persian-red-600 rounded-xl hover:border-persian-red-400/60 hover:bg-white/55 transition-all font-semibold text-sm sm:text-base ring-1 ring-white/20"
         >
           Back
         </Link>

@@ -130,10 +130,10 @@ export default function GrammarCard({
                   type="button"
                   onClick={() => handleMultipleChoiceSelect(option)}
                   disabled={cardState !== "question"}
-                  className={`p-4 rounded-lg border-2 text-lg font-medium transition-all ${
+                  className={`p-4 rounded-xl backdrop-blur-lg text-lg font-medium transition-all ring-1 ${
                     selectedOption === option
-                      ? "border-persian-red-500 bg-persian-red-50 text-persian-red-700"
-                      : "border-persian-beige-300 hover:border-persian-red-300 text-persian-red-600"
+                      ? "border border-persian-red-500/60 bg-persian-red-50/50 text-persian-red-700 ring-persian-red-300/30"
+                      : "border border-persian-beige-300/40 hover:border-persian-red-300/50 text-persian-red-600 bg-white/30 ring-white/20"
                   } ${cardState !== "question" ? "cursor-default" : "cursor-pointer"}`}
                 >
                   {option}
@@ -144,7 +144,7 @@ export default function GrammarCard({
             {selectedOption && cardState === "question" && (
               <button
                 onClick={handleSubmit}
-                className="w-full mt-6 px-8 py-4 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 transition-colors text-lg font-semibold shadow-lg hover:shadow-xl"
+                className="w-full mt-6 px-8 py-4 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 transition-all text-lg font-semibold shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-xl border border-persian-red-600/50 ring-1 ring-white/10"
               >
                 Check Answer <span className="btn-arrow">→</span>
               </button>
@@ -177,7 +177,7 @@ export default function GrammarCard({
               value={userAnswer}
               onChange={(e) => setUserAnswer(e.target.value)}
               placeholder="Type your answer..."
-              className="w-full px-6 py-4 text-lg border-2 border-persian-red-300 rounded-lg focus:border-persian-red-500 focus:outline-none transition-colors text-persian-red-700 placeholder:text-persian-red-400"
+              className="w-full px-6 py-4 text-lg bg-white/50 backdrop-blur-lg border border-persian-red-300/40 rounded-xl focus:border-persian-red-500/60 focus:outline-none focus:ring-2 focus:ring-persian-red-300/30 transition-all text-persian-red-700 placeholder:text-persian-red-400 ring-1 ring-white/20"
               autoFocus
               autoComplete="off"
               disabled={cardState !== "question"}
@@ -187,7 +187,7 @@ export default function GrammarCard({
               <button
                 type="submit"
                 disabled={!userAnswer.trim()}
-                className="w-full px-8 py-4 bg-persian-red-500 text-white rounded-lg hover:bg-persian-red-600 disabled:bg-persian-beige-300 disabled:text-persian-red-400 disabled:cursor-not-allowed transition-colors text-lg font-semibold shadow-lg hover:shadow-xl"
+                className="w-full px-8 py-4 bg-persian-red-500/90 backdrop-blur-lg text-white rounded-xl hover:bg-persian-red-600 disabled:bg-persian-beige-300/50 disabled:text-persian-red-400 disabled:cursor-not-allowed transition-all text-lg font-semibold shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-xl border border-persian-red-600/50 ring-1 ring-white/10"
               >
                 Check Answer <span className="btn-arrow">→</span>
               </button>
@@ -210,7 +210,7 @@ export default function GrammarCard({
           </span>
         </div>
         {/* Progress Bar */}
-        <div className="w-full bg-persian-beige-200 rounded-full h-3 border border-persian-red-300">
+        <div className="w-full bg-persian-beige-200/50 backdrop-blur-lg rounded-full h-3 border border-persian-red-300/40 ring-1 ring-white/20">
           <div
             className="bg-persian-red-500 h-full rounded-full transition-all duration-300"
             style={{ width: `${progressPercent}%` }}
@@ -220,14 +220,14 @@ export default function GrammarCard({
 
       {/* Card */}
       <div
-        className={`bg-white border-3 border-persian-red-500 shadow-2xl rounded-2xl p-12 min-h-[450px] flex flex-col justify-between transition-all duration-300 persian-border`}
+        className={`bg-white/40 backdrop-blur-lg border border-persian-red-400/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-2xl p-12 min-h-[450px] flex flex-col justify-between transition-all duration-300 ring-1 ring-white/20`}
       >
         {cardState === "question" ? (
           /* Question State */
           <div className="flex-1 flex flex-col justify-center">
             {/* Exercise Type Badge */}
             <div className="flex justify-center mb-6">
-              <span className="px-4 py-2 bg-persian-beige-100 text-persian-red-700 rounded-full text-sm font-bold border-2 border-persian-red-200">
+              <span className="px-4 py-2 bg-persian-beige-100/50 backdrop-blur-lg text-persian-red-700 rounded-full text-sm font-bold border border-persian-red-200/40 ring-1 ring-white/20">
                 {exercise.exerciseType === "multiple_choice" && "🔘 Multiple Choice"}
                 {exercise.exerciseType === "fill_blank" && <><span className="inline-block w-5 h-5 overflow-hidden align-middle"><Image src="/pencilicon.png" alt="Pencil" width={40} height={40} className="w-full h-full object-cover scale-125" /></span> Fill in the Blank</>}
                 {exercise.exerciseType === "conjugation" && "🔤 Conjugation"}
@@ -241,7 +241,7 @@ export default function GrammarCard({
             {exercise.hint && cardState === "question" && (
               <div className="mt-6 text-center">
                 {showHint ? (
-                  <div className="bg-amber-50 border-2 border-amber-300 rounded-lg p-4">
+                  <div className="bg-amber-50/50 backdrop-blur-lg border border-amber-300/50 rounded-xl p-4 ring-1 ring-white/20">
                     <p className="text-amber-700 font-medium">
                       💡 Hint: {exercise.hint}
                     </p>
@@ -281,7 +281,7 @@ export default function GrammarCard({
 
             {/* Answer Comparison */}
             <div className="flex-1 flex flex-col justify-center space-y-4">
-              <div className="text-center space-y-3 p-6 bg-persian-beige-100 rounded-lg border-2 border-persian-red-200">
+              <div className="text-center space-y-3 p-6 bg-persian-beige-100/50 backdrop-blur-lg rounded-xl border border-persian-red-200/40 ring-1 ring-white/20">
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="text-left">
                     <span className="text-persian-red-600 font-medium">Your answer:</span>
@@ -300,7 +300,7 @@ export default function GrammarCard({
 
               {/* Explanation */}
               {exercise.explanation && (
-                <div className="bg-sky-50 border-2 border-sky-300 rounded-lg p-4">
+                <div className="bg-sky-50/50 backdrop-blur-lg border border-sky-300/50 rounded-xl p-4 ring-1 ring-white/20">
                   <p className="text-sky-700 font-medium">
                     <span className="inline-block w-5 h-5 overflow-hidden align-middle"><Image src="/multiplebooks_icon.png" alt="Books" width={40} height={40} className="w-full h-full object-cover scale-125" /></span> {exercise.explanation}
                   </p>
@@ -312,10 +312,10 @@ export default function GrammarCard({
             <div className="mt-8">
               <button
                 onClick={handleContinue}
-                className={`w-full px-8 py-4 text-white rounded-lg transition-colors text-lg font-semibold shadow-lg hover:shadow-xl ${
+                className={`w-full px-8 py-4 text-white rounded-xl transition-all text-lg font-semibold shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-xl backdrop-blur-lg border ring-1 ring-white/10 ${
                   cardState === "correct"
-                    ? "bg-emerald-500 hover:bg-emerald-600"
-                    : "bg-persian-red-500 hover:bg-persian-red-600"
+                    ? "bg-emerald-500/90 hover:bg-emerald-600 border-emerald-600/50"
+                    : "bg-persian-red-500/90 hover:bg-persian-red-600 border-persian-red-600/50"
                 }`}
               >
                 Continue <span className="btn-arrow">→</span> <span className="text-sm opacity-75">[Enter]</span>
