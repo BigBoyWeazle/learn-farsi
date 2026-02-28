@@ -45,7 +45,7 @@ const commonPhrases = [
 
 const pronouns = [
   { farsiWord: "این", phonetic: "in", englishTranslation: "This", exampleFarsi: "این کتاب من است", examplePhonetic: "in ketab mane ast", exampleEnglish: "This is my book", difficultyLevel: 1 },
-  { farsiWord: "آن", phonetic: "aan", englishTranslation: "That", exampleFarsi: "آن خانه بزرگ است", examplePhonetic: "aan khaneh bozorg ast", exampleEnglish: "That house is big", difficultyLevel: 1 },
+  { farsiWord: "آن", phonetic: "oon", englishTranslation: "That", exampleFarsi: "آن خانه بزرگ است", examplePhonetic: "oon khooneh bozorg-e", exampleEnglish: "That house is big", difficultyLevel: 1 },
   { farsiWord: "اینجا", phonetic: "inja", englishTranslation: "Here", exampleFarsi: "بیا اینجا", examplePhonetic: "biya inja", exampleEnglish: "Come here", difficultyLevel: 1 },
   { farsiWord: "آنجا", phonetic: "oonja", englishTranslation: "There", exampleFarsi: "او آنجا ایستاده", examplePhonetic: "oo oonja istade", exampleEnglish: "He/She is standing there", difficultyLevel: 1 },
   { farsiWord: "من", phonetic: "man", englishTranslation: "I / Me", exampleFarsi: "من دانشجو هستم", examplePhonetic: "man daneshjoo hastam", exampleEnglish: "I am a student", difficultyLevel: 1 },

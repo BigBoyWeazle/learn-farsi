@@ -664,10 +664,10 @@ const pronouns: WordData[] = [
   },
   {
     farsiWord: "آن",
-    phonetic: "aan",
+    phonetic: "oon",
     englishTranslation: "That",
     exampleFarsi: "آن خانه بزرگ است.",
-    examplePhonetic: "aan khaneh bozorg ast.",
+    examplePhonetic: "oon khooneh bozorg-e.",
     exampleEnglish: "That house is big.",
     difficultyLevel: 1,
   },

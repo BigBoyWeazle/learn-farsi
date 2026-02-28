@@ -135,9 +135,9 @@ export async function POST() {
         title: "This & That",
         words: [
           { phonetic: "in", farsi: "این", english: "This", example: "in chi-e?", exampleFarsi: "این چیه؟", exampleEnglish: "What is this?" },
-          { phonetic: "aan", farsi: "آن", english: "That", example: "aan chi-e?", exampleFarsi: "آن چیه؟", exampleEnglish: "What is that?" },
+          { phonetic: "oon", farsi: "آن", english: "That", example: "oon chi-e?", exampleFarsi: "آن چیه؟", exampleEnglish: "What is that?" },
           { phonetic: "injaa", farsi: "اینجا", english: "Here", example: "injaa-st", exampleFarsi: "اینجاست", exampleEnglish: "It's here" },
-          { phonetic: "aanjaa", farsi: "آنجا", english: "There", example: "aanjaa-st", exampleFarsi: "آنجاست", exampleEnglish: "It's there" },
+          { phonetic: "oonjaa", farsi: "آنجا", english: "There", example: "oonjaa-st", exampleFarsi: "آنجاست", exampleEnglish: "It's there" },
         ],
       },
       {
@@ -341,7 +341,7 @@ export async function POST() {
         title: "Prepositions (Part 1)",
         words: [
           { phonetic: "dar", farsi: "در", english: "In/At", example: "dar khaneh", exampleFarsi: "در خانه", exampleEnglish: "At home" },
-          { phonetic: "ruye", farsi: "روی", english: "On/On top of", example: "ruye miz", exampleFarsi: "روی میز", exampleEnglish: "On the table" },
+          { phonetic: "rooye", farsi: "روی", english: "On/On top of", example: "rooye miz", exampleFarsi: "روی میز", exampleEnglish: "On the table" },
           { phonetic: "zir-e", farsi: "زیر", english: "Under", example: "zir-e miz", exampleFarsi: "زیر میز", exampleEnglish: "Under the table" },
           { phonetic: "kenaar-e", farsi: "کنار", english: "Next to/Beside", example: "kenaar-e man", exampleFarsi: "کنار من", exampleEnglish: "Next to me" },
           { phonetic: "baa", farsi: "با", english: "With", example: "baa man biyaa", exampleFarsi: "با من بیا", exampleEnglish: "Come with me" },
