@@ -95,7 +95,7 @@ export default function AlphabetPage() {
                         className={`relative p-4 rounded-xl transition-all duration-200 backdrop-blur-lg ${
                           isSelected
                             ? "bg-persian-red-600/90 text-white scale-105 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-persian-red-700/50 ring-1 ring-white/10"
-                            : "bg-white/40 dark:bg-gray-800/40 hover:bg-white/60 dark:hover:bg-gray-700/60 hover:scale-105 text-gray-900 dark:text-white shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/40 dark:border-gray-700/40 ring-1 ring-white/20"
+                            : "bg-white/60 dark:bg-gray-800/60 hover:bg-white/70 dark:hover:bg-gray-700/70 hover:scale-105 text-gray-900 dark:text-white shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/40 dark:border-gray-700/40 ring-1 ring-white/20"
                         } ${
                           letterGroups.uniqueToPersian.includes(letter.letter)
                             ? "outline outline-2 outline-persian-gold-400"

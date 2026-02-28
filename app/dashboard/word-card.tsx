@@ -13,7 +13,7 @@ export default function WordCard({ word }: WordCardProps) {
   const { isPhoneticFirst } = useDisplayPreference();
 
   return (
-    <div className="bg-white/40 backdrop-blur-lg border border-persian-red-500/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-xl p-3 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:border-persian-red-500/60 hover:bg-white/55 hover:scale-[1.02] transition-all ring-1 ring-white/20">
+    <div className="bg-white/60 backdrop-blur-lg border border-persian-red-500/40 shadow-[0_4px_24px_rgba(0,0,0,0.06)] rounded-xl p-3 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:border-persian-red-500/60 hover:bg-white/70 hover:scale-[1.02] transition-all ring-1 ring-white/20">
       <div className="space-y-2">
         {/* Word display - respects display preference */}
         <div className="text-center">
